@@ -1,4 +1,4 @@
-class REST {
+export default class REST {
 
   constructor(obj){
     Object.assign(this, obj);

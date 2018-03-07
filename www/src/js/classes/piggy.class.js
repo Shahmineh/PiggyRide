@@ -1,3 +1,3 @@
-class Piggy extends REST {
+export default class Piggy extends REST {
 
 }

@@ -1,3 +1,3 @@
-class Extra extends REST {
+export default class Extra extends REST {
 
 }

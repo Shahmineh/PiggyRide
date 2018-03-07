@@ -1,3 +1,3 @@
-class Waypoint extends REST {
+export default class Waypoint extends REST {
 
 }

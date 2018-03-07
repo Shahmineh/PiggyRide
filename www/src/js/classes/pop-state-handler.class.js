@@ -1,4 +1,4 @@
-class PopStateHandler {
+export default class PopStateHandler {
 
     // Note: Only instantiate PopStateHandler once!
   

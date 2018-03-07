@@ -1,3 +1,3 @@
-class User extends REST {
+export default class User extends REST {
 
 }

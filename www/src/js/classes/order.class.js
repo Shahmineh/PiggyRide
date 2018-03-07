@@ -1,3 +1,3 @@
-class Order extends REST {
+export default class Order extends REST {
 
 }
