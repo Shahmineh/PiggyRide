@@ -1,6 +1,15 @@
 const request = require('request-promise-native');
+const Schema = require('mongoose').Schema;
+const ModelAndRoutes = require('./model-and-routes.class');
 
-module.exports = class Waypoints {
+
+module.exports = class Waypoint {
+
+  static get schema() {
+    return {
+
+    }
+  }
 
   constructor(obj) {
     Object.assign(this, obj);
@@ -45,8 +54,8 @@ module.exports = class Waypoints {
 
   async position(timeString) {
     let time = new Date(timeString),
-        timeDiff = Math.abs(time - this.positions[0].time),
-        currPos = {};
+      timeDiff = Math.abs(time - this.positions[0].time),
+      currPos = {};
 
     for (let position of this.positions) {
       let currDiff = Math.abs(time - position.time);

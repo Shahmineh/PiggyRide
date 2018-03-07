@@ -1,0 +1,3 @@
+class User extends REST {
+
+}

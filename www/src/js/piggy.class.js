@@ -1,0 +1,3 @@
+class Piggy extends REST {
+
+}

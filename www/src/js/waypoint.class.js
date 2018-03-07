@@ -1,0 +1,3 @@
+class Waypoint extends REST {
+
+}
