@@ -80,5 +80,10 @@
         }
       ]
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "node gitenforce.js"
+    }
   }
 }
