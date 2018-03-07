@@ -2,16 +2,12 @@ const request = require('request-promise-native');
 const Schema = require('mongoose').Schema;
 const ModelAndRoutes = require('./model-and-routes.class');
 
-
 module.exports = class Waypoint {
-
-  static get schema() {
-    return {
-
-    }
+  static get schema () {
+    return {};
   }
 
-  constructor(obj) {
+  constructor (obj) {
     Object.assign(this, obj);
     let leg = this.gway.routes[0].legs[0];
     this.startAddress = leg.start_address;
@@ -20,12 +16,14 @@ module.exports = class Waypoint {
     this.durationMinutes = Math.round(this.duration / 60);
     this.endTime = new Date(this.startTime.getTime() + this.duration * 1000);
     this.distance = leg.distance.value;
-    this.speed = Math.round((this.distance / 1000) / (this.durationMinutes / 60));
+    this.speed = Math.round(this.distance / 1000 / (this.durationMinutes / 60));
     this.positions = [
-      Object.assign({
+      Object.assign(
+        {
           time: this.startTime
         },
-        leg.start_location, {
+        leg.start_location,
+        {
           text: 'Du är på ' + this.startAddress
         }
       )
@@ -44,15 +42,15 @@ module.exports = class Waypoint {
     delete this.gway;
   }
 
-  get hqPos() {
+  get hqPos () {
     // Nordenskiöldsgatan 13, Malmö
     return {
       lat: 55.6108096,
       lng: 12.9946562
-    }
+    };
   }
 
-  async position(timeString) {
+  async position (timeString) {
     let time = new Date(timeString),
       timeDiff = Math.abs(time - this.positions[0].time),
       currPos = {};
@@ -64,11 +62,10 @@ module.exports = class Waypoint {
         currPos = position;
       }
     }
-    return currPos
+    return currPos;
   }
 
-  static async create(obj) {
-
+  static async create (obj) {
     let url = 'https://maps.googleapis.com/maps/api/directions/json';
 
     let params = {
@@ -87,5 +84,4 @@ module.exports = class Waypoint {
     obj.gway = JSON.parse(await request(url));
     return new this(obj);
   }
-
-}
+};
