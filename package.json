@@ -6,5 +6,77 @@
   "repository": "git@github.com:Shahmineh/PiggyRide.git",
   "author": "Shahmineh",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "scripts": {
+    "start": "gulp default && node app.js",
+    "sync": "node --inspect app.js | browser-sync start --proxy localhost:3000 --no-online --no-reload-on-restart  --no-open --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
+    "eslint": "eslint **/*.js",
+    "htmlhint": "htmlhint --config .htmlhintrc www/**/*.{htm,html}",
+    "stylelint": "stylelint www/src/**/*.scss",
+    "lint": "concurrently -s all \"npm run eslint\" \"npm run htmlhint\" \"npm run stylelint\"",
+    "test": "npm run lint",
+    "compile": "gulp default",
+    "watch": "gulp default && concurrently  --kill-others --allow-restart --restart-after 5000 --restart-tries 6 \"npm run sync\" \"gulp watch\"",
+    "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.3",
+    "compression": "^1.7.1",
+    "crypto-js": "^3.1.9-1",
+    "jquery": "^3.2.1",
+    "jquery-ui": "^1.12.1",
+    "jsonflex": "^1.0.10",
+    "jsrender": "^0.9.90",
+    "owl.carousel": "^2.2.0",
+    "popper.js": "^1.12.9",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.9",
+    "qs": "^6.5.1"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^4.0.0",
+    "@types/jquery": "^3.2.18",
+    "@types/jqueryui": "^1.12.2",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browser-sync": "^2.23.6",
+    "browserify": "^16.1.1",
+    "concurrently": "^3.5.1",
+    "eslint": "^4.18.2",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "htmlhint": "^0.9.13",
+    "stylelint": "^9.1.1",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^2.5.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions"
+            ]
+          }
+        }
+      ]
+    ]
+  }
 }
