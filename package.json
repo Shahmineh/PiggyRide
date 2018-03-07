@@ -20,18 +20,18 @@
     "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0-beta.3",
     "compression": "^1.7.1",
     "crypto-js": "^3.1.9-1",
+    "express": "^4.16.2",
     "jquery": "^3.2.1",
     "jquery-ui": "^1.12.1",
     "jsonflex": "^1.0.10",
     "jsrender": "^0.9.90",
+    "mongoose": "^5.0.9",
     "owl.carousel": "^2.2.0",
     "popper.js": "^1.12.9",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "mongoose": "^5.0.9",
     "qs": "^6.5.1"
   },
   "devDependencies": {
@@ -46,6 +46,7 @@
     "browser-sync": "^2.23.6",
     "browserify": "^16.1.1",
     "concurrently": "^3.5.1",
+    "enforce-gitflow-branches": "^1.0.5",
     "eslint": "^4.18.2",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.9.0",
@@ -59,6 +60,7 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "htmlhint": "^0.9.13",
+    "husky": "^0.15.0-rc.8",
     "stylelint": "^9.1.1",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-scss": "^2.5.0",
