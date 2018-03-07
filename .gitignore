@@ -30,3 +30,4 @@ node_modules
 # OSX folder attributes
 .DS_Store
 www/dist/*
+package-lock.json
