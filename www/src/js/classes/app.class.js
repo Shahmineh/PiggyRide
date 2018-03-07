@@ -1,3 +1,3 @@
-export default class App{
+export default class App {
 
 }

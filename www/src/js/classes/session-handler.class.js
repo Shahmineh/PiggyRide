@@ -1,3 +1,3 @@
-export default class SessionHandler{
+export default class SessionHandler {
 
 }
