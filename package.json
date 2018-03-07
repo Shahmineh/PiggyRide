@@ -8,15 +8,18 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "start": "gulp default && node app.js",
-    "sync": "node --inspect app.js | browser-sync start --proxy localhost:3000 --no-online --no-reload-on-restart  --no-open --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
+    "start": "gulp default && node server.js",
+    "debug": "node --inspect server.js",
+    "nodemon": "nodemon --config nodemon.json exec \"npm run debug\"",
+    "sync": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "eslint": "eslint **/*.js",
     "htmlhint": "htmlhint --config .htmlhintrc www/**/*.{htm,html}",
     "stylelint": "stylelint www/src/**/*.scss",
     "lint": "concurrently -s all \"npm run eslint\" \"npm run htmlhint\" \"npm run stylelint\"",
     "test": "npm run lint",
     "compile": "gulp default",
-    "watch": "gulp default && concurrently  --kill-others --allow-restart --restart-after 5000 --restart-tries 6 \"npm run sync\" \"gulp watch\"",
+    "watch": "gulp default && concurrently --kill-others \"gulp watch\" \"npm run sync\"",
+    "all": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
     "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
   },
   "dependencies": {
