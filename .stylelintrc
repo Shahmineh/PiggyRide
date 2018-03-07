@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-scss"],
+  "rules": {
+    "color-hex-case": null,
+    "comment-empty-line-before": null,
+    "comment-whitespace-inside": null,
+    "no-descending-specificity": null,
+    "length-zero-no-unit": null,
+    "declaration-colon-newline-after": null
+  }
+}
