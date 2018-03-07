@@ -1,0 +1,10 @@
+{
+  "name": "PiggyRide",
+  "version": "0.0.0",
+  "description": "Piggies for everyone",
+  "main": "server.js",
+  "repository": "git@github.com:Shahmineh/PiggyRide.git",
+  "author": "Shahmineh",
+  "license": "UNLICENSED",
+  "private": true
+}
