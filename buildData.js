@@ -74,7 +74,6 @@ function importOrders () {
 
   o.save(e => {});
 
-  console.log('selectedUser._id', selectedUser._id);
   UserModel.update(
     { _id: selectedUser._id },
     { $push: { orders: o } },
@@ -147,7 +146,6 @@ function importSessions () {
 
 function importUsers () {
   for (let user of dataJSON.user) {
-    console.log(memory.sessions);
     let u = new UserModel({
       email: user.email,
       passwordHash: user.passwordHash,
@@ -155,9 +153,11 @@ function importUsers () {
     });
     u.save(e => {
       memory.users.push(u);
+      if (dataJSON.user.length === memory.users.length) {
+        OrderModel.remove({}, () => {
+          importOrders();
+        });
+      }
     });
   }
-  OrderModel.remove({}, () => {
-    importOrders();
-  });
 }
