@@ -11,26 +11,30 @@
     "start": "gulp default && node server.js",
     "debug": "node --inspect server.js",
     "nodemon": "nodemon --config nodemon.json exec \"npm run debug\"",
-    "sync": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
+    "sync":
+      "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "eslint": "eslint **/*.js",
     "htmlhint": "htmlhint --config .htmlhintrc www/**/*.{htm,html}",
     "stylelint": "stylelint www/src/**/*.scss",
-    "lint": "concurrently -s all \"npm run eslint\" \"npm run htmlhint\" \"npm run stylelint\"",
+    "lint":
+      "concurrently -s all \"npm run eslint\" \"npm run htmlhint\" \"npm run stylelint\"",
     "test": "npm run lint",
     "compile": "gulp default",
-    "watch": "gulp default && concurrently --kill-others \"gulp watch\" \"npm run sync\"",
-    "all": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
-    "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
+    "watch":
+      "gulp default && concurrently --kill-others \"gulp watch\" \"npm run sync\"",
+    "all":
+      "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
+    "autofix":
+      "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
-    "core-js": "^2.5.3",
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.2",
     "jquery": "^3.3.1",
     "mongoose": "^5.0.9",
-    "popper.js": "^1.13.0",
+    "popper.js": "^1.12.9",
     "qs": "^6.5.1",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
@@ -53,7 +57,7 @@
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
@@ -71,11 +75,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "babel": {
-    "presets": [
-      [
-        "env"
-      ]
-    ]
+    "presets": [["env"]]
   },
   "husky": {
     "hooks": {
