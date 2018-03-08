@@ -4,25 +4,25 @@
       "name": "HiFi",
       "stock": 10,
       "description": "Boombox\nTV\nDigital TV\nNetflix",
-      "price": 500
+      "price": 200
     },
     {
       "name": "Romans",
       "stock": 12,
       "description": "Champange\nRosor\nChokolad\nBoombox\nOstbricka",
-      "price": 400
+      "price": 300
     },
     {
       "name": "Camping",
       "stock": 17,
       "description": "Tält\nSovsäckar\nVed och tändstickor\nYxa\nMat\nKikare",
-      "price": 600
+      "price": 700
     },
     {
       "name": "Familje",
       "stock": 4,
       "description": "Extra säte\nBarnstol\nPicknickkorg\nFika",
-      "price": 700
+      "price": 500
     }
   ],
   "order": [{}],
@@ -48,16 +48,30 @@
   ],
   "session": [
     {
-      "data": "Första session"
+      "data": "Första sessionen"
     },
     {
-      "data": "Andra session"
+      "data": "Andra sessionen"
+    },
+    {
+      "data": "Tredje sessionen"
+    },
+    {
+      "data": "Coola sessionen"
     }
   ],
   "user": [
     {
       "email": "admin@admin.se",
       "passwordHash": "admin"
+    },
+    {
+      "email": "super@man.se",
+      "passwordHash": "super"
+    },
+    {
+      "email": "bat@man.se",
+      "passwordHash": "bat"
     }
   ],
   "waypoint": [
