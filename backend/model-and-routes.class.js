@@ -32,7 +32,7 @@ module.exports = class ModelAndRoutes {
     routes.includes('delete') && this.setupDeleteRoute();
   }
 
-  static closeConnection () {
+  closeConnection () {
     db.close();
   }
 

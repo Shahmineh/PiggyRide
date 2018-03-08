@@ -1,5 +1,5 @@
+const scriptStartTime = new Date();
 const dataJSON = require('./buildData.json');
-const ModelAndRoutes = require('./backend/model-and-routes.class');
 const express = require('express');
 const app = express();
 
@@ -12,7 +12,9 @@ const Waypoint = require('./backend/waypoint.class');
 const Extra = require('./backend/extra.class');
 
 // define models
-let OrderModel = new Order(app).myModel;
+let order = new Order(app);
+// leave order so we can close the connection later, since we create it last
+let OrderModel = order.myModel;
 let PiggyModel = new Piggy(app).myModel;
 let SessionModel = new Session(app).myModel;
 let UserModel = new User(app).myModel;
@@ -58,27 +60,15 @@ function renewCollections () {
   });
 }
 
-function importOrders () {
-  let i = 0;
-  let selectedUser = memory.users[0];
-
-  let o = new OrderModel({
-    refNr: i,
-    orderTime: new Date(),
-    totalPrice: memory.piggys[0].price,
-    user: selectedUser,
-    extras: memory.extras[0],
-    piggys: memory.piggys[0],
-    waypoints: memory.waypoints[0]
-  });
-
-  o.save(e => {});
-
-  UserModel.update(
-    { _id: selectedUser._id },
-    { $push: { orders: o } },
-    () => {}
-  );
+function importSessions () {
+  for (let session of dataJSON.session) {
+    let s = new SessionModel({
+      data: session.data
+    });
+    s.save(e => {
+      memory.sessions.push(s);
+    });
+  }
 }
 
 function importExtras () {
@@ -133,23 +123,12 @@ function importPiggys () {
   }
 }
 
-function importSessions () {
-  for (let session of dataJSON.session) {
-    let s = new SessionModel({
-      data: session.data
-    });
-    s.save(e => {
-      memory.sessions.push(s);
-    });
-  }
-}
-
 function importUsers () {
   for (let user of dataJSON.user) {
     let u = new UserModel({
       email: user.email,
       passwordHash: user.passwordHash,
-      session: memory.sessions[0]
+      session: memory.sessions[rndI(memory.sessions)]
     });
     u.save(e => {
       memory.users.push(u);
@@ -160,4 +139,48 @@ function importUsers () {
       }
     });
   }
+}
+
+function rndI (item) {
+  return Math.floor(Math.random() * item.length);
+}
+
+function importOrders () {
+  let i = 0;
+  let user = memory.users[rndI(memory.users)];
+  let piggys = [
+    memory.piggys[rndI(memory.piggys)],
+    memory.piggys[rndI(memory.piggys)]
+  ];
+  let extras = [
+    memory.extras[rndI(memory.extras)],
+    memory.extras[rndI(memory.extras)]
+  ];
+  let wps = memory.waypoints[rndI(memory.waypoints)];
+
+  let totalPrice =
+    piggys.map(pig => pig.price).reduce((prev, next) => prev + next) +
+    extras.map(extra => extra.price).reduce((prev, next) => prev + next);
+
+  let o = new OrderModel({
+    refNr: i,
+    orderTime: new Date(),
+    totalPrice: totalPrice,
+    user: user,
+    extras: extras,
+    piggys: piggys,
+    waypoints: wps
+  });
+  UserModel.update({ _id: user._id }, { $push: { orders: o } }, () => {});
+  o.save(e => {
+    if (e) {
+      console.log(e);
+    } else {
+      console.log(
+        'Script finished you may exit, execution time in ms: ' +
+          (new Date() - scriptStartTime)
+      );
+      order.closeConnection();
+    }
+  });
 }
