@@ -20,8 +20,9 @@
       "concurrently -s all \"npm run eslint\" \"npm run htmlhint\" \"npm run stylelint\"",
     "test": "npm run lint",
     "compile": "gulp default",
-    "watch":
-      "gulp default && concurrently --kill-others \"gulp watch\" \"npm run sync\"",
+    "watch": "gulp watch",
+    "live":
+      "gulp default && concurrently --kill-others \"npm run nodemon\" \"npm run sync\"",
     "all":
       "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
     "autofix":
