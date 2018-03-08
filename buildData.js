@@ -51,9 +51,6 @@ function renewCollections () {
           importPiggys();
           UserModel.remove({}, () => {
             importUsers();
-            OrderModel.remove({}, () => {
-              importOrders();
-            });
           });
         });
       });
@@ -160,4 +157,7 @@ function importUsers () {
       memory.users.push(u);
     });
   }
+  OrderModel.remove({}, () => {
+    importOrders();
+  });
 }
