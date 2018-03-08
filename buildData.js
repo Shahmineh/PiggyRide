@@ -177,7 +177,7 @@ function importOrders () {
       console.log(e);
     } else {
       console.log(
-        'Script finished you may exit, execution time in ms: ' +
+        'Script and will exit and close db connection.\nms:' +
           (new Date() - scriptStartTime)
       );
       order.closeConnection();
