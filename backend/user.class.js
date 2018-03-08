@@ -6,10 +6,13 @@ module.exports = class User extends ModelAndRoutes {
     return {
       email: String,
       passwordHash: String,
-      sessionID: String,
+      session: {
+        type: Schema.Types.ObjectId,
+        ref: 'Session'
+      },
       orders: [{
         type: Schema.Types.ObjectId,
-        ref: "Order"
+        ref: 'Order'
       }]
     };
   }
