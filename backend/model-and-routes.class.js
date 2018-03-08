@@ -2,7 +2,7 @@ const qs = require('qs');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mongo_books');
 const db = mongoose.connection;
-db.on('error', (e) => {
+db.on('error', e => {
   console.error(e);
 });
 db.once('open', () => {
@@ -67,8 +67,6 @@ module.exports = class ModelAndRoutes {
       // get params
       params = params || qs.parse(req.params[0]);
 
-      console.log('PPPP', params);
-
       // Get populate instructions
       // and then delete them from the Mongo query params
       let populate = params.populate || '';
@@ -104,7 +102,7 @@ module.exports = class ModelAndRoutes {
             response.error = 'Do not remove more than 5 items at once';
             res.json(response);
           } else {
-            this.myModel.remove(params, (err) => {
+            this.myModel.remove(params, err => {
               if (err) {
                 response.error = err;
               } else {
@@ -135,7 +133,7 @@ module.exports = class ModelAndRoutes {
             response.error = 'Do not update more than 5 items at once';
             res.json(response);
           } else {
-            this.myModel.update(params, req.body, { multi: true }, (err) => {
+            this.myModel.update(params, req.body, { multi: true }, err => {
               if (err) {
                 response.error = err;
               } else {
