@@ -1,0 +1,145 @@
+{
+  "extra": [
+    {
+      "name": "HiFi",
+      "stock": 10,
+      "description": "Boombox\nTV\nDigital TV\nNetflix",
+      "price": 500
+    },
+    {
+      "name": "Romans",
+      "stock": 12,
+      "description": "Champange\nRosor\nChokolad\nBoombox\nOstbricka",
+      "price": 400
+    },
+    {
+      "name": "Camping",
+      "stock": 17,
+      "description": "Tält\nSovsäckar\nVed och tändstickor\nYxa\nMat\nKikare",
+      "price": 600
+    },
+    {
+      "name": "Familje",
+      "stock": 4,
+      "description": "Extra säte\nBarnstol\nPicknickkorg\nFika",
+      "price": 700
+    }
+  ],
+  "order": [{}],
+  "piggy": [
+    {
+      "type": "ExpressPiggy",
+      "number": 1,
+      "description": "This one is ordinary.",
+      "price": 200
+    },
+    {
+      "type": "TurboPiggy",
+      "number": 2,
+      "description": "This one is fast.",
+      "price": 300
+    },
+    {
+      "type": "SpiderPiggy",
+      "number": 3,
+      "description": "This one has many legs.",
+      "price": 400
+    }
+  ],
+  "session": [
+    {
+      "data": null
+    }
+  ],
+  "user": [
+    {
+      "email": "admin@admin.se",
+      "passwordHash": "admin"
+    }
+  ],
+  "waypoint": [
+    {
+      "from": "Sallerupsvägen 26B",
+      "to": "Björkholmsgatan 4",
+      "startTime": "2018-03-02T12:00:00.000Z",
+      "startAddress": "Sallerupsvägen 26B, 212 18 Malmö, Sverige",
+      "endAdress": "Björkholmsgatan 4, 213 74 Malmö, Sverige",
+      "duration": 3206,
+      "durationMinutes": 53,
+      "endTime": "2018-03-02T12:53:26.000Z",
+      "distance": 4201,
+      "speed": 5,
+      "positions": [
+        {
+          "time": "2018-03-02T12:00:00.000Z",
+          "lat": 55.60308819999999,
+          "lng": 13.0305941,
+          "text": "Du är på Sallerupsvägen 26B, 212 18 Malmö, Sverige"
+        },
+        {
+          "time": "2018-03-02T12:01:44.000Z",
+          "lat": 55.6025831,
+          "lng": 13.0327056,
+          "text":
+            "Gå mot <b>åt sydost</b> på <b>Sallerupsvägen</b> mot <b>Idaborgsgatan</b>"
+        },
+        {
+          "time": "2018-03-02T12:15:26.000Z",
+          "lat": 55.5933168,
+          "lng": 13.0271405,
+          "text": "Sväng <b>höger</b> till <b>Östra Farmvägen</b>"
+        },
+        {
+          "time": "2018-03-02T12:19:59.000Z",
+          "lat": 55.5903145,
+          "lng": 13.0279711,
+          "text":
+            "Svag sväng <b>vänster</b> för att fortsätta på <b>Östra Farmvägen</b>"
+        },
+        {
+          "time": "2018-03-02T12:36:36.000Z",
+          "lat": 55.5787328,
+          "lng": 13.0246657,
+          "text": "Fortsätt in på <b>Norra Grängesbergsgatan</b>"
+        },
+        {
+          "time": "2018-03-02T12:38:12.000Z",
+          "lat": 55.5775776,
+          "lng": 13.0241966,
+          "text": "Fortsätt in på <b>Södra Grängesbergsgatan</b>"
+        },
+        {
+          "time": "2018-03-02T12:45:09.000Z",
+          "lat": 55.5742797,
+          "lng": 13.0289145,
+          "text": "Fortsätt in på <b>Västra Hindbyvägen</b>"
+        },
+        {
+          "time": "2018-03-02T12:46:57.000Z",
+          "lat": 55.57346649999999,
+          "lng": 13.030495,
+          "text": "Svag sväng <b>vänster</b> mot <b>Östra Hindbyvägen</b>"
+        },
+        {
+          "time": "2018-03-02T12:51:11.000Z",
+          "lat": 55.5715739,
+          "lng": 13.0346915,
+          "text": "Fortsätt in på <b>Östra Hindbyvägen</b>"
+        },
+        {
+          "time": "2018-03-02T12:52:50.000Z",
+          "lat": 55.57043549999999,
+          "lng": 13.0340888,
+          "text": "Sväng <b>höger</b> till <b>Lyckesholmsgatan</b>"
+        },
+        {
+          "time": "2018-03-02T12:53:26.000Z",
+          "lat": 55.5703003,
+          "lng": 13.0348868,
+          "text":
+            "Sväng <b>vänster</b> till <b>Björkholmsgatan</b><div style=\"font-size:0.9em\">Destinationen kommer att vara på höger sida</div>"
+        }
+      ]
+    }
+  ]
+}
