@@ -22,6 +22,7 @@ var jsWatch = 'www/src/js/**/*.js';
 var jsFiles = [jsSRC];
 
 gulp.task('style', function () {
+  let success = true;
   gulp
     .src(styleSRC)
     .pipe(sourcemaps.init())
@@ -31,7 +32,12 @@ gulp.task('style', function () {
         outputStyle: 'compressed'
       })
     )
-    .on('error', console.error.bind(console))
+    .on('error', function (error) {
+      success = false;
+      console.log(error.stack);
+      console.warn('\x1b[31m%s\x1b[0m', 'Gulp error (styles)');
+      this.emit('end');
+    })
     .pipe(
       autoprefixer({
         browsers: ['last 2 versions'],
@@ -44,10 +50,16 @@ gulp.task('style', function () {
       })
     )
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(styleDist));
+    .pipe(gulp.dest(styleDist))
+    .on('end', function () {
+      if (success) {
+        console.log('\x1b[32m%s\x1b[0m', 'Styles compiled succesfully');
+      }
+    });
 });
 
 gulp.task('js', function () {
+  let success = true;
   jsFiles.map(function (entry) {
     return (
       browserify({
@@ -59,6 +71,12 @@ gulp.task('js', function () {
           sourceMaps: true
         })
         .bundle()
+        .on('error', function (error) {
+          success = false;
+          console.log(error.stack);
+          console.warn('\x1b[31m%s\x1b[0m', 'Gulp error (JavaScript)');
+          this.emit('end');
+        })
         .pipe(source(entry))
         .pipe(
           rename({
@@ -74,6 +92,11 @@ gulp.task('js', function () {
         // .pipe(uglify())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(jsDist))
+        .on('end', function () {
+          if (success) {
+            console.log('\x1b[32m%s\x1b[0m', 'JavaScript compiled succesfully');
+          }
+        })
     );
   });
 });
