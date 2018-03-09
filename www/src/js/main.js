@@ -11,4 +11,5 @@ window.$ = window.jQuery = jQuery; // Sets $ to global
 
 const app = new App();
 
+window.moment = moment;
 geoEvent();
