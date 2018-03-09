@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <!-- Minified CSS -->
   <link rel="stylesheet" href="../dist/css/style.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Font awesome CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -77,12 +78,26 @@
       </ul>
     </div>
   </nav>
+
   <main>
-    <div>
-      <input id="autocompleteTo" placeholder="Enter your address" type="text"></input>
-    </div>
-    <div>
-      <input id="autocompleteFrom" placeholder="Enter your address" type="text"></input>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-6">
+          <div class="input-group input-group-lg">
+            <input id="autocompleteTo" placeholder="Från" class="form-control" type="text">
+            <div class="input-group-prepend">
+              <button type="button" id="locationBtn" class="btn btn-success btn-lg">
+                <i class="fas fa-location-arrow"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="input-group input-group-lg">
+            <input id="autocompleteFrom" placeholder="Till" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
