@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Piggy Ride</title>
   <meta charset="utf-8">
@@ -11,6 +12,7 @@
   <link rel="stylesheet" href="css/libs/bootstrap-4-beta.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
 </head>
+
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Piggy</a>
@@ -34,34 +36,59 @@
       </ul>
     </div>
   </nav>
-<main id="root">
-
-  <div class="container">
-    <div class="row mt-5">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
-                    <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                </div>
+  <main id="root">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-6 mx-auto">
+          <div class="form-group">
+            <p class="text-center mb-2">Avgång</p>
+            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+              <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
+              <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <p class="mt-4">Välj Piggy</p>
+        </div>
+        <div class="col-12 col-md-3">
+          <button type="button" class="btn btn-dark btn-lg mt-2">Express Piggy</button>
+        </div>
+        <div class="col-12 col-md-3">
+          <button type="button" class="btn btn-dark btn-lg mt-2">Spider Piggy</button>
+        </div>
+        <div class="col-12 col-md-3">
+          <button type="button" class="btn btn-dark btn-lg mt-2">Turbo Piggy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <p class="mt-4">Nästa lediga</p>
+        </div>
+      </div>
+    </div>
 
 
-</main>
-
-<footer></footer>
-<!-- Scripts -->
-<script src="/dist/js/main.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
-<script type="text/javascript">
-  $(function () {
-      $('#datetimepicker1').datetimepicker();
+  </main>
+  <footer></footer>
+  <!-- Scripts -->
+  <script src="/dist/js/main.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker();
   });
-</script>
+
+  </script>
 </body>
+
 </html>
