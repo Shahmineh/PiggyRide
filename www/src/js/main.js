@@ -11,5 +11,4 @@ window.$ = window.jQuery = jQuery; // Sets $ to global
 
 const app = new App();
 
-window.geoEvent = geoEvent;
-
+geoEvent();
