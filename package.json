@@ -19,9 +19,14 @@
     "test": "npm run lint",
     "compile": "gulp default",
     "watch": "gulp watch",
-    "live": "gulp default && concurrently --kill-others \"npm run nodemon\" \"npm run sync\"",
-    "all": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
-    "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
+    "live":
+      "gulp default && concurrently --kill-others \"npm run nodemon\" \"npm run sync\"",
+    "all":
+      "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
+    "all-retry":
+      "gulp default && concurrently --allow-restart --restart-after 5000 --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
+    "autofix":
+      "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
