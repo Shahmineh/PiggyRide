@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Piggy Ride</title>
+  <meta charset="utf-8">
+  <!-- Minified CSS -->
+  <link rel="stylesheet" href="../dist/css/style.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Font awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script>
+
+
+    function initAutocomplete() {
+      var defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(55.541985, 12.902565),
+        new google.maps.LatLng(55.646026, 13.099391));
+
+      let options = {
+        bounds: defaultBounds,
+        types: ['geocode'],
+        strictbounds: true,
+        componentRestrictions: {
+          'country': 'se'
+        }
+      };
+      // Create the autocomplete object, restricting the search to geographical
+      // location types.
+      autocompleteTo = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */
+        (document.getElementById('autocompleteTo')),
+        options);
+
+      autocompleteFrom = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */
+        (document.getElementById('autocompleteFrom')),
+        options);
+
+
+
+      // When the user selects an address from the dropdown, populate the address
+      // fields in the form.
+      autocompleteTo.addListener('placeTo_changed', fillInAddress(autocompleteTo));
+      autocompleteFrom.addListener('placeFrom_changed', fillInAddress(autocompleteTo));
+    }
+
+    function fillInAddress(item) {
+      // Get the place details from the autocomplete object.
+      var place = item.getPlace();
+    }
+
+  </script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Piggy</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">jhsadhasgdiyas
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Piggys</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">About us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-6">
+          <div class="input-group input-group-lg">
+            <input id="autocompleteTo" placeholder="Från" class="form-control" type="text">
+            <div class="input-group-prepend">
+              <button type="button" id="getLocation" class="btn btn-success btn-lg">
+                <i class="fas fa-location-arrow"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="input-group input-group-lg">
+            <input id="autocompleteFrom" placeholder="Till" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+  <!-- Scripts -->
+  <script src="../dist/js/main.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrE71qz1iEQgNnM3fbzIXB5pmRoB9rWiQ&libraries=places&region=SE&callback=initAutocomplete"
+    async defer></script>
+</body>
+
+</html>
