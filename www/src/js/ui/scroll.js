@@ -21,10 +21,8 @@ function assignScrollTo ($) {
 }
 
 module.exports = (() => {
-  let jq = $ || window.$ || global.$;
-  if (jq) {
-    assignScrollTo(jq);
+  if (typeof $ === 'function') {
+    assignScrollTo($);
   }
-
   return assignScrollTo;
 })();
