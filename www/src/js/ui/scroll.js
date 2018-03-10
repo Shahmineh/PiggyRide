@@ -1,6 +1,30 @@
-(function () {
-  $('html, body').animate({
-    scrollTop: $('#extras').offset().top
-  }, 2000);
-  // console.log('Scrolled');
+/**
+ * Assigns the scrollTo method to jQuery.
+ *
+ * @param {JQueryStatic} $
+ */
+function assignScrollTo ($) {
+  if (!$) {
+    throw new Error('$ not found.');
+  }
+  Object.assign($, {
+    scrollTo: function (target, time = 2000) {
+      $('html, body').animate(
+        {
+          scrollTop: $(target).offset().top
+        },
+        time
+      );
+      // console.log('Scrolled');
+    }
+  });
+}
+
+module.exports = (() => {
+  let jq = $ || window.$ || global.$;
+  if (jq) {
+    assignScrollTo(jq);
+  }
+
+  return assignScrollTo;
 })();

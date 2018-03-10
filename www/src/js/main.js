@@ -8,8 +8,7 @@ import geoEvent from './classes/geo-locate.js';
 
 // @ts-ignore
 window.$ = window.jQuery = jQuery; // Sets $ to global
-
-require('./ui/scroll.js');
+require('./ui/scroll.js'); // Assigns the scrollTo method to jQuery
 
 const app = new App();
 
