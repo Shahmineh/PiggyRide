@@ -202,6 +202,9 @@
   $(function() {
     $('#departure-time').datetimepicker({
       locale: 'sv'
+    })
+    $('#departure-time').on('datetimepicker.hide', function () {
+      $.scrollTo('#extras', 1500, 'easeInOutCubic')
     });
   });
   </script>
