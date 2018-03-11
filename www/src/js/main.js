@@ -4,6 +4,7 @@ import 'popper.js';
 import 'bootstrap';
 import App from './classes/app.class.js';
 import moment from 'moment';
+import 'moment/locale/sv';
 import geoEvent from './classes/geo-locate.js';
 
 // @ts-ignore
