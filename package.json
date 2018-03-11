@@ -39,7 +39,8 @@
     "popper.js": "^1.12.9",
     "qs": "^6.5.1",
     "request": "^2.83.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.5",
+    "weekend-spa": "latest"
   },
   "devDependencies": {
     "@types/bootstrap": "^4.0.0",
