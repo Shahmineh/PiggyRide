@@ -43,9 +43,9 @@
         <div class="col-6 mx-auto">
           <div class="form-group">
             <h5 class="text-center mb-2">Avgång</h5>
-            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-              <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
-              <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+            <div class="input-group date" id="departure-time" data-target-input="nearest">
+              <input type="text" class="form-control datetimepicker-input" data-target="#departure-time" />
+              <div class="input-group-append" data-target="#departure-time" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
               </div>
             </div>
@@ -200,9 +200,10 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
   <script type="text/javascript">
   $(function() {
-    $('#datetimepicker1').datetimepicker();
+    $('#departure-time').datetimepicker({
+      locale: 'sv'
+    });
   });
-
   </script>
 </body>
 
