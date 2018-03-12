@@ -17,6 +17,7 @@ require('tempusdominus-bootstrap-4');
 
 const app = new App();
 app.initialize(); // Set up the SPA and pop-states
+require('startbootstrap-agency/js/agency');
 
 geoEvent();
 

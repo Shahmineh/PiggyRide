@@ -40,6 +40,7 @@
     "qs": "^6.5.1",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5",
+    "startbootstrap-agency": "^4.0.0-beta",
     "tempusdominus-bootstrap-4": "^5.0.0-alpha17",
     "weekend-spa": "latest"
   },
@@ -55,7 +56,7 @@
     "browser-sync": "^2.23.6",
     "browserify": "^16.1.1",
     "concurrently": "^3.5.1",
-    "enforce-gitflow-branches": "^1.0.5",
+    "enforce-gitflow-branches": ">=1.0.6",
     "eslint": "^4.18.2",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.9.0",
