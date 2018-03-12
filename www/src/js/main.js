@@ -9,9 +9,13 @@ import geoEvent from './classes/geo-locate.js';
 
 // @ts-ignore
 window.$ = window.jQuery = jQuery; // Sets $ to global
+// @ts-ignore
+window.moment = moment;
 require('./ui/scroll.js'); // Assigns the scrollTo method to jQuery
+// @ts-ignore
+require('tempusdominus-bootstrap-4');
 
 const app = new App();
 
-window.moment = moment;
 geoEvent();
+
