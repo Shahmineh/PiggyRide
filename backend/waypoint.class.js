@@ -86,7 +86,6 @@ module.exports = class Waypoint extends ModelAndRoutes {
   }
 
   static async create (app, obj) {
-
     let url = 'https://maps.googleapis.com/maps/api/directions/json';
 
     let params = {
@@ -103,6 +102,7 @@ module.exports = class Waypoint extends ModelAndRoutes {
     }
 
     obj.gway = JSON.parse(await request(url));
+
     return new Waypoint(app, obj);
   }
 };

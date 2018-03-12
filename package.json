@@ -18,7 +18,8 @@
     "lint": "concurrently -s all \"npm run eslint\" \"npm run htmlhint\" \"npm run stylelint\"",
     "test": "npm run lint",
     "compile": "gulp default",
-    "watch": "gulp default && concurrently --kill-others \"gulp watch\" \"npm run sync\"",
+    "watch": "gulp watch",
+    "live": "gulp default && concurrently --kill-others \"npm run nodemon\" \"npm run sync\"",
     "all": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
     "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
   },
@@ -28,6 +29,7 @@
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.2",
     "jquery": "^3.3.1",
+    "moment": "^2.21.0",
     "mongoose": "^5.0.9",
     "popper.js": "^1.12.9",
     "qs": "^6.5.1",
