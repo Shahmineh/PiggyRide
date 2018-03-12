@@ -7,6 +7,31 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Launch Nodemon",
+      "runtimeExecutable": "nodemon",
+      "program": "${workspaceFolder}/server.js",
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnFirstSessionStart",
+      "args": [
+        "config",
+        "nodemon.js"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch via NPM",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run-script",
+        "debug"
+      ],
+      "port": 9229
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceFolder}/server.js"
     },
@@ -29,7 +54,11 @@
         "www/*": "${workspaceFolder}/www/*"
       },
       "showAsyncStacks": false,
-      "smartStep": true
+      "smartStep": true,
+      "skipFiles": [
+        "<node_internals>/**/*",
+        "./node_modules/**/*"
+      ]
     },
     {
       "type": "node",
