@@ -1,5 +1,8 @@
-class Base {
+import popStateHandler from './pop-state-handler.class';
+
+export default class Base extends popStateHandler {
   constructor () {
+    super();
     if (!Base.subRenderCounter) {
       Base.subRenderCounter = 1;
       Base.renderingInProgress = false;
