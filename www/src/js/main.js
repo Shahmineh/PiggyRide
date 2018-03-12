@@ -16,6 +16,7 @@ require('./ui/scroll.js'); // Assigns the scrollTo method to jQuery
 require('tempusdominus-bootstrap-4');
 
 const app = new App();
+app.initialize(); // Set up the SPA and pop-states
 
 geoEvent();
 
