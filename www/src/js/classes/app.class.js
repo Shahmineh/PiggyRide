@@ -8,7 +8,7 @@ export default class App extends Base {
       $('#departure-time').datetimepicker({
         locale: 'sv'
       });
-      $('#departure-time').on('datetimepicker.hide', function () {
+      $('#departure-time').on('hide.datetimepicker', function () {
         $.scrollTo('#extras', 1500, 'easeInOutCubic');
       });
     });
