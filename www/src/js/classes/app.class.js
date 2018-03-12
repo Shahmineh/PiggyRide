@@ -4,7 +4,7 @@ export default class App extends Base {
   initialize () {
     const app = this;
 
-    app.bindView('home', '/', null, () => {
+    app.bindView('home.html', '/', null, () => {
       $('#departure-time').datetimepicker({
         locale: 'sv'
       });
