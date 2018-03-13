@@ -9,8 +9,8 @@
   "private": true,
   "scripts": {
     "start": "gulp default && node server.js",
-    "debug": "node --inspect server.js",
-    "nodemon": "nodemon --config nodemon.json exec \"npm run debug\"",
+    "debug": "node --inspect=9229 server.js",
+    "nodemon": "nodemon --config nodemon.json --inspect=9229 server.js",
     "sync": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "sync-no-open": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --no-open --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "eslint": "eslint **/*.js",
