@@ -16,9 +16,33 @@ require('./ui/scroll.js'); // Assigns the scrollTo method to jQuery
 require('tempusdominus-bootstrap-4');
 
 const app = new App();
+
+window.initMap = () => {
+  let hq = {
+    lat: 55.6108096,
+    lng: 12.9946562
+  };
+  let map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: hq
+  });
+
+  // get all the cars with position(time) and get the lang/lat and save to array
+  let myLatLng = {
+    lat: 55.6108096,
+    lng: 12.9946562
+  };
+
+  // for each marker we need to
+  let marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'PIGGY GONE WILD'
+  });
+};
+
 app.initialize(); // Set up the SPA and pop-states
 // @ts-ignore
 require('startbootstrap-agency/js/agency');
 
 geoEvent();
-
