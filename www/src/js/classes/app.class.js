@@ -26,17 +26,15 @@ async function getOrders () {
   let orders = await REST.request('orders', 'GET', {});
   orders = orders.result || [orders];
 
-  console.log(orders);
-
   let html = $('<div class="col-10 mx-auto"></div>');
   let table = $('<table id="orders" class="table"></table>');
   let tbody = $('<tbody></tbody>');
   let thead = $(`<thead>
                     <tr>
-                      <th scope="col">#</th>
                       <th scope="col">ID</th>
-                      <th scope="col">Total Price</th>
+                      <th scope="col">Price</th>
                       <th scope="col">Order time</th>
+                      <th scope="col">User</th>
                     </tr>
                   </thead>`);
 
@@ -45,6 +43,7 @@ async function getOrders () {
                 <th>${order._id}</th>
                 <th>${order.totalPrice}</th>
                 <th>${order.orderTime}</th>
+                <th>${order.user}</th>
               </tr>`);
 
     tr.appendTo(tbody);
@@ -53,5 +52,5 @@ async function getOrders () {
   tbody.appendTo(table);
   table.appendTo(html);
 
-  $('body').append(html);
+  $('#table').append(html);
 }
