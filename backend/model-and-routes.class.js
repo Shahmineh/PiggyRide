@@ -25,6 +25,7 @@ module.exports = class ModelAndRoutes {
     let schema = new mongoose.Schema(this.constructor.schema);
     this.modelName = this.constructor.name;
     this.routeName = this.modelName.toLowerCase() + 's';
+    expressApp.validRoutes.push(this.routeName);
     this.myModel = mongoose.model(this.modelName, schema);
     routes.includes('post') && this.setupPostRoute();
     routes.includes('get') && this.setupGetRoute();

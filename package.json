@@ -9,8 +9,8 @@
   "private": true,
   "scripts": {
     "start": "gulp default && node server.js",
-    "debug": "node --inspect server.js",
-    "nodemon": "nodemon --config nodemon.json exec \"npm run debug\"",
+    "debug": "node --inspect=9229 server.js",
+    "nodemon": "nodemon --config nodemon.json --inspect=9229 server.js",
     "sync": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "sync-no-open": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --no-open --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "eslint": "eslint **/*.js",
@@ -43,7 +43,7 @@
     "request-promise-native": "^1.0.5",
     "startbootstrap-agency": "^4.0.0-beta",
     "tempusdominus-bootstrap-4": "^5.0.0-alpha17",
-    "weekend-spa": "latest"
+    "weekend-spa": "next"
   },
   "devDependencies": {
     "@types/bootstrap": "^4.0.0",
