@@ -21,4 +21,3 @@ app.initialize(); // Set up the SPA and pop-states
 require('startbootstrap-agency/js/agency');
 
 geoEvent();
-
