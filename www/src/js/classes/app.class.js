@@ -1,6 +1,6 @@
-import Base from './base.class';
+import PopStateHandler from './pop-state-handler.class';
 
-export default class App extends Base {
+export default class App extends PopStateHandler {
   initialize () {
     const app = this;
 
