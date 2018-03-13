@@ -13,7 +13,7 @@ export default function viewsSetup (app) {
   /*
   * views/mapview.html = /admin
   */
-  app.bindView(null, '/admin', async (Renderer) => {
+  app.bindView('/admin', async (Renderer) => {
     // let waypoints = await REST.request('waypoints', 'GET', {});
 
     window.initMap = () => {
