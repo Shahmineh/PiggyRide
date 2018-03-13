@@ -24,7 +24,8 @@
     "all": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
     "all-retry": "gulp default && concurrently --allow-restart --restart-after 5000 --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
     "all-no": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync-no-open\"",
-    "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
+    "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix",
+    "init": "git submodule init && git submodule update"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
