@@ -2,7 +2,7 @@ const qs = require('qs');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mpr');
 const db = mongoose.connection;
-db.on('error', (e) => {
+db.on('error', e => {
   console.info('\x1b[31m%s\x1b[0m', 'Could not connect to MongoDB');
 });
 db.once('open', () => {
@@ -25,7 +25,7 @@ module.exports = class ModelAndRoutes {
     let schema = new mongoose.Schema(this.constructor.schema);
     this.modelName = this.constructor.name;
     this.routeName = this.modelName.toLowerCase() + 's';
-    expressApp.validRoutes.push(this.routeName);
+    // expressApp.validRoutes.push(this.routeName);
     this.myModel = mongoose.model(this.modelName, schema);
     routes.includes('post') && this.setupPostRoute();
     routes.includes('get') && this.setupGetRoute();
@@ -128,7 +128,7 @@ module.exports = class ModelAndRoutes {
             response.error = 'Do not remove more than 5 items at once';
             res.json(response);
           } else {
-            this.myModel.remove(params, (err) => {
+            this.myModel.remove(params, err => {
               if (err) {
                 response.error = err;
               } else {
@@ -170,7 +170,7 @@ module.exports = class ModelAndRoutes {
             response.error = 'Do not update more than 5 items at once';
             res.json(response);
           } else {
-            this.myModel.update(params, req.body, { multi: true }, (err) => {
+            this.myModel.update(params, req.body, { multi: true }, err => {
               if (err) {
                 response.error = err;
               } else {
