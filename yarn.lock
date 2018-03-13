@@ -7430,9 +7430,9 @@ vm-browserify@~0.0.1:
   dependencies:
     indexof "0.0.1"
 
-weekend-spa@latest:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/weekend-spa/-/weekend-spa-0.0.3.tgz#905ad84c75de9579e214c08366b6514c03ac47a7"
+weekend-spa@next:
+  version "0.1.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/weekend-spa/-/weekend-spa-0.1.0-alpha.1.tgz#47af7220ca6c1db4e3beaccf2ce4bd3119c3ddae"
   dependencies:
     jquery "^3.3.1"
     jsrender "^0.9.90"
