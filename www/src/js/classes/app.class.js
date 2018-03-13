@@ -10,7 +10,7 @@ export default class App extends Base {
       });
     });
 
-    app.bindView('our-products.html', '/piggys', null, () => {
+    /*app.bindView('our-products.html', '/piggys', null, () => {
       $('#piggys').datetimepicker({
         locale: 'sv'
       });
@@ -20,7 +20,7 @@ export default class App extends Base {
       $('#kundservice').datetimepicker({
         locale: 'sv'
       });
-    });
+    });*/
 
 
   }
