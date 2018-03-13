@@ -8,9 +8,20 @@ export default class App extends Base {
       $('#departure-time').datetimepicker({
         locale: 'sv'
       });
-      $('#departure-time').on('hide.datetimepicker', function () {
-        $.scrollTo('#extras', 1500, 'easeInOutCubic');
+    });
+
+    app.bindView('our-products.html', '/piggys', null, () => {
+      $('#piggys').datetimepicker({
+        locale: 'sv'
       });
     });
+
+    app.bindView('kundservice.html', '/kundservice', null, () => {
+      $('#kundservice').datetimepicker({
+        locale: 'sv'
+      });
+    });
+
+
   }
 }
