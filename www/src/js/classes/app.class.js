@@ -5,12 +5,7 @@ export default class App extends Base {
   initialize () {
     const app = this;
 
-    app.bindView('mapview.html', '/', null, async () => {
-      console.log('Starting get')
-      let response = await REST.request('waypoints', 'GET', {});
-      console.log(response)
-
-    });
+    app.bindView('mapview.html', '/', null, async () => {});
     /*     app.bindView('home.html', '/', null, () => {
       $('#departure-time').datetimepicker({
         locale: 'sv'
