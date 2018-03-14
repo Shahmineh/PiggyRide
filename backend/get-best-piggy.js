@@ -20,21 +20,22 @@ let ExtraModel = new Extra(app).myModel;
 let WaypointModel;
 
 async function getBestPiggy (pickupAddress, time) {
-  let response = {};
-
-  await UserModel.find()
-    .populate('orders')
-    .exec((err, story) => {
-      if (err) {
-        console.log(err);
-      }
-      let response = JSON.stringify(story, '', '  ');
-    });
-
   let piggys = [];
   let orders = [];
 
-  //   for (let piggy of response.result) {
+  let piggies = await PiggyModel.find()
+    .populate('orders')
+    .exec((err, piggys) => {
+      if (err) {
+        console.log(err);
+      }
+      // let response = JSON.stringify(story, '', '  ');
+      for (let pig of piggys) {
+        piggys.push(pig);
+      }
+    });
+
+  //   for (let piggy of piggies) {
   //     if (piggy.orders) {
   //       piggys.push(piggy);
   //       orders.push(await Order.findOne(`_id=${piggy.orders}`));
