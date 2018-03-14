@@ -25,6 +25,9 @@ module.exports = class ModelAndRoutes {
     let schema = new mongoose.Schema(this.constructor.schema);
     this.modelName = this.constructor.name;
     this.routeName = this.modelName.toLowerCase() + 's';
+    if (!expressApp.validRoutes){
+      expressApp.validRoutes = [];
+    }
     expressApp.validRoutes.push(this.routeName);
     this.myModel = mongoose.model(this.modelName, schema);
     routes.includes('post') && this.setupPostRoute();
@@ -90,6 +93,7 @@ module.exports = class ModelAndRoutes {
         .find(params)
         .populate(populate)
         .exec((err, data) => {
+          // console.log('____________', data, params);
           res.json({
             query: params,
             resultLength: data ? data.length : 0,
