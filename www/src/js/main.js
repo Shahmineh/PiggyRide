@@ -53,7 +53,7 @@ window.initMap = async (theTime = '2018-03-13:05:44.000Z') => {
     center: center
   });
 
-  let response = await REST.request('waypoints', 'GET', {});
+  let response = await REST.request('waypoints', 'GET', '');
   let waypoints = response.result;
 
   for (let waypoint of waypoints) {
