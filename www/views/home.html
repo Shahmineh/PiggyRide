@@ -1,3 +1,22 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-6">
+        <div class="input-group input-group-lg">
+          <input id="autocompleteFrom" placeholder="Från" class="form-control" type="text">
+          <div class="input-group-prepend">
+            <button type="button" id="getLocation" class="btn btn-success btn-lg">
+              <i class="fas fa-location-arrow"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="input-group input-group-lg">
+          <input id="autocompleteTo" placeholder="Till" class="form-control" type="text">
+        </div>
+      </div>
+    </div>
+  </div>
     <div class="container pt-3">
       <div class="row mt-5">
         <div class="col-6 mx-auto">
@@ -151,3 +170,45 @@
       </div>
     </div>
   </div>
+  <script>
+      function initAutocomplete() {
+        var defaultBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(55.541985, 12.902565),
+          new google.maps.LatLng(55.646026, 13.099391));
+
+        let options = {
+          bounds: defaultBounds,
+          types: ['geocode'],
+          strictbounds: true,
+          componentRestrictions: {
+            'country': 'se'
+          }
+        };
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocompleteTo = new google.maps.places.Autocomplete(
+          /** @type {!HTMLInputElement} */
+          (document.getElementById('autocompleteTo')),
+          options);
+
+        autocompleteFrom = new google.maps.places.Autocomplete(
+          /** @type {!HTMLInputElement} */
+          (document.getElementById('autocompleteFrom')),
+          options);
+
+
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocompleteTo.addListener('placeTo_changed', fillInAddress(autocompleteTo));
+        autocompleteFrom.addListener('placeFrom_changed', fillInAddress(autocompleteTo));
+      }
+
+      function fillInAddress(item) {
+        // Get the place details from the autocomplete object.
+        var place = item.getPlace();
+      }
+
+    </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrE71qz1iEQgNnM3fbzIXB5pmRoB9rWiQ&libraries=places&region=SE&callback=initAutocomplete"
+  async defer></script>
