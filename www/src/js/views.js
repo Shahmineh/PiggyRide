@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import App from './classes/app.class';
 import REST from './classes/REST.class';
+import getOrders from './ui/admin-orders';
 
 /**
  * Setup for SPA views
@@ -9,11 +10,16 @@ import REST from './classes/REST.class';
  * @param {App} app
  */
 export default function viewsSetup (app) {
+  app.bindView('mapview.html', '/mapview', null, async () => {});
+
+  app.bindView('admin_orders.html', '/admin', null, () => {
+    getOrders();
+  });
 
   /*
   * views/mapview.html = /admin
   */
-  app.bindView('/admin', async (Renderer) => {
+  app.bindView('/nav', async (Renderer) => {
     // let waypoints = await REST.request('waypoints', 'GET', {});
 
     window.initMap = () => {
