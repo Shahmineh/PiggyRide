@@ -2,6 +2,7 @@
 import App from './classes/app.class';
 import REST from './classes/REST.class';
 import getOrders from './ui/admin-orders';
+import geoEvent from './classes/geo-locate.js';
 
 /**
  * Setup for SPA views
@@ -65,6 +66,7 @@ export default function viewsSetup (app) {
   * views/home.html = /
   */
   app.bindView('home.html', '/', null, () => {
+    geoEvent();
     $('#departure-time').datetimepicker({
       locale: 'sv'
     });
