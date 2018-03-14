@@ -1,5 +1,5 @@
 const scriptStartTime = new Date();
-const dataJSON = require('./buildData.json');
+const dataJSON = require('./populate-database.json');
 const express = require('express');
 const app = express();
 
@@ -43,6 +43,25 @@ let memory = {
 })();
 
 function renewCollections () {
+  SessionModel.remove({}, () => {
+    importSessions();
+    ExtraModel.remove({}, () => {
+      importExtras();
+      WaypointModel.remove({}, () => {
+        importWaypoints();
+        PiggyModel.remove({}, () => {
+          importPiggys();
+          UserModel.remove({}, () => {
+            importUsers();
+          });
+        });
+      });
+    });
+  });
+}
+
+// if needed call this on instead of renewCollections() at row 42~
+function addToCollections () {
   importSessions();
   importExtras();
   importWaypoints();
