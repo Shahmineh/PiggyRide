@@ -3,10 +3,10 @@ import REST from './REST.class.js';
 export default class User extends REST {
   constructor (user) {
     super(user);
-    this.eventHandlers();
+    User.eventsInitialized = User.eventsInitialized || this.setupEventHandlers();
   }
 
-  eventHandlers () {
+  setupEventHandlers () {
     let email, password;
 
     $(document).on('click', '#signupbtn', async () => {
@@ -20,9 +20,10 @@ export default class User extends REST {
       if (nameResult.error) {
         // console.log('Denna användare existerar redan!');
         $('.errormsg').append(
-          "<p class='warning'> Username allready exists! </p>"
+          "<p class='warning'> Username already exists! </p>"
         );
       }
     });
+    return true;
   } // end eventhandler
 } // end class
