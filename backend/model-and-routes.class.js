@@ -25,7 +25,7 @@ module.exports = class ModelAndRoutes {
     let schema = new mongoose.Schema(this.constructor.schema);
     this.modelName = this.constructor.name;
     this.routeName = this.modelName.toLowerCase() + 's';
-    if (!expressApp.validRoutes){
+    if (!expressApp.validRoutes) {
       expressApp.validRoutes = [];
     }
     expressApp.validRoutes.push(this.routeName);

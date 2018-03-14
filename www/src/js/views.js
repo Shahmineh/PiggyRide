@@ -11,6 +11,14 @@ import geoEvent from './classes/geo-locate.js';
  * @param {App} app
  */
 export default function viewsSetup (app) {
+
+
+
+
+  app.bindView('our-products.html', '/info', null, async () => {});
+
+  app.bindView('kundservice.html', '/kundservice', null, async () => {});
+
   app.bindView('mapview.html', '/mapview', null, async () => {});
 
   app.bindView('admin_orders.html', '/admin', null, () => {
