@@ -1,4 +1,5 @@
 import PopStateHandler from './pop-state-handler.class';
+import viewsSetup from '../views';
 
 // classes
 import REST from './REST.class';
@@ -6,19 +7,7 @@ import REST from './REST.class';
 export default class App extends PopStateHandler {
   initialize () {
     const app = this;
-
-    app.bindView('home.html', '/', null, () => {
-      $('#departure-time').datetimepicker({
-        locale: 'sv'
-      });
-      $('#departure-time').on('hide.datetimepicker', function () {
-        $.scrollTo('#extras', 1500, 'easeInOutCubic');
-      });
-    });
-
-    app.bindView('admin_orders.html', '/admin', null, () => {
-      getOrders();
-    });
+    viewsSetup(app);
   }
 }
 
