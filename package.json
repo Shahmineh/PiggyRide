@@ -11,20 +11,28 @@
     "start": "gulp default && node server.js",
     "debug": "node --inspect server.js",
     "nodemon": "nodemon --config nodemon.json exec \"npm run debug\"",
-    "sync": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
-    "sync-no-open": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --no-open --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
+    "sync":
+      "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
+    "sync-no-open":
+      "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --no-open --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "eslint": "eslint **/*.js",
     "htmlhint": "htmlhint --config .htmlhintrc www/**/*.{htm,html}",
     "stylelint": "stylelint www/src/**/*.scss",
-    "lint": "concurrently -s all \"npm run eslint\" \"npm run htmlhint\" \"npm run stylelint\"",
+    "lint":
+      "concurrently -s all \"npm run eslint\" \"npm run htmlhint\" \"npm run stylelint\"",
     "test": "npm run lint",
     "compile": "gulp default",
     "watch": "gulp watch",
-    "live": "gulp default && concurrently --kill-others \"npm run nodemon\" \"npm run sync\"",
-    "all": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
-    "all-retry": "gulp default && concurrently --allow-restart --restart-after 5000 --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
-    "all-no": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync-no-open\"",
-    "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix",
+    "live":
+      "gulp default && concurrently --kill-others \"npm run nodemon\" \"npm run sync\"",
+    "all":
+      "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
+    "all-retry":
+      "gulp default && concurrently --allow-restart --restart-after 5000 --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
+    "all-no":
+      "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync-no-open\"",
+    "autofix":
+      "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix",
     "init": "git submodule init && git submodule update"
   },
   "dependencies": {
@@ -43,7 +51,7 @@
     "request-promise-native": "^1.0.5",
     "startbootstrap-agency": "^4.0.0-beta",
     "tempusdominus-bootstrap-4": "^5.0.0-alpha17",
-    "weekend-spa": "latest"
+    "weekend-spa": "next"
   },
   "devDependencies": {
     "@types/bootstrap": "^4.0.0",
@@ -80,11 +88,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "babel": {
-    "presets": [
-      [
-        "env"
-      ]
-    ]
+    "presets": [["env"]]
   },
   "husky": {
     "hooks": {

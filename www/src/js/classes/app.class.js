@@ -7,7 +7,7 @@ export default class App extends PopStateHandler {
   initialize () {
     const app = this;
 
-    app.bindView('home.html', '/home', null, () => {
+    app.bindView('home.html', '/', null, () => {
       $('#departure-time').datetimepicker({
         locale: 'sv'
       });
@@ -27,7 +27,9 @@ async function getOrders () {
   orders = orders.result || [orders];
 
   let html = $('<div class="col-10 mx-auto"></div>');
-  let table = $('<table id="orders" class="table"></table>');
+  let table = $(
+    '<table id="orders" class="table" data-search="true" data-toggle="table"></table>'
+  );
   let tbody = $('<tbody></tbody>');
   let thead = $(`<thead> 
                     <tr>
@@ -51,8 +53,6 @@ async function getOrders () {
   thead.appendTo(table);
   tbody.appendTo(table);
   table.appendTo(html);
-
-  table.attr('data-toggle', 'table');
 
   $('#table').append(html);
 }
