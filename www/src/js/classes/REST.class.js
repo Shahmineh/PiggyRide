@@ -1,5 +1,8 @@
-export default class REST {
+import Base from './base.class';
+
+export default class REST extends Base {
   constructor (obj) {
+    super();
     Object.assign(this, obj);
   }
 
