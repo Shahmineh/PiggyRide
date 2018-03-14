@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/mpr');
 const db = mongoose.connection;
 db.on('error', e => {
-  console.error(e);
+  console.info('\x1b[31m%s\x1b[0m', 'Could not connect to MongoDB');
 });
 db.once('open', () => {
-  console.info('db connected');
+  console.info('\x1b[35m%s\x1b[0m', 'Database connected succesfully');
 });
 
 module.exports = class ModelAndRoutes {
@@ -25,6 +25,7 @@ module.exports = class ModelAndRoutes {
     let schema = new mongoose.Schema(this.constructor.schema);
     this.modelName = this.constructor.name;
     this.routeName = this.modelName.toLowerCase() + 's';
+    expressApp.validRoutes.push(this.routeName);
     this.myModel = mongoose.model(this.modelName, schema);
     routes.includes('post') && this.setupPostRoute();
     routes.includes('get') && this.setupGetRoute();

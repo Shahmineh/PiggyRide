@@ -43,21 +43,11 @@ let memory = {
 })();
 
 function renewCollections () {
-  SessionModel.remove({}, () => {
-    importSessions();
-    ExtraModel.remove({}, () => {
-      importExtras();
-      WaypointModel.remove({}, () => {
-        importWaypoints();
-        PiggyModel.remove({}, () => {
-          importPiggys();
-          UserModel.remove({}, () => {
-            importUsers();
-          });
-        });
-      });
-    });
-  });
+  importSessions();
+  importExtras();
+  importWaypoints();
+  importPiggys();
+  importUsers();
 }
 
 function importSessions () {
@@ -133,9 +123,10 @@ function importUsers () {
     u.save(e => {
       memory.users.push(u);
       if (dataJSON.user.length === memory.users.length) {
-        OrderModel.remove({}, () => {
-          importOrders();
-        });
+        importOrders();
+        // OrderModel.remove({}, () => {
+        //   importOrders();
+        // });
       }
     });
   }
