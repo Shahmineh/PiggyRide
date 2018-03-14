@@ -31,19 +31,19 @@ async function getOrders () {
   let tbody = $('<tbody></tbody>');
   let thead = $(`<thead>
                     <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Order time</th>
-                      <th scope="col">User</th>
+                      <th scope="col" data-sortable="true" data-field="_id">ID</th>
+                      <th scope="col" data-sortable="true" data-field="totalPrice">Price</th>
+                      <th scope="col" data-sortable="true" data-field="orderTime">Order time</th>
+                      <th scope="col" data-sortable="true" data-field="user">User</th>
                     </tr>
                   </thead>`);
 
   for (let order of orders) {
     let tr = $(`<tr> 
-                <th>${order._id}</th>
-                <th>${order.totalPrice}</th>
-                <th>${order.orderTime}</th>
-                <th>${order.user}</th>
+                <td>${order._id}</td>
+                <td>${order.totalPrice}</td>
+                <td>${order.orderTime}</td>
+                <td>${order.user}</td>
               </tr>`);
 
     tr.appendTo(tbody);
@@ -51,6 +51,8 @@ async function getOrders () {
   thead.appendTo(table);
   tbody.appendTo(table);
   table.appendTo(html);
+
+  table.attr('data-toggle', 'table');
 
   $('#table').append(html);
 }
