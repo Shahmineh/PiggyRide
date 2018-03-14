@@ -9,8 +9,8 @@
   "private": true,
   "scripts": {
     "start": "gulp default && node server.js",
-    "debug": "node --inspect server.js",
-    "nodemon": "nodemon --config nodemon.json exec \"npm run debug\"",
+    "debug": "node --inspect=9229 server.js",
+    "nodemon": "nodemon --config nodemon.json --inspect=9229 server.js",
     "sync": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "sync-no-open": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --no-open --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "eslint": "eslint **/*.js",
@@ -24,7 +24,9 @@
     "all": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
     "all-retry": "gulp default && concurrently --allow-restart --restart-after 5000 --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
     "all-no": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync-no-open\"",
-    "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix"
+    "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix",
+    "sub": "git submodule init && git submodule update",
+    "reinstall": "rm -rf node_modules && npm install"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -42,7 +44,7 @@
     "request-promise-native": "^1.0.5",
     "startbootstrap-agency": "^4.0.0-beta",
     "tempusdominus-bootstrap-4": "^5.0.0-alpha17",
-    "weekend-spa": "latest"
+    "weekend-spa": "next"
   },
   "devDependencies": {
     "@types/bootstrap": "^4.0.0",

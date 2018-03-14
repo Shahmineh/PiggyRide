@@ -1,27 +1,10 @@
-import Base from './base.class';
+import PopStateHandler from './pop-state-handler.class';
+import viewsSetup from '../views';
 
-export default class App extends Base {
+export default class App extends PopStateHandler {
   initialize () {
     const app = this;
 
-    app.bindView('home.html', '/', null, () => {
-      $('#departure-time').datetimepicker({
-        locale: 'sv'
-      });
-    });
-
-    /*app.bindView('our-products.html', '/piggys', null, () => {
-      $('#piggys').datetimepicker({
-        locale: 'sv'
-      });
-    });
-
-    app.bindView('kundservice.html', '/kundservice', null, () => {
-      $('#kundservice').datetimepicker({
-        locale: 'sv'
-      });
-    });*/
-
-
+    viewsSetup(app);
   }
 }
