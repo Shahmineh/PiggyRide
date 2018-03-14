@@ -5,7 +5,7 @@ export default class App extends PopStateHandler {
   initialize () {
     const app = this;
 
-    app.bindView('mapview.html', '/', null, async () => {});
+    app.bindView('mapview.html', '/mapview', null, async () => {});
 
     app.bindView('home.html', '/', null, () => {
       $('#departure-time').datetimepicker({
