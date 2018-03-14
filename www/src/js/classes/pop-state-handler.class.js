@@ -1,3 +1,3 @@
-import WeekendSpa from '../external/weekend-spa';
+import WeekendSpa from 'weekend-spa';
 
 export default WeekendSpa;
