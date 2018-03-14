@@ -17,7 +17,7 @@ module.exports = class Order extends ModelAndRoutes {
           ref: 'Extra'
         }
       ],
-      piggys: [
+      piggies: [
         {
           type: Schema.Types.ObjectId,
           ref: 'Piggy'
