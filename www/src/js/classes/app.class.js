@@ -29,7 +29,7 @@ async function getOrders () {
   let html = $('<div class="col-10 mx-auto"></div>');
   let table = $('<table id="orders" class="table"></table>');
   let tbody = $('<tbody></tbody>');
-  let thead = $(`<thead>
+  let thead = $(`<thead> 
                     <tr>
                       <th scope="col" data-sortable="true" data-field="_id">ID</th>
                       <th scope="col" data-sortable="true" data-field="totalPrice">Price</th>
