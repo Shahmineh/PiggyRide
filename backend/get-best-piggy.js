@@ -1,5 +1,7 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
+const Schema = require('mongoose').Schema;
 
 // import classes
 const Order = require('./order.class');
@@ -14,15 +16,12 @@ let PiggyModel = new Piggy(app).myModel;
 let SessionModel = new Session(app).myModel;
 let UserModel = new User(app).myModel;
 let ExtraModel = new Extra(app).myModel;
-let WaypointModel;
+let WaypointModel = mongoose.model(
+  'Waypoint',
+  new mongoose.Schema(Waypoint.schema)
+);
 
 (async () => {
-  let waypoint = await Waypoint.create(app, {
-    from: 'Nordenskiöldsgatan 13',
-    to: 'Ön',
-    startTime: new Date()
-  });
-  WaypointModel = waypoint.myModel;
   getBestPiggy();
 })();
 
@@ -39,6 +38,7 @@ async function getBestPiggy (pickupAddress, time) {
             .exec((err, piggy) => {
               if (err) return console.log(err);
               console.log(piggy.waypoints);
+              console.log('waypoint model', WaypointModel);
             });
         }
       }
