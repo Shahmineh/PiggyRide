@@ -9,43 +9,45 @@ const User = require('./user.class');
 const Waypoint = require('./waypoint.class');
 const Extra = require('./extra.class');
 
-// define models
-let order = new Order(app);
-// leave order so we can close the connection later, since we create it last
-let OrderModel = order.myModel;
+let OrderModel = new Order(app).myModel;
 let PiggyModel = new Piggy(app).myModel;
 let SessionModel = new Session(app).myModel;
 let UserModel = new User(app).myModel;
 let ExtraModel = new Extra(app).myModel;
 let WaypointModel;
 
-async function getBestPiggy (pickupAddress, time) {
-  let piggys = [];
-  let orders = [];
+(async () => {
+  let waypoint = await Waypoint.create(app, {
+    from: 'Nordenskiöldsgatan 13',
+    to: 'Ön',
+    startTime: new Date()
+  });
+  WaypointModel = waypoint.myModel;
+  getBestPiggy();
+})();
 
-  let piggies = await PiggyModel.find()
+async function getBestPiggy (pickupAddress, time) {
+  PiggyModel.find()
     .populate('orders')
-    .exec((err, piggys) => {
-      if (err) {
-        console.log(err);
-      }
-      // let response = JSON.stringify(story, '', '  ');
-      for (let pig of piggys) {
-        piggys.push(pig);
+    .exec((err, piggies) => {
+      if (err) return console.log(err);
+
+      for (let piggy of piggies) {
+        if (piggy.orders.length > 0) {
+          OrderModel.findOne(piggy.orders[0])
+            .populate('waypoints')
+            .exec((err, piggy) => {
+              if (err) return console.log(err);
+              console.log(piggy.waypoints);
+            });
+        }
       }
     });
 
-  //   for (let piggy of piggies) {
-  //     if (piggy.orders) {
-  //       piggys.push(piggy);
-  //       orders.push(await Order.findOne(`_id=${piggy.orders}`));
-  //     }
-  //   }
-
-  //   orders = orders.filter(
-  //     (order, index, self) =>
-  //       index === self.findIndex(_order => _order._id === order._id)
-  //   );
+  // orders = orders.filter(
+  //   (order, index, self) =>
+  //     index === self.findIndex(_order => _order._id === order._id)
+  // );
 
   //   for (let order of orders) {
   //     let dude = await Waypoint.findOne(`_id=${order.waypoints}`);
