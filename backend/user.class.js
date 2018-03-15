@@ -11,6 +11,7 @@ module.exports = class User extends ModelAndRoutes {
     return {
       email: { type: String, unique: true },
       passwordHash: String,
+      profileDetail: Object,
       sessionID: String,
       orders: [{
         type: Schema.Types.ObjectId,
@@ -19,6 +20,6 @@ module.exports = class User extends ModelAndRoutes {
     };
   }
 
-  
+
 
 };
