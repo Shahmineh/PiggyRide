@@ -32,7 +32,8 @@ export default function viewsSetup (app) {
       return currPos;
     };
 
-    window.initAdminMap = async (theTime = '2018-03-02 10:05:44.000Z') => {
+    window.initMap = async (theTime = '2018-03-02 10:05:44.000Z') => {
+      console.log('Bom right man');
       let hq = {
         lat: 55.6108096,
         lng: 12.9946562
