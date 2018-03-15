@@ -34,7 +34,7 @@ window.position = async (timeString, positions) => {
   return currPos;
 };
 
-window.initMap = async (theTime = '2018-03-13:05:44.000Z') => {
+window.initMap = async (theTime = '2018-03-02 10:05:44.000Z') => {
   let hq = {
     lat: 55.6108096,
     lng: 12.9946562
