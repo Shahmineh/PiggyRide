@@ -7,13 +7,19 @@ export default class REST extends Base {
   }
 
   async save () {
-    let entity = (this.constructor.name + 's').toLowerCase();
+    let entity = (this.constructor.name.endsWith('y')
+      ? this.constructor.name.slice(0, -1) + 'ies'
+      : this.constructor.name + 's'
+    ).toLowerCase(); // + 's').toLowerCase();
     let query = '_id=' + this._id;
     return await REST.request(entity, 'PUT', query, this);
   }
 
   async delete () {
-    let entity = (this.constructor.name + 's').toLowerCase();
+    let entity = (this.constructor.name.endsWith('y')
+      ? this.constructor.name.slice(0, -1) + 'ies'
+      : this.constructor.name + 's'
+    ).toLowerCase();
     let query = '_id=' + this._id;
     // Delete all properties
     for (let prop in this) {
@@ -23,9 +29,7 @@ export default class REST extends Base {
     return await REST.request(entity, 'DELETE', query, this);
   }
 
-
   static async find (query) {
-    console.log(query);
     if (typeof query === 'object') {
       query = JSON.stringify(query, (key, val) => {
         if (val && val.constructor === RegExp) {
@@ -41,7 +45,10 @@ export default class REST extends Base {
       });
     }
 
-    let entity = (this.name + 's').toLowerCase();
+    let entity = (this.name.endsWith('y')
+      ? this.name.slice(0, -1) + 'ies'
+      : this.name + 's'
+    ).toLowerCase(); // + 's').toLowerCase();
 
     let results = await REST.request(entity, 'GET', query, '');
     results = results.result || [results];
@@ -57,7 +64,10 @@ export default class REST extends Base {
   }
 
   static async create (obj) {
-    let entity = (this.name + 's').toLowerCase();
+    let entity = (this.name.endsWith('y')
+      ? this.name.slice(0, -1) + 'ies'
+      : this.name + 's'
+    ).toLowerCase();
     let result = await REST.request(entity, 'POST', '', obj);
     return new this(result);
   }
