@@ -215,6 +215,11 @@
     // autocompleteFrom.addListener('placeFrom_changed', fillInAddress(autocompleteFrom));
     var fromLocation;
     var toLocation;
+    $('#autocompleteFrom').on('geoEvent', function (event, data){
+      console.log(data);
+      fromLocation = data;
+      viewMap();
+    });
     autocompleteFrom.addListener('place_changed', function (item) {
       // console.log(this.getPlace().geometry.location);
       fromLocation = this.getPlace().geometry.location;
