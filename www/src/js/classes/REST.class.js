@@ -23,7 +23,9 @@ export default class REST extends Base {
     return await REST.request(entity, 'DELETE', query, this);
   }
 
+
   static async find (query) {
+    console.log(query);
     if (typeof query === 'object') {
       query = JSON.stringify(query, (key, val) => {
         if (val && val.constructor === RegExp) {
@@ -40,6 +42,7 @@ export default class REST extends Base {
     }
 
     let entity = (this.name + 's').toLowerCase();
+
     let results = await REST.request(entity, 'GET', query, '');
     results = results.result || [results];
     let enriched = [];
@@ -59,9 +62,9 @@ export default class REST extends Base {
     return new this(result);
   }
 
-  static async request (entity, reqMethod, query = {}, body = {}) {
+  static async request (entity, reqMethod, query, body = {}) {
     let reqObj = {
-      url: `/${entity}/${JSON.stringify(query)}`, // entity for example "books"
+      url: `/${entity}/${query}`, // entity for example "books"
       method: reqMethod, // POST, GET, PUT, DELETE
       dataType: 'json', // I except JSON back from the server
       data: JSON.stringify(body), // JSON to send to server
