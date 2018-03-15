@@ -1,8 +1,7 @@
-
-import REST from '../classes/REST.class'
+import REST from '../classes/REST.class';
 
 export default async function getOrders () {
-  let orders = await REST.request('orders', 'GET', {});
+  let orders = await REST.request('orders', 'GET', '');
   orders = orders.result || [orders];
 
   let html = $('<div class="col-10 mx-auto"></div>');

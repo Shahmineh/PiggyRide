@@ -11,15 +11,67 @@ import geoEvent from './classes/geo-locate.js';
  * @param {App} app
  */
 export default function viewsSetup (app) {
-
-
-
-
   app.bindView('our-products.html', '/info', null, async () => {});
 
   app.bindView('kundservice.html', '/kundservice', null, async () => {});
 
-  app.bindView('mapview.html', '/mapview', null, async () => {});
+  app.bindView('mapview.html', '/mapview', null, async () => {
+    window.position = async (timeString, positions) => {
+      let time = new Date(timeString);
+      let timeDiff = Infinity; // Math.abs(time - this.positions[0].time);
+      let currPos = {};
+
+      for (let position of positions) {
+        let positionTime = new Date(position.time);
+        let currDiff = Math.abs(time - positionTime);
+        if (currDiff <= timeDiff) {
+          timeDiff = currDiff;
+          currPos = position;
+        }
+      }
+      return currPos;
+    };
+
+    window.initMap = async (theTime = '2018-03-02 10:05:44.000Z') => {
+      console.log('Bom right man');
+      let hq = {
+        lat: 55.6108096,
+        lng: 12.9946562
+      };
+
+      // get all the cars with position(time) and get the lang/lat and save to array
+      let center = {
+        lat: 55.589423,
+        lng: 13.021704
+      };
+
+      let map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: center
+      });
+
+      let response = await REST.request('waypoints', 'GET', '');
+      let waypoints = response.result;
+
+      for (let waypoint of waypoints) {
+        let poss = await position(theTime, waypoint.positions);
+        let marker = new google.maps.Marker({
+          position: {
+            lat: poss.lat,
+            lng: poss.lng
+          },
+          map: map,
+          title: 'PIGGY GONE WILD'
+        });
+      }
+
+      // let marker = new google.maps.Marker({
+      //   position: hq,
+      //   map: map,
+      //   title: 'HQ'
+      // });
+    };
+  });
 
   app.bindView('admin_orders.html', '/admin', null, () => {
     getOrders();
@@ -28,7 +80,7 @@ export default function viewsSetup (app) {
   /*
   * views/mapview.html = /admin
   */
-  app.bindView('/nav', async (Renderer) => {
+  app.bindView('/nav', async Renderer => {
     // let waypoints = await REST.request('waypoints', 'GET', {});
 
     window.initMap = () => {
