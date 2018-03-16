@@ -1,0 +1,7 @@
+{
+  "eslint.enable": true,
+  "prettier.eslintIntegration": true,
+  "search.exclude": {
+    "**/libs/**": true
+  }
+}

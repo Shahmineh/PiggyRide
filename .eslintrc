@@ -1,0 +1,17 @@
+{
+  "extends": ["standard"],
+  "parser": "babel-eslint",
+  "env": {
+    "jquery": true
+  },
+  "globals": {
+  },
+  "rules": {
+    "strict": 0,
+    "no-multiple-empty-lines": "off",
+    "no-undef": "off",
+    "padded-blocks": "off",
+    "semi": ["warn", "always"],
+    "no-unused-vars": "warn"
+  }
+}
