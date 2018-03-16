@@ -129,8 +129,8 @@
     "@types/node" "*"
 
 "@types/googlemaps@^3.30.7":
-  version "3.30.7"
-  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.30.7.tgz#1573d24d326fd96cd8baea1f12e8343fb97ad45b"
+  version "3.30.8"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.30.8.tgz#cc6ab90f79f3a8b799860ea1d70252a221af702e"
 
 "@types/gulp@^4.0.5":
   version "4.0.5"
