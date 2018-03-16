@@ -90,7 +90,8 @@ function importExtras () {
       name: extra.name,
       stock: extra.stock,
       description: extra.description,
-      price: extra.price
+      price: extra.price,
+      types: extra.types
     });
     e.save(() => {});
     memory.extras.push(e);

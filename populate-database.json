@@ -23,6 +23,27 @@
       "stock": 4,
       "description": "Extra säte\nBarnstol\nPicknickkorg\nFika",
       "price": 500
+    },
+    {
+      "name": "Dricka",
+      "stock": 120,
+      "description": "",
+      "price": 15,
+      "types": ["Coca Cola","Cola Zero","Fanta","Sprite","Kolsyrat vatten"]
+    },
+    {
+      "name": "Snacks",
+      "stock": 200,
+      "description": "",
+      "price": 10,
+      "types": ["Snickers","Bounty","Dagens frukt","Nötter"]
+    },
+    {
+      "name": "Frukostpaket",
+      "stock": 50,
+      "description": "Välj dricka och fralla",
+      "price": 30,
+      "types": ["Ostmacka","ost- och skinkmacka", "kaffe", "Te"]
     }
   ],
   "order": [{}],
