@@ -45,7 +45,7 @@
     "request-promise-native": "^1.0.5",
     "startbootstrap-agency": "^4.0.0-beta",
     "tempusdominus-bootstrap-4": "^5.0.0-alpha17",
-    "weekend-spa": "next"
+    "weekend-spa": "^0.1.0-alpha.5"
   },
   "devDependencies": {
     "@types/bootstrap": "^4.0.0",
