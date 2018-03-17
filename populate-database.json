@@ -53,19 +53,19 @@
   "order": [{}],
   "piggy": [
     {
-      "type": "ExpressPiggy",
+      "type": "Express Piggy",
       "number": 1,
       "description": "This one is ordinary.",
       "price": 200
     },
     {
-      "type": "TurboPiggy",
+      "type": "Turbo Piggy",
       "number": 2,
       "description": "This one is fast.",
       "price": 300
     },
     {
-      "type": "SpiderPiggy",
+      "type": "Spider Piggy",
       "number": 3,
       "description": "This one has many legs.",
       "price": 400

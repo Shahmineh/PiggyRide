@@ -4,6 +4,7 @@ import REST from './classes/REST.class';
 import getOrders from './ui/admin-orders';
 import geoEvent from './classes/geo-locate.js';
 import Extra from './classes/extra.class';
+import Piggy from './classes/piggy.class';
 
 /**
  * Setup for SPA views
@@ -131,9 +132,18 @@ export default function viewsSetup (app) {
     '/',
     async () => {
       let extras = await Extra.find('');
+      let piggyTypes = (await Piggy.find('')).reduce((acc, piggy) => {
+        if (!(acc.includes(piggy.type))) {
+          acc.push(piggy.type);
+        }
+        return acc;
+      }, []).map((piggyType) => {
+        return {type: piggyType}
+      });
       return {
         snacks: extras.filter((item) => item.types.length > 0),
-        packs: extras.filter((item) => item.types.length === 0)
+        packs: extras.filter((item) => item.types.length === 0),
+        piggies: piggyTypes
       };
     },
     () => {
