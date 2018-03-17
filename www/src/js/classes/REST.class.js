@@ -7,7 +7,10 @@ export default class REST extends Base {
   }
 
   async save (obj = null) {
-    let entity = (this.constructor.name + 's').toLowerCase();
+    let entity = (this.constructor.name.endsWith('y')
+      ? this.constructor.name.slice(0, -1) + 'ies'
+      : this.constructor.name + 's'
+    ).toLowerCase(); // + 's').toLowerCase();
     if (this._id) {
       let query = '_id=' + this._id;
       return REST.request(entity, 'PUT', query, obj || this);
