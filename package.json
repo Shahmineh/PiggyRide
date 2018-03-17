@@ -26,7 +26,8 @@
     "all-no": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync-no-open\"",
     "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix",
     "sub": "git submodule init && git submodule update",
-    "reinstall": "rm -rf node_modules && npm install"
+    "reinstall": "rm -rf node_modules && npm install",
+    "populate": "node populate-database.js"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -44,7 +45,7 @@
     "request-promise-native": "^1.0.5",
     "startbootstrap-agency": "^4.0.0-beta",
     "tempusdominus-bootstrap-4": "^5.0.0-alpha17",
-    "weekend-spa": "next"
+    "weekend-spa": "^0.1.0-alpha.5"
   },
   "devDependencies": {
     "@types/bootstrap": "^4.0.0",

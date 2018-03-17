@@ -4,25 +4,50 @@
       "name": "HiFi",
       "stock": 10,
       "description": "Boombox\nTV\nDigital TV\nNetflix",
-      "price": 200
+      "price": 200,
+      "contents": ["Boombox","TV (med HDMI)", "Satellit-TV", "Netflix", "Sticky Dirt"]
     },
     {
       "name": "Romans",
       "stock": 12,
       "description": "Champange\nRosor\nChokolad\nBoombox\nOstbricka",
-      "price": 300
+      "price": 300,
+      "contents": ["Champagne", "Rosor", "Choklad", "Ostbricka", "Careless Whisper"]
     },
     {
       "name": "Camping",
-      "stock": 17,
+      "stock": 4,
       "description": "Tält\nSovsäckar\nVed och tändstickor\nYxa\nMat\nKikare",
-      "price": 700
+      "price": 700,
+      "contents": ["Tält", "Sovsäck", "Tändstickor", "Fiskespö", "Nödransoner", "Verktyg"]
     },
     {
-      "name": "Familje",
-      "stock": 4,
+      "name": "Familjepaket",
+      "stock": 13,
       "description": "Extra säte\nBarnstol\nPicknickkorg\nFika",
-      "price": 500
+      "price": 500,
+      "contents": ["Extra säte", "Barnstol", "Choklad", "Picknickkorg", "Fralla", "Saft"]
+    },
+    {
+      "name": "Dricka",
+      "stock": 120,
+      "description": "",
+      "price": 15,
+      "types": ["Coca Cola","Cola Zero","Fanta","Sprite","Kolsyrat vatten"]
+    },
+    {
+      "name": "Snacks",
+      "stock": 200,
+      "description": "",
+      "price": 10,
+      "types": ["Snickers","Bounty","Dagens frukt","Nötter", "Doritos"]
+    },
+    {
+      "name": "Frukostpaket",
+      "stock": 50,
+      "description": "Välj dricka och fralla",
+      "price": 30,
+      "types": ["Ostmacka","Ost- och skinkmacka", "Kaffe", "Te", "Apelsinjuice"]
     }
   ],
   "order": [{}],
