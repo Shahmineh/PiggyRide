@@ -22,17 +22,17 @@
     </div>
   </div>
 </div>
-<div id="map-home-container" class="container-fluid mt-5" style="display: none;">
-  <div class="row">
+<div id="map-target" class="container-fluid mt-4">
+  <div class="row pt-5">
     <div class="col-4">&nbsp;</div>
-    <div class="col-4">
+    <div id="map-home-container" class="col-4" style="display: none;">
       <div id="map-home" class="d-flex flex-column"></div>
     </div>
     <div class="col-4">&nbsp;</div>
   </div>
 </div>
-<div class="container pt-3">
-  <div class="row mt-5">
+<div id="departure-time-container" class="container">
+  <div class="row mt-4">
     <div class="col-6 mx-auto">
       <div class="form-group">
         <h5 class="text-center mb-2">Avgång</h5>
@@ -157,12 +157,12 @@
     });
 
     function viewMap() {
-      console.log(fromLocation, toLocation);
       if (fromLocation && toLocation) {
-
-        // $('#map-home').css({'padding-top': '0%'})
-        $('#map-home-container').show();
-        $('#map-home').animate({ 'padding-top': '75%', 'height': '100%' }, 1000, function () { calculateAndDisplayRoute(fromLocation, toLocation); });
+        $.scrollTo('#map-target', 1100, function () {
+          // $('#map-home').css({'padding-top': '0%'})
+          $('#map-home-container').show();
+          $('#map-home').animate({ 'padding-top': '75%', 'height': '100%' }, 800, function () { calculateAndDisplayRoute(fromLocation, toLocation); });
+        })
       }
     }
   }
