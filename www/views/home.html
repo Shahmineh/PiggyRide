@@ -1,38 +1,38 @@
 <div id="background">
   <div class="container" style="padding-top:150px;">
-  <h3 class="pt-2 text-center">Boka din piggy här och nu:</h3>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-6">
-        <div class="input-group input-group-lg">
-          <input id="autocompleteFrom" placeholder="Från" class="form-control" type="text">
-          <div class="input-group-prepend">
-            <button type="button" id="getLocation" class="btn btn-success btn-lg">
-              <i class="fas fa-location-arrow"></i>
-            </button>
+    <h3 class="pt-2 text-center">Boka din piggy här och nu:</h3>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-6">
+          <div class="input-group input-group-lg">
+            <input id="autocompleteFrom" placeholder="Från" class="form-control" type="text">
+            <div class="input-group-prepend">
+              <button type="button" id="getLocation" class="btn btn-success btn-lg">
+                <i class="fas fa-location-arrow"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-6">
-        <div class="input-group input-group-lg">
-          <input id="autocompleteTo" placeholder="Till" class="form-control" type="text">
+        <div class="col-6">
+          <div class="input-group input-group-lg">
+            <input id="autocompleteTo" placeholder="Till" class="form-control" type="text">
+          </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
 </div>
-<div id="map-home-container" class="container-fluid mt-5" style="display: none;">
-  <div class="row">
+<div id="map-target" class="container-fluid mt-4">
+  <div class="row pt-5">
     <div class="col-4">&nbsp;</div>
-    <div class="col-4">
+    <div id="map-home-container" class="col-4" style="display: none;">
       <div id="map-home" class="d-flex flex-column"></div>
     </div>
     <div class="col-4">&nbsp;</div>
   </div>
 </div>
-<div class="container pt-3">
-  <div class="row mt-5">
+<div id="departure-time-container" class="container">
+  <div class="row mt-4">
     <div class="col-6 mx-auto">
       <div class="form-group">
         <h5 class="text-center mb-2">Avgång</h5>
@@ -53,15 +53,11 @@
     <div class="col-12 col-md-3">
       <h5 class="mt-4">Välj Piggy</h5>
     </div>
+    {{for piggies}}
     <div class="col-12 col-md-3">
-      <button type="button" class="btn btn-dark btn-lg mt-2">Express Piggy</button>
+      <button type="button" class="btn btn-dark btn-lg mt-2">{{:type}}</button>
     </div>
-    <div class="col-12 col-md-3">
-      <button type="button" class="btn btn-dark btn-lg mt-2">Spider Piggy</button>
-    </div>
-    <div class="col-12 col-md-3">
-      <button type="button" class="btn btn-dark btn-lg mt-2">Turbo Piggy</button>
-    </div>
+    {{/for}}
   </div>
 </div>
 <div class="container">
@@ -76,69 +72,19 @@
     <div class="col-12 mt-5 text-center mb-4">
       <h2>Tillval</h2>
     </div>
+    {{for snacks}}
     <div class="col-12 col-md-3 mt-5 mt-md-2">
       <div class="">
-        <h5>Dricka</h5>
+        <h5>{{:name}}</h5>
+        {{props types}}
         <div class="form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Cola Zero</label>
+          <label class="form-check-label" for="exampleCheck1">{{:prop}}</label>
         </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Coca Cola</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Kolsyrad vatten</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Öl</label>
-        </div>
+        {{/props}}
       </div>
     </div>
-    <div class="col-12 col-md-3 mt-5 mt-md-2">
-      <div class="">
-        <h5 class="mt-2 mt-md-0">Snacks</h5>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Snickers</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Dagens frukt</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Nötter</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Bounty</label>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-3 mt-5 mt-md-2">
-      <div class="">
-        <h5>Frukostpaket</h5>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Ostmacka</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Ost- och skinkmacka</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Kaffe</label>
-        </div>
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Te</label>
-        </div>
-      </div>
-    </div>
+    {{/for}}
   </div>
   <div class="row mt-3 justify-content-center">
     <button type="submit" class="btn btn-dark mt-3">Fortsätt</button>
@@ -150,39 +96,14 @@
       <h2>Paket</h2>
     </div>
     <div class="d-inline-flex">
+      {{for packs}}
       <div class="p-2 mr-5">
-        <h5>Hi Fi</h5>
-        <div>Boombox</div>
-        <div>TV (med HDMI)</div>
-        <div>Satelit</div>
-        <div>Netflix</div>
+        <h5>{{:name}}</h5>
+        {{props contents}}
+        <div>{{:prop}}</div>
+        {{/props}}
       </div>
-      <div class="p-2 mr-5">
-        <h5>Romans</h5>
-        <div>Champange</div>
-        <div>Rosor</div>
-        <div>Choklad</div>
-        <div>Ostbricka</div>
-        <div>Boombox</div>
-      </div>
-      <div class="p-2 mr-5">
-        <h5>Camping</h5>
-        <div>Tält</div>
-        <div>Sovsäck</div>
-        <div>Tändstickor</div>
-        <div>Fiskespö</div>
-        <div>Nödransoner</div>
-        <div>Kikare</div>
-      </div>
-      <div class="p-2 mr-5">
-        <h5>Familjepaket</h5>
-        <div>Extra säte</div>
-        <div>Barnstol</div>
-        <div>Choklad</div>
-        <div>Picknickkorg</div>
-        <div>Fralla</div>
-        <div>Saft</div>
-      </div>
+      {{/for}}
     </div>
   </div>
 </div>
@@ -219,7 +140,7 @@
     // autocompleteFrom.addListener('placeFrom_changed', fillInAddress(autocompleteFrom));
     var fromLocation;
     var toLocation;
-    $('#autocompleteFrom').on('geoEvent', function (event, data){
+    $('#autocompleteFrom').on('geoEvent', function (event, data) {
       console.log(data);
       fromLocation = data;
       viewMap();
@@ -235,13 +156,13 @@
       viewMap();
     });
 
-    function viewMap () {
-      console.log(fromLocation, toLocation);
+    function viewMap() {
       if (fromLocation && toLocation) {
-
-        // $('#map-home').css({'padding-top': '0%'})
-        $('#map-home-container').show();
-        $('#map-home').animate({'padding-top': '75%', 'height': '100%'}, 1000, function () { calculateAndDisplayRoute(fromLocation, toLocation); });
+        $.scrollTo('#map-target', 1100, function () {
+          // $('#map-home').css({'padding-top': '0%'})
+          $('#map-home-container').show();
+          $('#map-home').animate({ 'padding-top': '75%', 'height': '100%' }, 800, function () { calculateAndDisplayRoute(fromLocation, toLocation); });
+        })
       }
     }
   }
@@ -251,40 +172,40 @@
     var place = item.getPlace();
   }
 
-  function initMapSmall () {
+  function initMapSmall() {
     var directionsDisplay = new google.maps.DirectionsRenderer();
-      var directionsService = new google.maps.DirectionsService();
-      var map = new google.maps.Map(document.getElementById('map-home'), {
-        zoom: 14,
-        center: { lat: 55.6108096, lng: 12.9946562 },
-        disableDefaultUI: true
-      });
-      directionsDisplay.setMap(map);
-      return calculateAndDisplayRoute;
-      // calculateAndDisplayRoute(directionsService, directionsDisplay);
-      // delete window.initMap;
+    var directionsService = new google.maps.DirectionsService();
+    var map = new google.maps.Map(document.getElementById('map-home'), {
+      zoom: 14,
+      center: { lat: 55.6108096, lng: 12.9946562 },
+      disableDefaultUI: true
+    });
+    directionsDisplay.setMap(map);
+    return calculateAndDisplayRoute;
+    // calculateAndDisplayRoute(directionsService, directionsDisplay);
+    // delete window.initMap;
 
-      function calculateAndDisplayRoute (from, to) {
-        var selectedMode = 'DRIVING';
-        directionsService.route(
-          {
-            origin: from,
-            /* {
-              lat: 55.6108096, lng: 12.9946562
-            } */
-            destination: to,
-            /*  { lat: 55.565798, lng: 12.975453 } */
-            travelMode: google.maps.TravelMode[selectedMode]
-          },
-          function (response, status) {
-            if (status == 'OK') {
-              directionsDisplay.setDirections(response);
-            } else {
-              window.alert('Directions request failed due to ' + status);
-            }
+    function calculateAndDisplayRoute(from, to) {
+      var selectedMode = 'DRIVING';
+      directionsService.route(
+        {
+          origin: from,
+          /* {
+            lat: 55.6108096, lng: 12.9946562
+          } */
+          destination: to,
+          /*  { lat: 55.565798, lng: 12.975453 } */
+          travelMode: google.maps.TravelMode[selectedMode]
+        },
+        function (response, status) {
+          if (status == 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
           }
-        );
-      }
+        }
+      );
+    }
   }
 
 </script>
