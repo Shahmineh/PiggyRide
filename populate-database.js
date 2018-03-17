@@ -91,7 +91,8 @@ function importExtras () {
       stock: extra.stock,
       description: extra.description,
       price: extra.price,
-      types: extra.types
+      types: extra.types,
+      contents: extra.contents
     });
     e.save(() => {});
     memory.extras.push(e);

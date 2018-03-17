@@ -7,7 +7,8 @@ module.exports = class Extra extends ModelAndRoutes {
       stock: Number,
       description: String,
       price: Number,
-      types: [String]
+      types: [String],
+      contents: [String]
     };
   }
 };
