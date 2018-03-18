@@ -16,7 +16,9 @@
       "args": [
         "config",
         "nodemon.js"
-      ]
+      ],
+      "smartStep": true,
+      "showAsyncStacks": true
     },
     {
       "type": "node",
