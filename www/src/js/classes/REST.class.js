@@ -37,6 +37,7 @@ export default class REST extends Base {
 
           val = { $regex: val, $options: op };
         }
+        console.log('VAL', val);
         return val;
       });
     }
@@ -49,6 +50,8 @@ export default class REST extends Base {
     for (let result of results) {
       enriched.push(new this(result));
     }
+    /* console.log('RESULTS', results);
+    console.log('ENRICHED', enriched); */
     return enriched;
   }
 
