@@ -5,7 +5,6 @@ import 'bootstrap';
 import App from './classes/app.class.js';
 import moment from 'moment';
 import 'moment/locale/sv';
-import geoEvent from './classes/geo-locate.js';
 import User from './classes/user.class.js';
 import REST from './classes/REST.class.js';
 import getBestPiggie from './classes/get-best-piggy.js';

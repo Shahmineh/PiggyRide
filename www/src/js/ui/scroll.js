@@ -17,14 +17,28 @@ function assignScrollTo ($) {
   };
 
   Object.assign($, {
-    scrollTo: function (target, time = 1500, easing = 'swing') {
+    scrollTo: function (
+      target,
+      time = 1500,
+      easing = 'easeInOutCubic',
+      callbackFn = undefined
+    ) {
       document.addEventListener('wheel', abortScroll);
+      if (typeof time === 'function') {
+        callbackFn = time;
+        time = 1500;
+      }
+      if (typeof easing === 'function') {
+        callbackFn = easing;
+        easing = 'easeInOutCubic';
+      }
       $('html, body').animate(
         {
           scrollTop: $(target).offset().top
         },
         time,
-        easing
+        easing,
+        callbackFn
       );
       // console.log('Scrolled');
     }

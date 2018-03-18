@@ -3,6 +3,8 @@ import App from './classes/app.class';
 import REST from './classes/REST.class';
 import getOrders from './ui/admin-orders';
 import geoEvent from './classes/geo-locate.js';
+import Extra from './classes/extra.class';
+import Piggy from './classes/piggy.class';
 
 /**
  * Setup for SPA views
@@ -80,7 +82,7 @@ export default function viewsSetup (app) {
   /*
   * views/mapview.html = /admin
   */
-  app.bindView('/nav', async Renderer => {
+  app.bindView('/nav', async (Renderer) => {
     // let waypoints = await REST.request('waypoints', 'GET', {});
 
     window.initMap = () => {
@@ -125,13 +127,33 @@ export default function viewsSetup (app) {
   /*
   * views/home.html = /
   */
-  app.bindView('home.html', '/', null, () => {
-    geoEvent();
-    $('#departure-time').datetimepicker({
-      locale: 'sv'
-    });
-    $('#departure-time').on('hide.datetimepicker', function () {
-      $.scrollTo('#extras', 1500, 'easeInOutCubic');
-    });
-  });
+  app.bindView(
+    'home.html',
+    '/',
+    async () => {
+      let extras = await Extra.find('');
+      let piggyTypes = (await Piggy.find('')).reduce((acc, piggy) => {
+        if (!(acc.includes(piggy.type))) {
+          acc.push(piggy.type);
+        }
+        return acc;
+      }, []).map((piggyType) => {
+        return {type: piggyType}
+      });
+      return {
+        snacks: extras.filter((item) => item.types.length > 0),
+        packs: extras.filter((item) => item.types.length === 0),
+        piggies: piggyTypes
+      };
+    },
+    () => {
+      geoEvent();
+      $('#departure-time').datetimepicker({
+        locale: 'sv'
+      });
+      $('#departure-time').on('hide.datetimepicker', function () {
+        $.scrollTo('#extras', 1500, 'easeInOutCubic');
+      });
+    }
+  );
 }

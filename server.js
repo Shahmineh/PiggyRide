@@ -21,6 +21,9 @@ let session = new Session(app);
 const User = require('./backend/user.class');
 let user = new User(app);
 
+const Extra = require('./backend/extra.class');
+let extra = new Extra(app);
+
 const Waypoint = require('./backend/waypoint.class');
 let waypoint = Waypoint.create(app, {
   from: 'Sallerupsvägen 26B',
