@@ -7,10 +7,11 @@ const validRoutes = [];
 Object.assign(app, { validRoutes: validRoutes });
 
 const Session = require('./backend/session.class');
+const MySessionModel = new Session(app).myModel;
 function session (req, res, next) {
   if (!req.session) {
     // set a cookie for a session if it doesn't exist
-    let MySessionModel = new Session(app).myModel;
+
     // see https://expressjs.com/en/4x/api.html#res.cookie
     let mySession = new MySessionModel({
       loggedIn: true
