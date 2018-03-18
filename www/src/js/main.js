@@ -23,7 +23,5 @@ app.initialize(); // Set up the SPA and pop-states
 // @ts-ignore
 require('startbootstrap-agency/js/agency');
 
-geoEvent();
-
 getBestPiggie();
 const user = new User();
