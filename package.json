@@ -27,7 +27,8 @@
     "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix",
     "sub": "git submodule init && git submodule update",
     "reinstall": "rm -rf node_modules && npm install",
-    "populate": "node populate-database.js"
+    "populate": "node populate-database.js",
+    "setup": "yarn populate && yarn && yarn all"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -74,7 +75,7 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "htmlhint": "^0.9.13",
-    "husky": "^0.15.0-rc.8",
+    "husky": "0.15.0-rc.8",
     "nodemon": "^1.17.1",
     "stylelint": "^9.1.1",
     "stylelint-config-standard": "^18.2.0",
