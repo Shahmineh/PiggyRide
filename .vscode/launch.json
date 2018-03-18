@@ -34,8 +34,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Launch Node",
       "program": "${workspaceFolder}/server.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Node (current file)",
+      "program": "${file}"
     },
     {
       "type": "node",
