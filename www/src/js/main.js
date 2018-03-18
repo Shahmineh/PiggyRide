@@ -7,7 +7,6 @@ import moment from 'moment';
 import 'moment/locale/sv';
 import User from './classes/user.class.js';
 import REST from './classes/REST.class.js';
-import getBestPiggie from './classes/get-best-piggy.js';
 
 // @ts-ignore
 window.$ = window.jQuery = jQuery; // Sets $ to global
@@ -23,5 +22,4 @@ app.initialize(); // Set up the SPA and pop-states
 // @ts-ignore
 require('startbootstrap-agency/js/agency');
 
-getBestPiggie();
 const user = new User();
