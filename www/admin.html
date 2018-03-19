@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Piggy Ride</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Minified CSS -->
+  <link rel="stylesheet" href="/dist/css/style.min.css">
+  <!-- Font awesome CSS -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" /> -->
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <a class="navbar-brand pop" href="/">Piggy</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link pop" href="/">Startsida
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pop" id="info" href="/info">Piggies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pop" id="kundservice" href="/kundservice">Kundservice</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled pop" id="om-oss" href="/om-oss">Om oss</a>
+        </li> -->
+        <!-- login form -->
+        <li class="nav-item">
+          <div class="dropdown">
+            <a class="nav-link" id="login" data-toggle="dropdown" aria-expanded="false">Logga in</a>
+
+            <form class="dropdown-menu p-4 myloginform col-12">
+              <div class="logintoggle loginContainer">
+                <div class="form-group">
+                  <label for="exampleDropdownFormEmail2">E-mail</label>
+                  <input type="email" class="form-control" id="loginUsername" placeholder="bat@man.se">
+                </div>
+                <div class="form-group">
+                  <label for="exampleDropdownFormPassword2">Lösenord</label>
+                  <input type="password" class="form-control" id="loginPassword" placeholder="">
+                </div>
+                <a class="btn btn-success text-dark col-12" id="loginbtn">Logga in</a>
+                <div class="dropdown-divider"></div>
+                <a class="btn btn-warning text-dark col-12" id="signupbtn">Skapa konto</a>
+              </div>
+            </form>
+          </div>
+        </li> <!-- end login form -->
+
+        <li class="nav-item">
+            <div class="dropdown">
+              <a class="nav-link" id="admin" data-toggle="dropdown" aria-expanded="false">Admin</a>
+  
+              <form class="dropdown-menu p-4 myloginform col-12">
+                <div class="admintoggle adminContainer">
+                  
+                  <a class="btn btn-success text-dark col-12" id="listallusers">Lista alla användarna</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="btn btn-warning text-dark col-12" id="listallorders">Lista alla order</a>
+                </div>
+              </form>
+            </div>
+          </li> <!-- end admin menu -->
+      </ul>
+    </div>
+  </nav>
+  <main id="root">
+  </main>
+
+  <footer></footer>
+
+  <!-- Scripts -->
+  <script src="/dist/js/main.min.js"></script>
+  
+</body>
+
+</html>
