@@ -6,12 +6,12 @@ export default class Admin extends REST {
     User.eventsInitialized = User.eventsInitialized || this.setupEventHandlers();
   }
 
-  /* setupEventHandlers () {
+  setupEventHandlers () {
     $(document).on('click', '#listallusers', async () => {
       console.log('CLICK');
       let email;
 
-      let allUsers = await Admin.find(email: email);
+      let allUsers = await Admin.find({ email: email });
       console.log('allUsers', allUsers);
      
      
@@ -20,4 +20,4 @@ export default class Admin extends REST {
     return true;
   } // end eventhandler
 
-} // end class */
+} // end class
