@@ -47,22 +47,28 @@ export default class REST extends Base {
           val = val.substr(1, val.length - 1);
 
           val = { $regex: val, $options: op };
+          
         }
+        //console.log('VAL', val);
         return val;
       });
     }
 
-    let entity = (this.name.endsWith('y')
-      ? this.name.slice(0, -1) + 'ies'
-      : this.name + 's'
+    let entity = (this.name + 's').toLowerCase();
+    //console.log('ENTITY', entity);
     ).toLowerCase(); // + 's').toLowerCase();
 
     let results = await REST.request(entity, 'GET', query, '');
     results = results.result || [results];
+    //console.log('RESULTS', results);
+    
     let enriched = [];
     for (let result of results) {
       enriched.push(new this(result));
+      //console.log('RESULT', result);
     }
+    
+    console.log('ENRICHED', enriched[0]);
     return enriched;
   }
 
