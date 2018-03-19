@@ -20,7 +20,10 @@ export default class User extends REST {
         // console.log('Denna användare existerar redan!');
         $('err')
         $(".errormsg").html("<p class='danger'> Denna emailadress är redan registrerad! </p>");
-      }
+        }
+        else {
+          $(".errormsg").html("<p class='success'> Tack för att du registrerat dig hos oss! </p>");
+        }
     });
 
     $(document).on('click', '#loginbtn', async ()=> {
@@ -31,15 +34,10 @@ export default class User extends REST {
         $(".errormsg").html("<p class='danger'> Vänligen kontrollera att du skrivit rätt emailadress och lösenord! </p>");
       } 
     });
+
+
   }// end eventhandler
 
- /*  deleteUser() {
-    email 
-:
-"joakim@ankeborg.se"
-passwordHash
-:
-"asdf"
-  } */
+
 
 }// end class

@@ -25,7 +25,7 @@ export default class REST extends Base {
 
 
   static async find (query) {
-    //console.log('QUERY', query);
+    console.log('QUERY', query);
     if (typeof query === 'object') {
       query = JSON.stringify(query, (key, val) => {
         if (val && val.constructor === RegExp) {
