@@ -1,16 +1,15 @@
 import REST from './REST.class.js';
 
 export default class User extends REST {
-
-  constructor(user){
+  constructor (user) {
     super(user);
-    this.eventHandlers();
+    User.eventsInitialized = User.eventsInitialized || this.setupEventHandlers();
   }
 
-  eventHandlers(){
+  setupEventHandlers () {
     let email, password;
-    
-    $(document).on('click', '#signupbtn', async ()=> {
+
+    $(document).on('click', '#signupbtn', async () => {
       email = $('#loginUsername').val();
       password = $('#loginPassword').val();
       

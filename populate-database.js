@@ -1,5 +1,9 @@
+/**
+ *      ¯\_(⊙︿⊙)_/¯
+ */
+
 const scriptStartTime = new Date();
-const dataJSON = require('./buildData.json');
+const dataJSON = require('./populate-database.json');
 const express = require('express');
 const app = express();
 
@@ -35,14 +39,33 @@ let memory = {
 (async () => {
   let waypoint = await Waypoint.create(app, {
     from: 'Nordenskiöldsgatan 13',
-    to: 'Linnégatan 1',
-    startTime: new Date('2018-03-02 13:00:00')
+    to: 'Ön',
+    startTime: new Date()
   });
   WaypointModel = waypoint.myModel;
   renewCollections();
 })();
 
 function renewCollections () {
+  SessionModel.remove({}, () => {
+    importSessions();
+    ExtraModel.remove({}, () => {
+      importExtras();
+      WaypointModel.remove({}, () => {
+        importWaypoints();
+        PiggyModel.remove({}, () => {
+          importPiggys();
+          UserModel.remove({}, () => {
+            importUsers();
+          });
+        });
+      });
+    });
+  });
+}
+
+// if needed call this on instead of renewCollections() at row 42~
+function addToCollections () {
   importSessions();
   importExtras();
   importWaypoints();
@@ -123,10 +146,9 @@ function importUsers () {
     u.save(e => {
       memory.users.push(u);
       if (dataJSON.user.length === memory.users.length) {
-        importOrders();
-        // OrderModel.remove({}, () => {
-        //   importOrders();
-        // });
+        OrderModel.remove({}, () => {
+          importOrders();
+        });
       }
     });
   }
@@ -162,16 +184,24 @@ function importOrders () {
     piggys: piggys,
     waypoints: wps
   });
-  UserModel.update({ _id: user._id }, { $push: { orders: o } }, () => {});
+
   o.save(e => {
-    if (e) {
-      console.log(e);
-    } else {
-      console.log(
-        'Script and will exit and close db connection.\nms:' +
-          (new Date() - scriptStartTime)
-      );
-      order.closeConnection();
-    }
+    UserModel.update({ _id: user._id }, { $push: { orders: o } }, () => {
+      WaypointModel.update({ _id: wps._id }, { $push: { orders: o } }, e => {
+        let i = 0;
+        for (let pig of piggys) {
+          PiggyModel.update({ _id: pig._id }, { $push: { orders: o } }, e => {
+            i++;
+            if (i === piggys.length) {
+              console.info(
+                '\x1b[32m%s\x1b[0m',
+                'Done! ᕙ(⇀‸↼‶)ᕗ\nScript will now exit and close db connection, have fun with your DATA'
+              );
+              order.closeConnection();
+            }
+          });
+        }
+      });
+    });
   });
 }

@@ -3,7 +3,7 @@
 @import "./external/tempusdominus-bootstrap-4-alpha17";
 
 #root {
-  margin-top: 125px;
+  margin-top: 150px;
 }
 
 html,
@@ -13,4 +13,15 @@ main,
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+#map-home {
+  height: 0%;
+  width: 100%;
+  margin: 0;
+  padding-top: 0%;
+}
+
+.dropdown{
+	width: 350px;
 }
