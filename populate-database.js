@@ -121,8 +121,9 @@ function importWaypoints () {
 }
 
 function importPiggies () {
+  const numberOfEachPiggy = 2;
   let i = 0;
-  for (let x = 0; x < 10; x++) {
+  for (let x = 0; x < numberOfEachPiggy; x++) {
     for (let piggy of dataJSON.piggy) {
       let p = new PiggyModel({
         type: piggy.type,
