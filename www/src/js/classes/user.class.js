@@ -18,7 +18,7 @@ export default class User extends REST {
        console.log('nameResult.error', nameResult.error)
       if (nameResult.error) {
         // console.log('Denna användare existerar redan!');
-        $('err')
+        //$('err')
         $(".errormsg").html("<p class='danger'> Denna emailadress är redan registrerad! </p>");
         }
         else {
