@@ -13,9 +13,9 @@ window.moment = moment;
 require('bootstrap');
 require('popper.js');
 // @ts-ignore
-// require('bootstrap-table');
+require('bootstrap-table');
 // @ts-ignore
-// require('bootstrap-table/dist/locale/bootstrap-table-sv-SE')
+require('bootstrap-table/dist/locale/bootstrap-table-sv-SE')
 
 require('./ui/scroll.js'); // Assigns the scrollTo method to jQuery
 // @ts-ignore
