@@ -1136,6 +1136,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
+bootstrap-table@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/bootstrap-table/-/bootstrap-table-1.12.1.tgz#c9c3973067842a937c05d8639ecccb02abd6ba65"
+
 bootstrap@4.0.0, bootstrap@^4.0.0, bootstrap@^4.0.0-beta:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
