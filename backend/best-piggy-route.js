@@ -21,12 +21,25 @@ module.exports = async function (req, res, next) {
     acc[wp.piggy.number].push(wp);
     console.log(acc);
     return acc;
-  }, new Array(allPiggies.length).fill(null).map((arr) => []));
+  }, new Array(allPiggies.length).fill(null).map(arr => []));
   let destination = req.body.to || 'Sallerupsvägen 5';
-  let hqWaypoint = await Waypoint.create(app, {from: Waypoint.hqPos.endAddress, to: destination, startTime: new Date()});
+  let hqWaypoint = await Waypoint.create(app, {
+    from: Waypoint.hqPos.endAddress,
+    to: destination,
+    startTime: new Date()
+  });
   // console.log(hqWaypoint);
-  let activePiggyWps = wpsByPiggy.map((wps) => {return wps.map((wp) => {return moment(wp.endTime).add(wp.duration, 's')})});
-  console.log(activePiggyWps)
+  let testDate = new Date('March 22, 2018 12:24:00');
+  let activePiggyWps = wpsByPiggy.map(wps => {
+    return wps
+      .map(wp => {
+        let time = moment(wp.endTime); // .add(wp.duration, 's')
+        // @ts-ignore
+        return time.toDate() - new Date();
+      })
+      .filter(time => time > 0);
+  });
+  console.log(activePiggyWps);
 
   next();
 };
