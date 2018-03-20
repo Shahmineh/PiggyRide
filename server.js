@@ -72,7 +72,8 @@ if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
     let context = repl.context;
     Object.assign(context, {
       app: app,
-      Waypoint: Waypoint
+      Waypoint: Waypoint,
+      moment: require('moment')
     });
     // console.log(global === repl.context);
     repl.on('exit', function () {
