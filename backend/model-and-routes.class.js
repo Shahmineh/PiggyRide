@@ -83,22 +83,24 @@ module.exports = class ModelAndRoutes {
 
       // get params
       params = params || qs.parse(req._params ? req._params[0] : req.params[0]);
-
+//console.log('PARAMS', params);
       // Get populate instructions
       // and then delete them from the Mongo query params
       let populate = params.populate || '';
+//console.log('POPULATE', populate);
       delete params.populate;
 
       this.myModel
         .find(params)
         .populate(populate)
         .exec((err, data) => {
-          // console.log('____________', data, params);
+          //console.log('____________', data, params);
           res.json({
             query: params,
             resultLength: data ? data.length : 0,
             result: data || []
           });
+          //console.log('DATA', data);
         });
     });
   }
