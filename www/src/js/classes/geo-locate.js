@@ -1,16 +1,18 @@
 const request = require('request-promise-native');
 
 export default function geoEvent () {
-  $(document).on('click', '#getLocation', function () {
+  const searchPosition = function () {
     if (navigator.geolocation) {
-      $('#autocompleteFrom')[0].placeholder = 'hittar närmaste adress..';
+      $('#autocompleteFrom')[0].placeholder = 'Hittar närmaste adress..';
       navigator.geolocation.getCurrentPosition(position => {
         getClosestAddress(position);
       });
     } else {
       this.innerHTML = 'Geolocation is not supported by this browser.';
     }
-  });
+  };
+  $(document).on('click', '#getLocation', searchPosition);
+  searchPosition();
 }
 
 async function getClosestAddress (position) {
@@ -31,4 +33,8 @@ async function getClosestAddress (position) {
   $('#autocompleteFrom')[0].value = data.results[0].formatted_address.split(
     ','
   )[0];
+  $('#autocompleteFrom').trigger('geoEvent', {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  });
 }
