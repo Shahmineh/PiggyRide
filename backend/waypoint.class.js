@@ -72,11 +72,15 @@ module.exports = class Waypoint extends ModelAndRoutes {
     };
   }
 
-  get hqPos () {
+  static get hqPos () {
     // Nordenskiöldsgatan 13, Malmö
     return {
+      startAddress: 'Nordenskiöldsgatan 13, 211 19 Malmö, Sverige',
+      endAddress: 'Nordenskiöldsgatan 13, 211 19 Malmö, Sverige',
       lat: 55.6108096,
-      lng: 12.9946562
+      lng: 12.9946562,
+      endTime: new Date(),
+      startTime: new Date()
     };
   }
 
@@ -97,7 +101,6 @@ module.exports = class Waypoint extends ModelAndRoutes {
 
   static async create (app, obj) {
     let url = 'https://maps.googleapis.com/maps/api/directions/json';
-
     let params = {
       origin: obj.from + (obj.from.includes('Malmö') ? '' : ' Malmö'),
       destination: obj.to + (obj.to.includes('Malmö') ? '' : ' Malmö'),

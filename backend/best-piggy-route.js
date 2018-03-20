@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = require('mongoose').Schema;
+const express = require('express');
+const app = express();
 
 const Piggy = require('./piggy.class');
 const Waypoint = require('./waypoint.class');
@@ -11,6 +13,17 @@ const WaypointModel = mongoose.model(
   new mongoose.Schema(Waypoint.schema)
 );
 
-module.exports = function (req, res, next) {
+module.exports = async function (req, res, next) {
+  let allWps = await WaypointModel.find({}).populate('piggy');
+  let allPiggies = await PiggyModel.find({});
+  let wpsByPiggy = allWps.reduce((acc, wp) => {
+    acc[wp.piggy.number].push(wp);
+    console.log(acc);
+    return acc;
+  }, new Array(allPiggies.length).fill(null).map((arr) => []));
+  let destination = req.body.to || 'Sallerupsvägen 5';
+  let hqWaypoint = await Waypoint.create(app, {from: Waypoint.hqPos.endAddress, to: destination, startTime: new Date()});
+  // console.log(hqWaypoint);
+
   next();
 };
