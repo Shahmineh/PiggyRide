@@ -11,9 +11,9 @@ app.use(bodyParser.json());
 app.use(express.static('www'));
 app.use(cookieParser());
 const mySession = new MyHandler(app);
-let session = mySession;
+console.log('sessionMiddleware', mySession);
 
-app.use(session);
+app.use(mySession);
 
 const Order = require('./backend/order.class');
 let order = new Order(app);
@@ -24,7 +24,7 @@ let piggy = new Piggy(app);
 // let session = new Session(app);
 
 const User = require('./backend/user.class');
-let user = new User(app);
+let UserModel = new User(app).myModel;
 
 const Extra = require('./backend/extra.class');
 let extra = new Extra(app);
@@ -48,6 +48,24 @@ app.get(/^[^.]*$/, (req, res, next) => {
   } else {
     next();
   }
+});
+
+app.post('/login', async (req, res)  => {
+  let currentUser = await UserModel.findOne({
+    email: req.body.email,
+    passwordHash: req.body.passwordHash
+  });
+
+  if (currentUser) {
+    currentUser.sessionID = req.cookies.session;
+    currentUser.save();
+    res.json(currentUser);
+  } else {
+    res.json('You need to create an account');
+  }
+  // let User = await UserModel.find({_id : req.cookies.session});
+
+
 });
 
 app.listen(3000, () => {
