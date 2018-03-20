@@ -104,7 +104,12 @@ app.post('/register', async (req, res) => {
   }
 });
 
-// app.
+app.all('/sign-out', async (req, res) => {
+  req.user = {};
+  req.session.loggedIn = false;
+  let result = await req.session.save();
+  res.json({message: 'Logged out', session: req.session, user: req.user});
+});
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
