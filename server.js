@@ -10,7 +10,11 @@ Object.assign(app, { validRoutes: validRoutes });
 app.use(bodyParser.json());
 app.use(express.static('www'));
 app.use(cookieParser());
-const mySession = new MyHandler(app);
+
+const User = require('./backend/user.class');
+let UserModel = new User(app).myModel;
+
+const mySession = new MyHandler(app, UserModel);
 console.log('sessionMiddleware', mySession);
 
 app.use(mySession);
@@ -23,8 +27,7 @@ let piggy = new Piggy(app);
 
 // let session = new Session(app);
 
-const User = require('./backend/user.class');
-let UserModel = new User(app).myModel;
+
 
 const Extra = require('./backend/extra.class');
 let extra = new Extra(app);
@@ -58,7 +61,10 @@ app.post('/login', async (req, res) => {
 
   if (currentUser) {
     currentUser.sessionID = req.cookies.session;
+    req.session.data.userId = currentUser._id;
+    req.session.loggedIn = true;
     currentUser.save();
+    console.log(req.session);
     res.json(currentUser);
   } else {
     res.json('You need to create an account');
@@ -95,7 +101,7 @@ app.post('/register', async (req, res) => {
   }
 });
 
-
+// app.
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
