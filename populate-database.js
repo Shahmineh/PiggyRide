@@ -28,7 +28,7 @@ let WaypointModel;
 // to remember all the db objects we've created, so we can add relations easy
 let memory = {
   orders: [],
-  piggys: [],
+  piggies: [],
   sessions: [],
   users: [],
   extras: [],
@@ -54,7 +54,7 @@ function renewCollections () {
       WaypointModel.remove({}, () => {
         importWaypoints();
         PiggyModel.remove({}, () => {
-          importPiggys();
+          importPiggies();
           UserModel.remove({}, () => {
             importUsers();
           });
@@ -69,7 +69,7 @@ function addToCollections () {
   importSessions();
   importExtras();
   importWaypoints();
-  importPiggys();
+  importPiggies();
   importUsers();
 }
 
@@ -90,7 +90,9 @@ function importExtras () {
       name: extra.name,
       stock: extra.stock,
       description: extra.description,
-      price: extra.price
+      price: extra.price,
+      types: extra.types,
+      contents: extra.contents
     });
     e.save(() => {});
     memory.extras.push(e);
@@ -118,9 +120,10 @@ function importWaypoints () {
   }
 }
 
-function importPiggys () {
+function importPiggies () {
+  const numberOfEachPiggy = 2;
   let i = 0;
-  for (let x = 0; x < 10; x++) {
+  for (let x = 0; x < numberOfEachPiggy; x++) {
     for (let piggy of dataJSON.piggy) {
       let p = new PiggyModel({
         type: piggy.type,
@@ -129,7 +132,7 @@ function importPiggys () {
         price: piggy.price
       });
       p.save(() => {
-        memory.piggys.push(p);
+        memory.piggies.push(p);
       });
       i++;
     }
@@ -161,18 +164,18 @@ function rndI (item) {
 function importOrders () {
   let i = 0;
   let user = memory.users[rndI(memory.users)];
-  let piggys = [
-    memory.piggys[rndI(memory.piggys)],
-    memory.piggys[rndI(memory.piggys)]
+  let piggies = [
+    memory.piggies[rndI(memory.piggies)],
+    memory.piggies[rndI(memory.piggies)]
   ];
   let extras = [
     memory.extras[rndI(memory.extras)],
     memory.extras[rndI(memory.extras)]
   ];
-  let wps = memory.waypoints[rndI(memory.waypoints)];
+  let wps = memory.waypoints;
 
   let totalPrice =
-    piggys.map(pig => pig.price).reduce((prev, next) => prev + next) +
+    piggies.map(pig => pig.price).reduce((prev, next) => prev + next) +
     extras.map(extra => extra.price).reduce((prev, next) => prev + next);
 
   let o = new OrderModel({
@@ -181,27 +184,31 @@ function importOrders () {
     totalPrice: totalPrice,
     user: user,
     extras: extras,
-    piggys: piggys,
+    piggies: piggies,
     waypoints: wps
   });
 
   o.save(e => {
-    UserModel.update({ _id: user._id }, { $push: { orders: o } }, () => {
-      WaypointModel.update({ _id: wps._id }, { $push: { orders: o } }, e => {
-        let i = 0;
-        for (let pig of piggys) {
-          PiggyModel.update({ _id: pig._id }, { $push: { orders: o } }, e => {
-            i++;
-            if (i === piggys.length) {
-              console.info(
-                '\x1b[32m%s\x1b[0m',
-                'Done! ᕙ(⇀‸↼‶)ᕗ\nScript will now exit and close db connection, have fun with your DATA'
-              );
-              order.closeConnection();
-            }
-          });
+    UserModel.update({ _id: user._id }, { $push: { orders: o } }).then(
+      async () => {
+        for (let [i, pig] of piggies.entries()) {
+          await WaypointModel.update(
+            { _id: wps[i]._id },
+            { $push: { orders: o }, $set: { piggy: piggies[i] } }
+          );
+          await PiggyModel.update(
+            { number: pig.number },
+            { $push: { orders: o } }
+          );
         }
-      });
-    });
+        console.info(
+          '\x1b[32m%s\x1b[0m 👌',
+          'Done! ᕙ(⇀‸↼‶)ᕗ\nScript will now exit and close db connection, have fun with your DATA'
+        );
+        setTimeout(() => {
+          order.closeConnection();
+        }, 2500);
+      }
+    );
   });
 }

@@ -21,6 +21,9 @@ let session = new Session(app);
 const User = require('./backend/user.class');
 let user = new User(app);
 
+const Extra = require('./backend/extra.class');
+let extra = new Extra(app);
+
 const Waypoint = require('./backend/waypoint.class');
 let waypoint = Waypoint.create(app, {
   from: 'Sallerupsvägen 26B',
@@ -32,7 +35,7 @@ app.get(/^[^.]*$/, (req, res, next) => {
   let reqPath = req.path.split('/').slice(1);
   if (
     reqPath[0] &&
-    !validRoutes.some((route) => {
+    !validRoutes.some(route => {
       return reqPath[0] === route || reqPath[0].startsWith(route + '/'); // route.slice(0, -1) to match singulars
     })
   ) {
@@ -45,3 +48,33 @@ app.get(/^[^.]*$/, (req, res, next) => {
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
 });
+
+/*
+  Start a REPL if server was started with --inspect or --debug.
+  Note that await in the REPL is only available in Node v10.0+.
+*/
+const nodeArgs = process.execArgv.join();
+if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
+  // Start read-eval-print loop
+  const nodeRepl = require('repl');
+  setTimeout(async () => {
+    console.info('Starting REPL 🐍');
+    const repl = nodeRepl.start({
+      useColors: true,
+      prompt: 'PiggyRide > ',
+      input: process.stdin,
+      output: process.stdout,
+      useGlobal: true
+    });
+    let context = repl.context;
+    Object.assign(context, {
+      app: app,
+      Waypoint: Waypoint,
+      waypoint: await waypoint
+    });
+    // console.log(global === repl.context);
+    repl.on('exit', function () {
+      console.info('REPL closed');
+    });
+  }, 2500);
+}

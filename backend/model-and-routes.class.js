@@ -17,6 +17,10 @@ module.exports = class ModelAndRoutes {
     return {};
   }
 
+  get model () {
+    return this.myModel;
+  }
+
   constructor (expressApp, routes = ['post', 'get', 'put', 'delete']) {
     if (!expressApp) {
       routes = [];
@@ -24,7 +28,11 @@ module.exports = class ModelAndRoutes {
     this.expressApp = expressApp;
     let schema = new mongoose.Schema(this.constructor.schema);
     this.modelName = this.constructor.name;
-    this.routeName = this.modelName.toLowerCase() + 's';
+    this.routeName = (this.modelName.endsWith('y')
+      ? this.modelName.slice(0, -1) + 'ies'
+      : this.modelName + 's'
+    ).toLowerCase();
+
     if (!expressApp.validRoutes) {
       expressApp.validRoutes = [];
     }
@@ -122,7 +130,6 @@ module.exports = class ModelAndRoutes {
         if (err) {
           res.json(err);
         } else {
-          console.log('BBB', data);
           let numberOfItems = data.length;
           let response = { numberOfItems: numberOfItems };
           if (numberOfItems === 0) {
