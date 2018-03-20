@@ -31,15 +31,15 @@ module.exports = async function (req, res, next) {
   // console.log(hqWaypoint);
   let testDate = new Date('March 22, 2018 12:24:00');
   let activePiggyWps = wpsByPiggy.map(wps => {
-    return wps
-      .map(wp => {
-        let time = moment(wp.endTime); // .add(wp.duration, 's')
-        // @ts-ignore
-        return time.toDate() - new Date();
-      })
-      .filter(time => time > 0);
+    return wps.filter(wp => {
+      // @ts-ignore
+      let time = moment(wp.endTime).toDate() - new Date(); // .add(wp.duration, 's')
+      return time > 0;
+    });
   });
+
   console.log(activePiggyWps);
+  console.log(hqWaypoint);
 
   next();
 };
