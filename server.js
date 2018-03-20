@@ -3,58 +3,16 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
-
+const MyHandler = require('./backend/helper.class');
 const validRoutes = [];
 Object.assign(app, { validRoutes: validRoutes });
-
-const Session = require('./backend/session.class');
-const MySessionModel = new Session(app).myModel;
-async function session (req, res, next) {
-  // console.log(res);
-  if (!req.cookies.session) {
-    // set a cookie for a session if it doesn't exist
-
-    // see https://expressjs.com/en/4x/api.html#res.cookie
-    let mySession = new MySessionModel();
-    let cookie = res.cookie('session', mySession._id, {
-      path: '/',
-      httpOnly: true
-    });
-    mySession.set({
-      loggedIn: true,
-      data: {
-        user: 'test'
-      }
-    });
-
-    // save our new cookie to our new session
-    mySession.save();
-    req.session = mySession;
-  } else {
-    let sessions = await MySessionModel.find({ _id: req.cookies.session });
-    if (sessions[0]) {
-      req.session = sessions[0];
-      console.log(req.session);
-      // req.session.data = req.session.data || {};
-      //  // is there a userId saved on the session and are they logged in?
-      // if(req.session.data.userId && req.session.loggedIn){
-      //   let users = await User.find({_id: req.session.data.userId});
-      //   if(users[0]){
-      //     req.user = users[0]; // apply the user object
-      //   }
-      // }
-    }
-    // else{
-    //   delete(req.cookies.session);
-    //   return session(req, res, next);
-    // }
-  }
-  next();
-}
 
 app.use(bodyParser.json());
 app.use(express.static('www'));
 app.use(cookieParser());
+const mySession = new MyHandler(app);
+let session = mySession;
+
 app.use(session);
 
 const Order = require('./backend/order.class');
