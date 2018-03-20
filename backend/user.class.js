@@ -15,7 +15,7 @@ module.exports = class User extends ModelAndRoutes {
       sessionID: String,
       orders: [{
         type: Schema.Types.ObjectId,
-        ref: "Order"
+        ref: 'Order'
       }]
     };
   }
