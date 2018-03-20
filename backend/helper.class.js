@@ -39,10 +39,11 @@ module.exports = class myHandler {
       if (session) {
         req.session = session;
         req.session.data = req.session.data || {};
-        // console.log(req.session.data)
+
         // is there a userId saved on the session and are they logged in?
-        if (req.session.data.userId && req.session.loggedIn) {
-          let user = await this.UserModel.findOne({ _id: req.session.data.userId });
+        if (req.session ) {
+          let user = await this.UserModel.findOne({ sessionID: req.session._id});
+          console.log(user)
           if (user) {
             req.user = user; // apply the user object
           }

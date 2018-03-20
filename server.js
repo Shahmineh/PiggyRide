@@ -43,6 +43,23 @@ let waypoint = Waypoint.create(app, {
   startTime: new Date('2018-03-02 13:00:00')
 });
 
+
+app.get('/user', (req, res) => {
+  // check if there is a logged-in user and return that user
+  let response;
+  if (req.session) {
+    res.json(req.session);
+    response = req.user;
+    // never send the password back
+    // response.password = '******';
+  } else {
+    response = { message: 'Not logged in' };
+  }
+  console.log(req.session)
+
+});
+
+
 app.get(/^[^.]*$/, (req, res, next) => {
   let reqPath = req.path.split('/').slice(1);
   if (
@@ -58,7 +75,6 @@ app.get(/^[^.]*$/, (req, res, next) => {
 });
 
 app.post('/login', async (req, res) => {
-
   let obj = req.body;
   for (let key in obj) {
     let parsedData = JSON.parse(key);
@@ -69,16 +85,16 @@ app.post('/login', async (req, res) => {
     });
     if (currentUser) {
       currentUser.sessionID = req.cookies.session;
+      req.user = currentUser;
       req.session.data = { userId: currentUser._id };
       req.session.loggedIn = true;
       currentUser.save();
-
-      res.json(currentUser);
+      req.session.save();
+      res.json(req.session);
     } else {
       res.json('You need to create an account');
     }
   }
-
 
   // let User = await UserModel.find({_id : req.cookies.session});
 });
@@ -89,7 +105,7 @@ app.post('/register', async (req, res) => {
   let obj = req.body;
   for (let key in obj) {
     let parsedData = JSON.parse(key);
-    console.log(parsedData)
+    console.log(parsedData);
     let currentUser = await UserModel.findOne({
       email: parsedData.email,
       passwordHash: parsedData.passwordHash
@@ -100,7 +116,9 @@ app.post('/register', async (req, res) => {
           .then(result => {
             result.sessionID = req.cookies.session;
             req.session.data.userId = result._id;
+            req.user = result;
             req.session.loggedIn = true;
+            req.session.save();
             result.save();
             res.json(parsedData);
             console.log(req.session);
@@ -119,7 +137,6 @@ app.post('/register', async (req, res) => {
       res.json('User aldready exist. Please sign in');
     }
   }
-
 });
 
 app.all('/sign-out', async (req, res) => {
@@ -128,6 +145,8 @@ app.all('/sign-out', async (req, res) => {
   let result = await req.session.save();
   res.json({ message: 'Logged out', session: req.session, user: req.user });
 });
+
+
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');

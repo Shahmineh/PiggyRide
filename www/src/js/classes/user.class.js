@@ -91,5 +91,36 @@ export default class User extends REST {
           console.log('fewfewfw', err);
         });
     });
+
+    $(document).on('click', '#test', async () => {
+
+      // let nameResult = await User.find({
+      //   email: email,
+      //   passwordHash: password
+      // });
+      // if (nameResult === undefined || nameResult.length == 0) {
+      //   $('.errormsg').html(
+      //     "<p class='danger'> Vänligen kontrollera att du skrivit rätt emailadress och lösenord! </p>"
+      //   );
+      // }
+      let data = {
+        email: email,
+        passwordHash: password
+      };
+      let newData = JSON.stringify(data);
+
+
+      $.ajax({
+        url: '/user',
+        type: 'GET',
+        data: newData
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log('fewfewfw', err);
+        });
+    });
   } // end eventhandler
 } // end class
