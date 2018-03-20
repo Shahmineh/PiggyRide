@@ -25,7 +25,7 @@ export default class REST extends Base {
 
 
   static async find (query) {
-    console.log(query);
+    console.log('QUERY', query);
     if (typeof query === 'object') {
       query = JSON.stringify(query, (key, val) => {
         if (val && val.constructor === RegExp) {
@@ -36,19 +36,27 @@ export default class REST extends Base {
           val = val.substr(1, val.length - 1);
 
           val = { $regex: val, $options: op };
+          
         }
+        //console.log('VAL', val);
         return val;
       });
     }
 
     let entity = (this.name + 's').toLowerCase();
+    //console.log('ENTITY', entity);
 
     let results = await REST.request(entity, 'GET', query, '');
     results = results.result || [results];
+    //console.log('RESULTS', results);
+    
     let enriched = [];
     for (let result of results) {
       enriched.push(new this(result));
+      //console.log('RESULT', result);
     }
+    
+    console.log('ENRICHED', enriched[0]);
     return enriched;
   }
 

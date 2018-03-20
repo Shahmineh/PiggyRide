@@ -12,18 +12,31 @@ export default class User extends REST {
     $(document).on('click', '#signupbtn', async () => {
       email = $('#loginUsername').val();
       password = $('#loginPassword').val();
-      let nameResult = await User.create({
-        email: email,
-        passwordHash: password
-      });
-      // console.log('nameResult.error', nameResult.error)
+      
+      let nameResult = await User.create({ email: email, passwordHash: password});
+       console.log('nameResult.error', nameResult.error)
       if (nameResult.error) {
         // console.log('Denna användare existerar redan!');
-        $('.errormsg').append(
-          "<p class='warning'> Username already exists! </p>"
-        );
-      }
+        $('err')
+        $(".errormsg").html("<p class='danger'> Denna emailadress är redan registrerad! </p>");
+        }
+        else {
+          $(".errormsg").html("<p class='success'> Tack för att du registrerat dig hos oss! </p>");
+        }
     });
-    return true;
-  } // end eventhandler
-} // end class
+
+    $(document).on('click', '#loginbtn', async ()=> {
+      email = $('#loginUsername').val();
+      password = $('#loginPassword').val();
+      let nameResult = await User.find({ email: email, passwordHash: password});
+      if (nameResult === undefined || nameResult.length == 0) {
+        $(".errormsg").html("<p class='danger'> Vänligen kontrollera att du skrivit rätt emailadress och lösenord! </p>");
+      } 
+    });
+
+
+  }// end eventhandler
+
+
+
+}// end class
