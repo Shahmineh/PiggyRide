@@ -25,7 +25,8 @@
     "all-retry": "gulp default && concurrently --allow-restart --restart-after 5000 --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync\"",
     "all-no": "gulp default && concurrently --kill-others \"npm run nodemon\" \"gulp watch\" \"npm run sync-no-open\"",
     "autofix": "echo \"Attempting to fix JS & SCSS errors...\" && eslint **/*.js --fix && stylelint www/src/**/*.scss --fix",
-    "init": "git submodule init && git submodule update"
+    "sub": "git submodule init && git submodule update",
+    "reinstall": "rm -rf node_modules && npm install"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^4.0.0",
+    "@types/googlemaps": "^3.30.7",
     "@types/gulp": "^4.0.5",
     "@types/jquery": "^3.3.0",
     "@types/jqueryui": "^1.12.2",

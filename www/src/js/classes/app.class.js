@@ -1,23 +1,10 @@
 import PopStateHandler from './pop-state-handler.class';
-import REST from './REST.class';
+import viewsSetup from '../views';
 
 export default class App extends PopStateHandler {
   initialize () {
     const app = this;
 
-    app.bindView('mapview.html', '/', null, async () => {
-      console.log('Starting get')
-      let response = await REST.request('waypoints', 'GET', {});
-      console.log(response)
-
-    });
-    /*     app.bindView('home.html', '/', null, () => {
-      $('#departure-time').datetimepicker({
-        locale: 'sv'
-      });
-      $('#departure-time').on('hide.datetimepicker', function () {
-        $.scrollTo('#extras', 1500, 'easeInOutCubic');
-      });
-    }); */
+    viewsSetup(app);
   }
 }
