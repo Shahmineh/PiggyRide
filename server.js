@@ -14,6 +14,8 @@ let order = new Order(app);
 
 const Piggy = require('./backend/piggy.class');
 let piggy = new Piggy(app);
+const BestPiggy = require('./backend/best-piggy-route');
+app.use(BestPiggy);
 
 const Session = require('./backend/session.class');
 let session = new Session(app);
@@ -31,8 +33,6 @@ const Waypoint = require('./backend/waypoint.class');
 //   startTime: new Date('2018-03-02 13:00:00')
 // });
 
-const BestPiggy = require('./backend/best-piggy-route');
-app.use(BestPiggy);
 
 app.get(/^[^.]*$/, (req, res, next) => {
   let reqPath = req.path.split('/').slice(1);
