@@ -59,9 +59,15 @@ module.exports = class Waypoint extends ModelAndRoutes {
           text: String
         }
       ],
-      orders: {
+      orders: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Order'
+        }
+      ],
+      piggy: {
         type: Schema.Types.ObjectId,
-        ref: 'Order'
+        ref: 'Piggy'
       }
     };
   }

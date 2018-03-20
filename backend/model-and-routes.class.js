@@ -17,6 +17,10 @@ module.exports = class ModelAndRoutes {
     return {};
   }
 
+  get model () {
+    return this.myModel;
+  }
+
   constructor (expressApp, routes = ['post', 'get', 'put', 'delete']) {
     if (!expressApp) {
       routes = [];

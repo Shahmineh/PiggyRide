@@ -8,10 +8,12 @@ module.exports = class Piggy extends ModelAndRoutes {
       number: Number,
       description: String,
       price: Number,
-      orders: {
-        type: Schema.Types.ObjectId,
-        ref: 'Order'
-      }
+      orders: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Order'
+        }
+      ]
     };
   }
 };
