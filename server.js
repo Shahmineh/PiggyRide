@@ -83,8 +83,11 @@ app.post('/register', async (req, res) => {
       UserModel.create(req.body)
         .then(result => {
           result.sessionID = req.cookies.session;
+          req.session.data.userId = result._id;
+          req.session.loggedIn = true;
           result.save();
           res.json(req.body);
+          console.log(req.session);
         })
         .catch(error => {
           if (error.errmsg.includes('duplicate')) {
