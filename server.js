@@ -50,7 +50,7 @@ app.get(/^[^.]*$/, (req, res, next) => {
   }
 });
 
-app.post('/login', async (req, res)  => {
+app.post('/login', async (req, res) => {
   let currentUser = await UserModel.findOne({
     email: req.body.email,
     passwordHash: req.body.passwordHash
@@ -64,8 +64,34 @@ app.post('/login', async (req, res)  => {
     res.json('You need to create an account');
   }
   // let User = await UserModel.find({_id : req.cookies.session});
+});
 
-
+app.post('/register', async (req, res) => {
+  // first check if so current user doesnt exist
+  let currentUser = await UserModel.findOne({
+    email: req.body.email,
+    passwordHash: req.body.passwordHash
+  });
+  if (!currentUser) {
+    if (req.body.email && req.body.passwordHash) {
+      UserModel.create(req.body)
+        .then(result => {
+          result.save();
+          res.json(req.body);
+        })
+        .catch(error => {
+          if (error.errmsg.includes('duplicate')) {
+            res.json('Needs to be a unique email!');
+          } else {
+            res.json(error.errmsg);
+          }
+        });
+    } else {
+      res.json('Missing field');
+    }
+  } else {
+    res.json('User aldready exist. Please sign in');
+  }
 });
 
 app.listen(3000, () => {
