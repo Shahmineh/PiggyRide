@@ -37,7 +37,11 @@ module.exports = class ModelAndRoutes {
       expressApp.validRoutes = [];
     }
     expressApp.validRoutes.push(this.routeName);
-    this.myModel = mongoose.model(this.modelName, schema);
+    try {
+      this.myModel = mongoose.model(this.modelName, schema);
+    } catch (error) {
+      this.myModel = mongoose.model(this.modelName);
+    }
     routes.includes('post') && this.setupPostRoute();
     routes.includes('get') && this.setupGetRoute();
     routes.includes('put') && this.setupPutRoute();
