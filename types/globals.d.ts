@@ -1,5 +1,10 @@
 interface JQueryStatic {
-  scrollTo(target: string, time: number, easing: string): void;
+  scrollTo(
+    target: string,
+    time?: number | Function,
+    easing?: string | Function,
+    callbackFn?: Function
+  ): void;
 }
 
 interface JQuery {
