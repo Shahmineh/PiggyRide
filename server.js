@@ -25,11 +25,14 @@ const Extra = require('./backend/extra.class');
 let extra = new Extra(app);
 
 const Waypoint = require('./backend/waypoint.class');
-let waypoint = Waypoint.create(app, {
-  from: 'Sallerupsvägen 26B',
-  to: 'Björkholmsgatan 2',
-  startTime: new Date('2018-03-02 13:00:00')
-});
+// let waypoint = Waypoint.create(app, {
+//   from: 'Sallerupsvägen 26B',
+//   to: 'Björkholmsgatan 2',
+//   startTime: new Date('2018-03-02 13:00:00')
+// });
+
+const BestPiggy = require('./backend/best-piggy-route');
+app.use(BestPiggy);
 
 app.get(/^[^.]*$/, (req, res, next) => {
   let reqPath = req.path.split('/').slice(1);
@@ -69,8 +72,7 @@ if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
     let context = repl.context;
     Object.assign(context, {
       app: app,
-      Waypoint: Waypoint,
-      waypoint: await waypoint
+      Waypoint: Waypoint
     });
     // console.log(global === repl.context);
     repl.on('exit', function () {
