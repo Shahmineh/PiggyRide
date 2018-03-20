@@ -76,6 +76,7 @@ app.post('/register', async (req, res) => {
     if (req.body.email && req.body.passwordHash) {
       UserModel.create(req.body)
         .then(result => {
+          result.sessionID = req.cookies.session;
           result.save();
           res.json(req.body);
         })
@@ -93,6 +94,8 @@ app.post('/register', async (req, res) => {
     res.json('User aldready exist. Please sign in');
   }
 });
+
+
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
