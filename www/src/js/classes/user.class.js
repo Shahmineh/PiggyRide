@@ -14,6 +14,24 @@ export default class User extends REST {
       email = $('#loginUsername').val();
       password = $('#loginPassword').val();
 
+      let data = {
+        email: email,
+        passwordHash: password
+      };
+      let newData = JSON.stringify(data);
+
+
+      $.ajax({
+        url: '/register',
+        type: 'POST',
+        data: newData
+      })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log('fewfewfw', err);
+        });
       // fetch('http://localhost:3000/login', {
       //   method: 'POST', // or 'PUT'
       //   body: JSON.stringify({

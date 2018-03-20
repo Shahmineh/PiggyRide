@@ -85,34 +85,41 @@ app.post('/login', async (req, res) => {
 
 app.post('/register', async (req, res) => {
   // first check if so current user doesnt exist
-  let currentUser = await UserModel.findOne({
-    email: req.body.email,
-    passwordHash: req.body.passwordHash
-  });
-  if (!currentUser) {
-    if (req.body.email && req.body.passwordHash) {
-      UserModel.create(req.body)
-        .then(result => {
-          result.sessionID = req.cookies.session;
-          req.session.data.userId = result._id;
-          req.session.loggedIn = true;
-          result.save();
-          res.json(req.body);
-          console.log(req.session);
-        })
-        .catch(error => {
-          if (error.errmsg.includes('duplicate')) {
-            res.json('Needs to be a unique email!');
-          } else {
-            res.json(error.errmsg);
-          }
-        });
+
+  let obj = req.body;
+  for (let key in obj) {
+    let parsedData = JSON.parse(key);
+    console.log(parsedData)
+    let currentUser = await UserModel.findOne({
+      email: parsedData.email,
+      passwordHash: parsedData.passwordHash
+    });
+    if (!currentUser) {
+      if (parsedData.email && parsedData.passwordHash) {
+        UserModel.create(parsedData)
+          .then(result => {
+            result.sessionID = req.cookies.session;
+            req.session.data.userId = result._id;
+            req.session.loggedIn = true;
+            result.save();
+            res.json(parsedData);
+            console.log(req.session);
+          })
+          .catch(error => {
+            if (error.errmsg.includes('duplicate')) {
+              res.json('Needs to be a unique email!');
+            } else {
+              res.json(error.errmsg);
+            }
+          });
+      } else {
+        res.json('Missing field');
+      }
     } else {
-      res.json('Missing field');
+      res.json('User aldready exist. Please sign in');
     }
-  } else {
-    res.json('User aldready exist. Please sign in');
   }
+
 });
 
 app.all('/sign-out', async (req, res) => {
