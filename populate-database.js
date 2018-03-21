@@ -106,7 +106,7 @@ function importWaypoints () {
       to: waypoint.to,
       startTime: waypoint.startTime,
       startAddress: waypoint.startAddress,
-      endAdress: waypoint.endAdress,
+      endAddress: waypoint.endAddress,
       duration: waypoint.duration,
       durationMinutes: waypoint.durationMinutes,
       endTime: waypoint.endTime,

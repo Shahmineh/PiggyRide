@@ -8,7 +8,7 @@ module.exports = class Waypoint extends ModelAndRoutes {
     Object.assign(this, obj);
     let leg = this.gway.routes[0].legs[0];
     this.startAddress = leg.start_address;
-    this.endAdress = leg.end_address;
+    this.endAddress = leg.end_address;
     this.duration = leg.duration.value;
     this.durationMinutes = Math.round(this.duration / 60);
     this.endTime = new Date(this.startTime.getTime() + this.duration * 1000);
@@ -45,7 +45,7 @@ module.exports = class Waypoint extends ModelAndRoutes {
       to: String,
       startTime: Date,
       startAddress: String,
-      endAdress: String,
+      endAddress: String,
       duration: Number,
       durationMinutes: Number,
       endTime: Date,
