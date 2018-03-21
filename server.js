@@ -34,6 +34,9 @@ let piggy = new Piggy(app);
 const BestPiggy = require('./backend/best-piggy-route');
 app.get('/bestpiggy', BestPiggy);
 
+const previewOrder = require('./backend/previeworder');
+app.get('/previeworder', previewOrder);
+
 // let session = new Session(app);
 
 const Extra = require('./backend/extra.class');
