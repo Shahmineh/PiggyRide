@@ -30,15 +30,15 @@ module.exports = async function (req, res, next) {
   });
   // console.log(hqWaypoint);
   let testDate = new Date('March 22, 2018 12:24:00');
-  let activePiggyWps = wpsByPiggy.map(wps => {
+  let freeTimes = wpsByPiggy.map(wps => {
     return wps.filter(wp => {
       // @ts-ignore
-      let time = moment(wp.endTime).toDate() - new Date(); // .add(wp.duration, 's')
+      let time = moment(wp.endTime).toDate() - testDate; // .add(wp.duration, 's')
       return time > 0;
     });
-  });
+  }); // .map(wps => wps.length === 0 ? [hqWaypoint] : wps);
 
-  console.log(activePiggyWps);
+  console.log(freeTimes);
   console.log(hqWaypoint);
 
   next();
