@@ -11,7 +11,7 @@
     "start": "gulp default && node server.js",
     "debug": "node --inspect=9229 server.js",
     "nodemon": "nodemon --config nodemon.json --inspect=9229 server.js",
-    "sync": "sleep 5 && browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --no-ghost-mode --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
+    "sync": "sleep 5 & browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --no-ghost-mode --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "sync-no-open": "browser-sync start --port 3001 --proxy localhost:3000 --no-online --no-reload-on-restart --no-open --no-ghost-mode --files \"www, !**/src/*, !**/*.map, !**/*.json\"",
     "eslint": "eslint **/*.js",
     "htmlhint": "htmlhint --config .htmlhintrc www/**/*.{htm,html}",
