@@ -165,6 +165,11 @@ app.listen(3000, () => {
 */
 const nodeArgs = process.execArgv.join();
 if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
+
+  process.on('unhandledRejection', (reason, p) => {
+    console.log('Unhandled Rejection at: Promise', p, 'reason:', reason.stack);
+  });
+
   // Start read-eval-print loop
   const nodeRepl = require('repl');
   setTimeout(async () => {
