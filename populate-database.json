@@ -3,28 +3,28 @@
     {
       "name": "HiFi",
       "stock": 10,
-      "description": "Boombox\nTV\nDigital TV\nNetflix",
+      "description": "Lyssna på Sticky Dirt eller kolla på din favoritserie.",
       "price": 200,
       "contents": ["Boombox","TV (med HDMI)", "Satellit-TV", "Netflix", "Sticky Dirt"]
     },
     {
       "name": "Romans",
       "stock": 12,
-      "description": "Champange\nRosor\nChokolad\nBoombox\nOstbricka",
+      "description": "Välj romanspaketet för en härlig romantisk upplevelse.",
       "price": 300,
       "contents": ["Champagne", "Rosor", "Choklad", "Ostbricka", "Careless Whisper"]
     },
     {
       "name": "Camping",
       "stock": 4,
-      "description": "Tält\nSovsäckar\nVed och tändstickor\nYxa\nMat\nKikare",
+      "description": "Camping camping camping",
       "price": 700,
       "contents": ["Tält", "Sovsäck", "Tändstickor", "Fiskespö", "Nödransoner", "Verktyg"]
     },
     {
-      "name": "Familjepaket",
+      "name": "Familj",
       "stock": 13,
-      "description": "Extra säte\nBarnstol\nPicknickkorg\nFika",
+      "description": "Ta med familjen på en rolig upplevelse där picknickkorg bland annat ingår.",
       "price": 500,
       "contents": ["Extra säte", "Barnstol", "Choklad", "Picknickkorg", "Fralla", "Saft"]
     },

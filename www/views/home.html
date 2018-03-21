@@ -90,22 +90,60 @@
     <button type="submit" class="btn btn-primary mt-3">Fortsätt</button>
   </div>
 </div>
-<div id="package" class="container">
-  <div class="row justify-content-center">
+<!-- <div id="package" class="container">
+  <div class="row">
     <div class="col-12 mt-5 text-center mb-4">
       <h2>Paket</h2>
     </div>
-    <div class="d-inline-flex">
-      {{for packs}}
-      <div class="p-2 mr-5">
-        <h5>{{:name}}</h5>
-        {{props contents}}
-        <div>{{:prop}}</div>
-        {{/props}}
+  </div> -->
+  <!-- <div class="row">
+    <div class="col-md-4 col-sm-6 portfolio-item">
+      <div class="d-inline-flex">
+        {{for packs}}
+        <div class="p-2 mr-5">
+          <h5>{{:name}}</h5>
+          {{props contents}}
+          <div>{{:prop}}</div>
+          {{/props}}
+        </div>
+        {{/for}}
       </div>
-      {{/for}}
     </div>
-  </div>
+  </div> -->
+  <section class="bg-light" id="portfolio">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Paket</h2>
+            <h3 class="section-subheading text-muted">Välj ett av våra paket</h3>
+          </div>
+        </div>
+        <div class="row">
+            {{for packs}}
+          <div class="col-md-3 col-sm-6 portfolio-item">
+            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <span class="text-content">
+                    <span>{{props contents}}
+                      <div>{{:prop}}</div>
+                      {{/props}}
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <img class="img-fluid" src="/images/{{:image}}" alt="">
+            </a>
+            <div class="portfolio-caption">
+              <h4>{{:name}}</h4>
+              <p class="text-muted">{{:description}}</p>
+            </div>
+          </div>
+          {{/for}}
+        </div>
+      </div>
+    </section>
+
   <div class="row justify-content-center mt-3">
     <button type="button" class="btn btn-primary">Slutför</button>
   </div>
