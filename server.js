@@ -25,7 +25,6 @@ const User = require('./backend/user.class');
 let UserModel = new User(app).myModel;
 
 const mySession = new MyHandler(app, UserModel);
-console.log('sessionMiddleware', mySession);
 
 app.use(mySession);
 
@@ -108,7 +107,7 @@ app.post('/register', async (req, res) => {
   let obj = req.body;
   for (let key in obj) {
     let parsedData = JSON.parse(key);
-    console.log(parsedData);
+    // console.log(parsedData);
     let currentUser = await UserModel.findOne({
       email: parsedData.email,
       passwordHash: parsedData.passwordHash
@@ -124,7 +123,7 @@ app.post('/register', async (req, res) => {
             req.session.save();
             result.save();
             res.json(parsedData);
-            console.log(req.session);
+            // console.log(req.session);
           })
           .catch((error) => {
             if (error.errmsg.includes('duplicate')) {
@@ -159,8 +158,10 @@ app.listen(3000, () => {
 */
 const nodeArgs = process.execArgv.join();
 if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
-  process.on('unhandledRejection', (reason, p) => {
-    console.log('Unhandled Rejection at: Promise', p, 'reason:', reason.stack);
+
+  /* Show unhandled promise rejections */
+  process.on('unhandledRejection', (error, p) => {
+    console.log('Unhandled rejection at: Promise: ', p, '\nReason: ', error.stack);
   });
 
   // Start read-eval-print loop

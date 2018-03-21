@@ -37,8 +37,8 @@ async function getBestPiggy (pickupAddress, time) {
             .populate('waypoints')
             .exec((err, piggy) => {
               if (err) return console.log(err);
-              console.log(piggy.waypoints);
-              console.log('waypoint model', WaypointModel);
+              // console.log(piggy.waypoints);
+              // console.log('waypoint model', WaypointModel);
             });
         }
       }

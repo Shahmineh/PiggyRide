@@ -1,4 +1,5 @@
 import REST from './REST.class.js';
+import checkLogin from '../ui/check-login';
 
 export default class User extends REST {
   constructor (user) {
@@ -47,10 +48,10 @@ export default class User extends REST {
         type: 'POST',
         data: newData
       })
-        .then((res) => {
+        .then(res => {
           console.log(res);
         })
-        .catch((err) => {
+        .catch(err => {
           // console.log('fewfewfw', err);
         });
       // fetch('http://localhost:3000/login', {
@@ -74,44 +75,50 @@ export default class User extends REST {
       email = $('#loginUsername').val();
       password = $('#loginPassword').val();
 
-      if (!email || !password) {
-        $('.errormsg').html(
-          "<p class='success'> Vänligen fyll i email adress och lösenord! </p>"
-        );
-      } else {
-        let nameResult = await User.find({
-          email: email,
-          passwordHash: password
-        });
-        console.log('nameResult1', nameResult);
+      // if (!email || !password) {
+      //   $('.errormsg').html(
+      //     "<p class='success'> Vänligen fyll i email adress och lösenord! </p>"
+      //   );
+      // } else {
+      //   let nameResult = await User.findOne();
+      //   console.log('nameResult1', nameResult);
 
-        if (nameResult === undefined || nameResult.length == 0) {
-          console.log('nameResult2', nameResult);
-          $('.errormsg').html(
-            "<p class='danger'> Vänligen kontrollera att du skrivit rätt emailadress och lösenord! </p>"
-          );
-        }
-      }
+      //   if (nameResult === undefined || nameResult.length == 0) {
+      //     console.log('nameResult2', nameResult);
+      //     $('.errormsg').html(
+      //       "<p class='danger'> Vänligen kontrollera att du skrivit rätt emailadress och lösenord! </p>"
+      //     );
+      //   }
+      // }
 
       let data = {
         email: email,
         passwordHash: password
       };
-      console.log('data', data);
+      // console.log('data', data);
 
       let newData = JSON.stringify(data);
-      console.log('newData', newData);
+      // console.log('newData', newData);
 
       $.ajax({
         url: '/login',
         type: 'POST',
         data: newData
       })
-        .then((res) => {
-          console.log('res', res);
+        .then(res => {
+          if (!(res instanceof Object)) {
+            $('.errormsg').html(
+              "<p class='success'> Inkorrekta inloggningsuppgifter. </p>"
+            );
+          } else {
+            checkLogin();
+          }
         })
-        .catch((err) => {
-          console.log('err', err);
+        .catch(err => {
+          // console.log('err', err);
+          $('.errormsg').html(
+            "<p class='success'> Inkorrekta inloggningsuppgifter. </p>"
+          );
         });
     });
 
@@ -136,10 +143,10 @@ export default class User extends REST {
         type: 'GET',
         data: newData
       })
-        .then((res) => {
+        .then(res => {
           console.log(res);
         })
-        .catch((err) => {
+        .catch(err => {
           // console.log('fewfewfw', err);
         });
     });
