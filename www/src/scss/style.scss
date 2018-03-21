@@ -70,15 +70,26 @@ main,
 
 }
 
-.text-content {
-  display: table;
-  position: absolute;
-
-}
-
 .text-content span {
   display: table-cell;
   text-align: center;
   vertical-align: middle;
 }
 
+#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
+  top: 20%;
+  height: auto;
+  margin-top: 0;
+}
+
+#portfolio * {
+  z-index: 0;
+}
+
+.portfolio-caption {
+  min-height: 160px;
+}
+
+#selected-pack {
+box-shadow: 0px 0px 33px 3px rgba(108,90,181,1);
+}
