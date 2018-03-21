@@ -18,7 +18,8 @@
         "nodemon.js"
       ],
       "smartStep": true,
-      "showAsyncStacks": true
+      "showAsyncStacks": true,
+      "timeout": 360000
     },
     {
       "type": "node",

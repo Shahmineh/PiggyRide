@@ -37,7 +37,7 @@
           <a class="nav-link disabled pop" id="om-oss" href="/om-oss">Om oss</a>
         </li> -->
         <!-- login form -->
-        <li class="nav-item">
+        <li class="nav-item" id="login-form">
           <div class="dropdown">
             <a class="nav-link" id="login" data-toggle="dropdown" aria-expanded="false">Logga in</a>
 
@@ -53,11 +53,16 @@
                 </div>
                 <a class="btn btn-success text-dark col-12" id="loginbtn">Logga in</a>
                 <div class="dropdown-divider"></div>
+                <div class="errormsg"></div>
                 <a class="btn btn-warning text-dark col-12" id="signupbtn">Skapa konto</a>
+                <!-- <a class="btn btn-warning text-dark col-12" id="test">test</a> -->
               </div>
             </form>
           </div>
         </li> <!-- end login form -->
+        <li class="nav-item" id="logout-form" style="display: none;"> <!-- logout button -->
+            <a class="nav-link" id="logout">Logga ut</a>
+        </li>
       </ul>
     </div>
   </nav>
