@@ -41,6 +41,7 @@
     "jquery-ui": "^1.12.1",
     "moment": "^2.21.0",
     "mongoose": "^5.0.9",
+    "nodemailer": "^4.6.3",
     "popper.js": "^1.12.9",
     "qs": "^6.5.1",
     "request": "^2.83.0",
