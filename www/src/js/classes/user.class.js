@@ -3,49 +3,55 @@ import REST from './REST.class.js';
 export default class User extends REST {
   constructor (user) {
     super(user);
-    User.eventsInitialized = User.eventsInitialized || this.setupEventHandlers();
+    User.eventsInitialized =
+      User.eventsInitialized || this.setupEventHandlers();
   }
 
   setupEventHandlers () {
     let email, password;
-    
+
     $(document).on('click', '#signupbtn', async () => {
       email = $('#loginUsername').val();
       password = $('#loginPassword').val();
 
-      if(!email || !password) {
-        $(".errormsg").html("<p class='success'> Vänligen fyll i email adress och lösenord! </p>");
-      }
-      else {
-
-        let nameResult = await User.create({ email: email, passwordHash: password});
-        console.log('nameResult.error', nameResult.error)
+      if (!email || !password) {
+        $('.errormsg').html(
+          "<p class='success'> Vänligen fyll i email adress och lösenord! </p>"
+        );
+      } else {
+        let nameResult = await User.create({
+          email: email,
+          passwordHash: password
+        });
+        console.log('nameResult.error', nameResult.error);
         if (nameResult.error) {
           // console.log('Denna användare existerar redan!');
-          $('err')
-          $(".errormsg").html("<p class='danger'> Denna emailadress är redan registrerad! </p>");
-          }
-          else {
-            $(".errormsg").html("<p class='success'> Tack för att du registrerat dig hos oss! </p>");
-          }
+          $('err');
+          $('.errormsg').html(
+            "<p class='danger'> Denna emailadress är redan registrerad! </p>"
+          );
+        } else {
+          $('.errormsg').html(
+            "<p class='success'> Tack för att du registrerat dig hos oss! </p>"
+          );
         }
+      }
       let data = {
         email: email,
         passwordHash: password
       };
       let newData = JSON.stringify(data);
 
-
       $.ajax({
         url: '/register',
         type: 'POST',
         data: newData
       })
-        .then(res => {
+        .then((res) => {
           console.log(res);
         })
-        .catch(err => {
-          console.log('fewfewfw', err);
+        .catch((err) => {
+          // console.log('fewfewfw', err);
         });
       // fetch('http://localhost:3000/login', {
       //   method: 'POST', // or 'PUT'
@@ -62,19 +68,17 @@ export default class User extends REST {
       //   })
       //   .catch(error => console.error('Error:', error))
       //   .then(response => console.log('Success:', response));
-
-      
     });
 
     $(document).on('click', '#loginbtn', async () => {
       email = $('#loginUsername').val();
       password = $('#loginPassword').val();
 
-      if(!email || !password) {
-        $(".errormsg").html("<p class='success'> Vänligen fyll i email adress och lösenord! </p>");
-      }
-      else {
-
+      if (!email || !password) {
+        $('.errormsg').html(
+          "<p class='success'> Vänligen fyll i email adress och lösenord! </p>"
+        );
+      } else {
         let nameResult = await User.find({
           email: email,
           passwordHash: password
@@ -83,7 +87,9 @@ export default class User extends REST {
 
         if (nameResult === undefined || nameResult.length == 0) {
           console.log('nameResult2', nameResult);
-          $('.errormsg').html("<p class='danger'> Vänligen kontrollera att du skrivit rätt emailadress och lösenord! </p>");
+          $('.errormsg').html(
+            "<p class='danger'> Vänligen kontrollera att du skrivit rätt emailadress och lösenord! </p>"
+          );
         }
       }
 
@@ -92,25 +98,24 @@ export default class User extends REST {
         passwordHash: password
       };
       console.log('data', data);
-      
+
       let newData = JSON.stringify(data);
-      console.log('newData', newData)
- 
+      console.log('newData', newData);
+
       $.ajax({
         url: '/login',
         type: 'POST',
         data: newData
       })
-        .then(res => {
-          console.log('res', res);          
+        .then((res) => {
+          console.log('res', res);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('err', err);
         });
     });
 
     $(document).on('click', '#test', async () => {
-
       // let nameResult = await User.find({
       //   email: email,
       //   passwordHash: password
@@ -126,18 +131,18 @@ export default class User extends REST {
       };
       let newData = JSON.stringify(data);
 
-
       $.ajax({
         url: '/user',
         type: 'GET',
         data: newData
       })
-        .then(res => {
+        .then((res) => {
           console.log(res);
         })
-        .catch(err => {
-          console.log('fewfewfw', err);
+        .catch((err) => {
+          // console.log('fewfewfw', err);
         });
     });
+    return true;
   } // end eventhandler
 } // end class
