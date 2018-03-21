@@ -7,7 +7,7 @@
           <div class="input-group input-group-lg">
             <input id="autocompleteFrom" placeholder="Från" class="form-control" type="text">
             <div class="input-group-prepend">
-              <button type="button" id="getLocation" class="btn btn-success btn-lg">
+              <button type="button" id="getLocation" class="btn btn-primary btn-lg">
                 <i class="fas fa-location-arrow"></i>
               </button>
             </div>
@@ -55,7 +55,7 @@
     </div>
     {{for piggies}}
     <div class="col-12 col-md-3">
-      <button type="button" class="btn btn-dark btn-lg mt-2">{{:type}}</button>
+      <button type="button" class="btn btn-primary btn-lg mt-2">{{:type}}</button>
     </div>
     {{/for}}
   </div>
@@ -87,7 +87,7 @@
     {{/for}}
   </div>
   <div class="row mt-3 justify-content-center">
-    <button type="submit" class="btn btn-dark mt-3">Fortsätt</button>
+    <button type="submit" class="btn btn-primary mt-3">Fortsätt</button>
   </div>
 </div>
 <div id="package" class="container">
@@ -104,6 +104,41 @@
         {{/props}}
       </div>
       {{/for}}
+    </div>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <button type="button" class="btn btn-primary">Slutför</button>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-4">
+      <div class="text-center">
+        <h4>Kortbetalning</h4>
+        <img src="/images/payment.png" class="visa" alt="Visa and mastercard">
+      </div>
+      <form>
+        <div class="form-group mt-3">
+          <label>Namn på kortet</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Kortnummer</label>
+          <input class="form-control" placeholder="xxxx xxxx xxxx xxxx">
+        </div>
+        <div class="form-group">
+            <label>Giltighetstid</label>
+            <input class="form-control" placeholder="MM/YY">
+          </div>
+          <div class="form-group mb-1">
+            <label>Kortkontrollnummer</label>
+            <input class="form-control" placeholder="xxx">
+          </div>
+          <img class="cvv mb-3" src="/images/cvv.jpg" alt="Kortkontrollnummer">
+          <div>
+            <button type="submit" class="btn btn-primary">Betala</button>
+          </div>
+      </form>
     </div>
   </div>
 </div>
