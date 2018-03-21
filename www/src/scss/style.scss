@@ -46,3 +46,20 @@ main,
 .nav-item .dropdown {
   width: 350px;
 }
+
+.visa {
+  width: 25%;
+}
+
+.cvv {
+  width: 15%;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 15px;
+  background-color: #212529;
+  height: 30px;
+}
