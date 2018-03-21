@@ -6,13 +6,18 @@ module.exports = async function userProtector (req, res, next) {
     req.url.split('/')[1].indexOf('users') === 0 &&
     ['GET', 'PUT', 'DELETE'].includes(req.method)
   ) {
+    let sessionId;
+    try {
+      sessionId = req.cookies.session || req.session
+    } catch (error) {
+    }
     let userId =
-    req.cookies.session ? await userModel.findOne({sessionID: req.cookies.session}) : -1
+    sessionId ? await userModel.findOne({sessionID: sessionId}) : -1
     //  &&
     // req.session.data &&
     // req.session.data.user &&
     // req.session.data.user._id;
-    userId = userId || -1;
+    // userId = userId || -1;
     req._params = [JSON.stringify({ _id: userId })];
     // console.log(req)
   }

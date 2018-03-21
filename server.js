@@ -18,12 +18,10 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.static('www'));
 app.use(cookieParser());
-
 app.use(userProtector);
 
 const User = require('./backend/user.class');
 let UserModel = new User(app).myModel;
-
 const mySession = new MyHandler(app, UserModel);
 
 app.use(mySession);
@@ -66,7 +64,7 @@ app.get(/^[^.]*$/, (req, res, next) => {
   let reqPath = req.path.split('/').slice(1);
   if (
     reqPath[0] &&
-    !validRoutes.some((route) => {
+    !validRoutes.some(route => {
       return reqPath[0] === route || reqPath[0].startsWith(route + '/'); // route.slice(0, -1) to match singulars
     })
   ) {
@@ -74,6 +72,16 @@ app.get(/^[^.]*$/, (req, res, next) => {
   } else {
     next();
   }
+});
+
+app.all('/sign-out', async (req, res) => {
+  req.user = null;
+  if (req.session) {
+    req.session.loggedIn = false;
+    let result = await req.session.save();
+  }
+  res.clearCookie('session');
+  res.json({ message: 'Logged out', session: null, user: null });
 });
 
 app.post('/login', async (req, res) => {
@@ -115,7 +123,7 @@ app.post('/register', async (req, res) => {
     if (!currentUser) {
       if (parsedData.email && parsedData.passwordHash) {
         UserModel.create(parsedData)
-          .then((result) => {
+          .then(result => {
             result.sessionID = req.cookies.session;
             req.session.data.userId = result._id;
             req.user = result;
@@ -125,7 +133,7 @@ app.post('/register', async (req, res) => {
             res.json(parsedData);
             // console.log(req.session);
           })
-          .catch((error) => {
+          .catch(error => {
             if (error.errmsg.includes('duplicate')) {
               res.json('Needs to be a unique email!');
             } else {
@@ -141,13 +149,6 @@ app.post('/register', async (req, res) => {
   }
 });
 
-app.all('/sign-out', async (req, res) => {
-  req.user = {};
-  req.session.loggedIn = false;
-  let result = await req.session.save();
-  res.json({ message: 'Logged out', session: req.session, user: req.user });
-});
-
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
 });
@@ -158,10 +159,9 @@ app.listen(3000, () => {
 */
 const nodeArgs = process.execArgv.join();
 if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
-
   /* Show unhandled promise rejections */
   process.on('unhandledRejection', (error, p) => {
-    console.log('Unhandled rejection at: Promise: ', p, '\nReason: ', error.stack);
+    console.log('Unhandled rejection at: Promise: ', p, '\nReason: ', error);
   });
 
   // Start read-eval-print loop

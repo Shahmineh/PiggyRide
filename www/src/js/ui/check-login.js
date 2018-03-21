@@ -1,6 +1,6 @@
 import User from '../classes/user.class';
 
-export default async function checkLogin (res) {
+export default async function checkLogin (res, ajaxReq) {
   let user = await User.findOne('');
   console.log(user);
   if (user) {
@@ -25,7 +25,8 @@ export default async function checkLogin (res) {
   });
   if (res && res.loggedIn && !user) {
     // MongoDB did not have time to finish saving the last request so try once more
-    setTimeout(() => {
+    setTimeout(async () => {
+      await $.ajax(ajaxReq);
       checkLogin();
     }, 2000);
   }

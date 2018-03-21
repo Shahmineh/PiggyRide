@@ -105,13 +105,18 @@ export default class User extends REST {
         type: 'POST',
         data: newData
       })
-        .then(res => {
+        .then(async res => {
+          console.log(res);
           if (!(res instanceof Object)) {
             $('.errormsg').html(
               "<p class='success'> Inkorrekta inloggningsuppgifter. </p>"
             );
           } else {
-            checkLogin();
+            await checkLogin(res, {
+              url: '/login',
+              type: 'POST',
+              data: newData
+            });
           }
         })
         .catch(err => {
