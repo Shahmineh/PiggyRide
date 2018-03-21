@@ -19,7 +19,7 @@ module.exports = async function (req, res, next) {
   let allPiggies = await PiggyModel.find({});
   let wpsByPiggy = allWps.reduce((acc, wp) => {
     acc[wp.piggy.number].push(wp);
-    console.log(acc);
+    // console.log(acc);
     return acc;
   }, new Array(allPiggies.length).fill(null).map((arr) => []));
   let destination = req.body.to || 'Sallerupsvägen 5';
@@ -41,7 +41,7 @@ module.exports = async function (req, res, next) {
     })
     .map((wps) => (wps.length === 0 ? [hqWaypoint] : wps));
 
-  console.log(futureTimes);
+  // console.log(futureTimes);
   let possibilities = await Promise.all(
     futureTimes.map(async (wps) => {
       let endPoint = wps.slice(-1)[0];
@@ -60,7 +60,7 @@ module.exports = async function (req, res, next) {
     return new Date(a.endTime) - new Date(b.endTime);
   });
 
-  console.log(possibilities);
+  // console.log(possibilities);
   req.possibilities = possibilities;
   console.log(req.possibilities);
 
