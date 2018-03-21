@@ -151,11 +151,20 @@ export default function viewsSetup (app) {
       }, []).map((piggyType) => {
         return {type: piggyType}
       });
-      return {
+      let result = {
         snacks: extras.filter((item) => item.types.length > 0),
         packs: extras.filter((item) => item.types.length === 0),
         piggies: piggyTypes
-      };
+      }
+      // result.packs[0].description = 'camping.jpg';
+      result.packs[0].image = 'camping.jpg';
+      // result.packs[1].description = 'camping.jpg';
+      result.packs[1].image = 'camping.jpg';
+      // result.packs[2].description = 'camping.jpg';
+      result.packs[2].image = 'camping.jpg';
+      // result.packs[3].description = 'camping.jpg';
+      result.packs[3].image = 'camping.jpg';
+      return result;
     },
     () => {
       geoEvent();

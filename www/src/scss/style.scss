@@ -47,3 +47,39 @@ main,
 .nav-item .dropdown {
   width: 350px;
 }
+
+.visa {
+  width: 25%;
+}
+
+.cvv {
+  width: 15%;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 15px;
+  background-color: #212529;
+  height: 30px;
+}
+
+.paket {
+ width: 100px;
+ height: 100px;
+
+}
+
+.text-content {
+  display: table;
+  position: absolute;
+
+}
+
+.text-content span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+

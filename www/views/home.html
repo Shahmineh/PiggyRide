@@ -7,7 +7,7 @@
           <div class="input-group input-group-lg">
             <input id="autocompleteFrom" placeholder="Från" class="form-control" type="text">
             <div class="input-group-prepend">
-              <button type="button" id="getLocation" class="btn btn-success btn-lg">
+              <button type="button" id="getLocation" class="btn btn-primary btn-lg">
                 <i class="fas fa-location-arrow"></i>
               </button>
             </div>
@@ -55,7 +55,7 @@
     </div>
     {{for piggies}}
     <div class="col-12 col-md-3">
-      <button type="button" class="btn btn-dark btn-lg mt-2">{{:type}}</button>
+      <button type="button" class="btn btn-primary btn-lg mt-2">{{:type}}</button>
     </div>
     {{/for}}
   </div>
@@ -87,23 +87,96 @@
     {{/for}}
   </div>
   <div class="row mt-3 justify-content-center">
-    <button type="submit" class="btn btn-dark mt-3">Fortsätt</button>
+    <button type="submit" class="btn btn-primary mt-3">Fortsätt</button>
   </div>
 </div>
-<div id="package" class="container">
-  <div class="row justify-content-center">
+<!-- <div id="package" class="container">
+  <div class="row">
     <div class="col-12 mt-5 text-center mb-4">
       <h2>Paket</h2>
     </div>
-    <div class="d-inline-flex">
-      {{for packs}}
-      <div class="p-2 mr-5">
-        <h5>{{:name}}</h5>
-        {{props contents}}
-        <div>{{:prop}}</div>
-        {{/props}}
+  </div> -->
+  <!-- <div class="row">
+    <div class="col-md-4 col-sm-6 portfolio-item">
+      <div class="d-inline-flex">
+        {{for packs}}
+        <div class="p-2 mr-5">
+          <h5>{{:name}}</h5>
+          {{props contents}}
+          <div>{{:prop}}</div>
+          {{/props}}
+        </div>
+        {{/for}}
       </div>
-      {{/for}}
+    </div>
+  </div> -->
+  <section class="bg-light" id="portfolio">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Paket</h2>
+            <h3 class="section-subheading text-muted">Välj ett av våra paket</h3>
+          </div>
+        </div>
+        <div class="row">
+            {{for packs}}
+          <div class="col-md-3 col-sm-6 portfolio-item">
+            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+              <div class="portfolio-hover">
+                <div class="portfolio-hover-content">
+                  <span class="text-content">
+                    <span>{{props contents}}
+                      <div>{{:prop}}</div>
+                      {{/props}}
+                    </span>
+                  </span>
+                </div>
+              </div>
+              <img class="img-fluid" src="/images/{{:image}}" alt="">
+            </a>
+            <div class="portfolio-caption">
+              <h4>{{:name}}</h4>
+              <p class="text-muted">{{:description}}</p>
+            </div>
+          </div>
+          {{/for}}
+        </div>
+      </div>
+    </section>
+
+  <div class="row justify-content-center mt-3">
+    <button type="button" class="btn btn-primary">Slutför</button>
+  </div>
+</div>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-4">
+      <div class="text-center">
+        <h4>Kortbetalning</h4>
+        <img src="/images/payment.png" class="visa" alt="Visa and mastercard">
+      </div>
+      <form>
+        <div class="form-group mt-3">
+          <label>Namn på kortet</label>
+          <input class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Kortnummer</label>
+          <input class="form-control" placeholder="xxxx xxxx xxxx xxxx">
+        </div>
+        <div class="form-group">
+            <label>Giltighetstid</label>
+            <input class="form-control" placeholder="MM/YY">
+          </div>
+          <div class="form-group mb-1">
+            <label>Kortkontrollnummer</label>
+            <input class="form-control" placeholder="xxx">
+          </div>
+          <img class="cvv mb-3" src="/images/cvv.jpg" alt="Kortkontrollnummer">
+          <div>
+            <button type="submit" class="btn btn-primary">Betala</button>
+          </div>
+      </form>
     </div>
   </div>
 </div>
