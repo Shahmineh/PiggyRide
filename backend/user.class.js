@@ -16,7 +16,8 @@ module.exports = class User extends ModelAndRoutes {
       orders: [{
         type: Schema.Types.ObjectId,
         ref: 'Order'
-      }]
+      }],
+      roles: [String]
     };
   }
 

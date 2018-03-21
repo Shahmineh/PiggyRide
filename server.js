@@ -6,6 +6,8 @@ const qs = require('qs');
 const cookieParser = require('cookie-parser');
 const MyHandler = require('./backend/helper.class');
 const validRoutes = [];
+const userProtector = require('./backend/user-route-protector');
+
 Object.assign(app, { validRoutes: validRoutes });
 
 app.use(
@@ -16,6 +18,8 @@ app.use(
 app.use(bodyParser.json());
 app.use(express.static('www'));
 app.use(cookieParser());
+
+app.use(userProtector);
 
 const User = require('./backend/user.class');
 let UserModel = new User(app).myModel;
