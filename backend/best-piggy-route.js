@@ -22,15 +22,15 @@ module.exports = async function (req, res, next) {
     // console.log(acc);
     return acc;
   }, new Array(allPiggies.length).fill(null).map((arr) => []));
-  let destination = req.body.to || 'Sallerupsvägen 5';
-  let from = req.body.from || 'Nordenskiöldsgatan 13';
+  let destination = req.query.from || 'Nordenskiöldsgatan 13';
+  let from = req.query.to || 'Nordenskiöldsgatan 13';
   let hqWaypoint = await Waypoint.create(app, {
     from: Waypoint.hqPos.endAddress,
     to: destination,
     startTime: new Date()
   });
   // console.log(hqWaypoint);
-  let time = req.body.time || new Date('March 22, 2018 12:24:00');
+  let time = req.query.time ? new Date(req.query.time) : new Date('March 22, 2018 12:24:00');
   let futureTimes = wpsByPiggy
     .map((wps) => {
       return wps.filter((wp) => {
@@ -62,7 +62,7 @@ module.exports = async function (req, res, next) {
 
   // console.log(possibilities);
   req.possibilities = possibilities;
-  console.log(req.possibilities);
-
-  next();
+  // console.log(req.possibilities);
+  res.json(possibilities);
+  // next();
 };
