@@ -161,7 +161,7 @@ const nodeArgs = process.execArgv.join();
 if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
   /* Show unhandled promise rejections */
   process.on('unhandledRejection', (error, p) => {
-    console.log('Unhandled rejection at: Promise: ', p, '\nReason: ', error);
+    console.log('Unhandled rejection at: Promise: ', p, '\nReason: ', error.stack);
   });
 
   // Start read-eval-print loop
