@@ -149,7 +149,7 @@ export default function viewsSetup (app) {
         }
         return acc;
       }, []).map((piggyType) => {
-        return {type: piggyType}
+        return {type: piggyType, id: piggyType.replace(' ', '').toLowerCase()}
       });
       let result = {
         snacks: extras.filter((item) => item.types.length > 0),
@@ -167,6 +167,7 @@ export default function viewsSetup (app) {
       return result;
     },
     () => {
+      require('./ui/find-piggy');
       geoEvent();
       $('#departure-time').datetimepicker({
         locale: 'sv'

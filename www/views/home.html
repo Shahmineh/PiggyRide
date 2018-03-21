@@ -55,15 +55,15 @@
     </div>
     {{for piggies}}
     <div class="col-12 col-md-3">
-      <button type="button" class="btn btn-primary btn-lg mt-2">{{:type}}</button>
+      <button type="button" class="btn btn-primary btn-lg mt-2" id="{{:id}}">{{:type}}</button>
     </div>
     {{/for}}
   </div>
 </div>
 <div class="container">
   <div class="row mt-5 text-center">
-    <div class="col-12 col-md-3">
-      <h5 class="mt-4">Nästa lediga</h5>
+    <div class="col-12" style="display: none;">
+      <h5 class="mt-4">Tidigast lediga:</h5><span id="next-time"></span>
     </div>
   </div>
 </div>

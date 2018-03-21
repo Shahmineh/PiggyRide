@@ -32,7 +32,7 @@ let order = new Order(app);
 const Piggy = require('./backend/piggy.class');
 let piggy = new Piggy(app);
 const BestPiggy = require('./backend/best-piggy-route');
-app.use(BestPiggy);
+app.get('/bestpiggy', BestPiggy);
 
 // let session = new Session(app);
 
