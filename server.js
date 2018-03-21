@@ -49,8 +49,6 @@ const Waypoint = require('./backend/waypoint.class');
 //   startTime: new Date('2018-03-02 13:00:00')
 // });
 
-
-
 app.get('/user', (req, res) => {
   // check if there is a logged-in user and return that user
   let response;
@@ -62,16 +60,14 @@ app.get('/user', (req, res) => {
   } else {
     response = { message: 'Not logged in' };
   }
-  console.log(req.session)
-
+  console.log(req.session);
 });
-
 
 app.get(/^[^.]*$/, (req, res, next) => {
   let reqPath = req.path.split('/').slice(1);
   if (
     reqPath[0] &&
-    !validRoutes.some(route => {
+    !validRoutes.some((route) => {
       return reqPath[0] === route || reqPath[0].startsWith(route + '/'); // route.slice(0, -1) to match singulars
     })
   ) {
@@ -120,7 +116,7 @@ app.post('/register', async (req, res) => {
     if (!currentUser) {
       if (parsedData.email && parsedData.passwordHash) {
         UserModel.create(parsedData)
-          .then(result => {
+          .then((result) => {
             result.sessionID = req.cookies.session;
             req.session.data.userId = result._id;
             req.user = result;
@@ -130,7 +126,7 @@ app.post('/register', async (req, res) => {
             res.json(parsedData);
             console.log(req.session);
           })
-          .catch(error => {
+          .catch((error) => {
             if (error.errmsg.includes('duplicate')) {
               res.json('Needs to be a unique email!');
             } else {
@@ -153,8 +149,6 @@ app.all('/sign-out', async (req, res) => {
   res.json({ message: 'Logged out', session: req.session, user: req.user });
 });
 
-
-
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
 });
@@ -165,7 +159,6 @@ app.listen(3000, () => {
 */
 const nodeArgs = process.execArgv.join();
 if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
-
   process.on('unhandledRejection', (reason, p) => {
     console.log('Unhandled Rejection at: Promise', p, 'reason:', reason.stack);
   });
