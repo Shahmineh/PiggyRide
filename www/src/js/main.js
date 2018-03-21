@@ -10,6 +10,7 @@ import Order from './classes/order.class';
 import Waypoint from './classes/waypoint.class';
 import Piggy from './classes/piggy.class';
 import Extra from './classes/extra.class';
+import previewOrder from './ui/previeworder'
 
 // @ts-ignore
 window.$ = window.jQuery = jQuery; // Sets $ to global
@@ -58,7 +59,7 @@ $(document).on('click', '.portfolio-hover', function () {
   }
 });
 
-checkLogin()
+checkLogin();
 
 window.checkLogin = checkLogin;
 window.User = User;

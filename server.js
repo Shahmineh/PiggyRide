@@ -46,6 +46,7 @@ const Waypoint = require('./backend/waypoint.class');
 //   startTime: new Date('2018-03-02 13:00:00')
 // });
 
+
 app.get('/user', (req, res) => {
   // check if there is a logged-in user and return that user
   let response;
