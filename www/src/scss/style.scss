@@ -65,9 +65,8 @@ main,
 }
 
 .paket {
- width: 100px;
- height: 100px;
-
+  width: 100px;
+  height: 100px;
 }
 
 .text-content span {
@@ -76,8 +75,12 @@ main,
   vertical-align: middle;
 }
 
-#portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
-  top: 20%;
+#portfolio
+.portfolio-item
+.portfolio-link
+.portfolio-hover
+.portfolio-hover-content {
+  top: 5%;
   height: auto;
   margin-top: 0;
 }
@@ -91,5 +94,9 @@ main,
 }
 
 #selected-pack {
-box-shadow: 0px 0px 33px 3px rgba(108,90,181,1);
+  box-shadow: 0px 0px 33px 3px rgba(254, 209, 54, 0.7);
+}
+
+#portfolio .portfolio-item .portfolio-link .portfolio-hover {
+  background: rgba(254, 209, 54, 0.7);
 }

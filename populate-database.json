@@ -19,14 +19,14 @@
       "stock": 4,
       "description": "Camping camping camping",
       "price": 700,
-      "contents": ["Tält", "Sovsäck", "Tändstickor", "Fiskespö", "Nödransoner", "Verktyg"]
+      "contents": ["Tält", "Sovsäck", "Tändstickor", "Nödransoner", "Verktyg"]
     },
     {
       "name": "Familj",
       "stock": 13,
       "description": "Ta med familjen på en rolig upplevelse där picknickkorg bland annat ingår.",
       "price": 500,
-      "contents": ["Extra säte", "Barnstol", "Choklad", "Picknickkorg", "Fralla", "Saft"]
+      "contents": ["Extra säte", "Barnstol", "Picknickkorg", "Fralla", "Saft"]
     },
     {
       "name": "Dricka",
