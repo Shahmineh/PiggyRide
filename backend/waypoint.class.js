@@ -8,7 +8,7 @@ module.exports = class Waypoint extends ModelAndRoutes {
     Object.assign(this, obj);
     let leg = this.gway.routes[0].legs[0];
     this.startAddress = leg.start_address;
-    this.endAdress = leg.end_address;
+    this.endAddress = leg.end_address;
     this.duration = leg.duration.value;
     this.durationMinutes = Math.round(this.duration / 60);
     this.endTime = new Date(this.startTime.getTime() + this.duration * 1000);
@@ -45,7 +45,7 @@ module.exports = class Waypoint extends ModelAndRoutes {
       to: String,
       startTime: Date,
       startAddress: String,
-      endAdress: String,
+      endAddress: String,
       duration: Number,
       durationMinutes: Number,
       endTime: Date,
@@ -59,18 +59,28 @@ module.exports = class Waypoint extends ModelAndRoutes {
           text: String
         }
       ],
-      orders: {
+      orders: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Order'
+        }
+      ],
+      piggy: {
         type: Schema.Types.ObjectId,
-        ref: 'Order'
+        ref: 'Piggy'
       }
     };
   }
 
-  get hqPos () {
+  static get hqPos () {
     // Nordenskiöldsgatan 13, Malmö
     return {
+      startAddress: 'Nordenskiöldsgatan 13, 211 19 Malmö, Sverige',
+      endAddress: 'Nordenskiöldsgatan 13, 211 19 Malmö, Sverige',
       lat: 55.6108096,
-      lng: 12.9946562
+      lng: 12.9946562,
+      endTime: new Date(),
+      startTime: new Date()
     };
   }
 
@@ -91,7 +101,6 @@ module.exports = class Waypoint extends ModelAndRoutes {
 
   static async create (app, obj) {
     let url = 'https://maps.googleapis.com/maps/api/directions/json';
-
     let params = {
       origin: obj.from + (obj.from.includes('Malmö') ? '' : ' Malmö'),
       destination: obj.to + (obj.to.includes('Malmö') ? '' : ' Malmö'),

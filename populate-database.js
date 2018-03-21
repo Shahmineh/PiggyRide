@@ -106,7 +106,7 @@ function importWaypoints () {
       to: waypoint.to,
       startTime: waypoint.startTime,
       startAddress: waypoint.startAddress,
-      endAdress: waypoint.endAdress,
+      endAddress: waypoint.endAddress,
       duration: waypoint.duration,
       durationMinutes: waypoint.durationMinutes,
       endTime: waypoint.endTime,
@@ -121,8 +121,9 @@ function importWaypoints () {
 }
 
 function importPiggies () {
+  const numberOfEachPiggy = 2;
   let i = 0;
-  for (let x = 0; x < 10; x++) {
+  for (let x = 0; x < numberOfEachPiggy; x++) {
     for (let piggy of dataJSON.piggy) {
       let p = new PiggyModel({
         type: piggy.type,
@@ -171,7 +172,7 @@ function importOrders () {
     memory.extras[rndI(memory.extras)],
     memory.extras[rndI(memory.extras)]
   ];
-  let wps = memory.waypoints[rndI(memory.waypoints)];
+  let wps = memory.waypoints;
 
   let totalPrice =
     piggies.map(pig => pig.price).reduce((prev, next) => prev + next) +
@@ -188,22 +189,26 @@ function importOrders () {
   });
 
   o.save(e => {
-    UserModel.update({ _id: user._id }, { $push: { orders: o } }, () => {
-      WaypointModel.update({ _id: wps._id }, { $push: { orders: o } }, e => {
-        let i = 0;
-        for (let pig of piggies) {
-          PiggyModel.update({ _id: pig._id }, { $push: { orders: o } }, e => {
-            i++;
-            if (i === piggies.length) {
-              console.info(
-                '\x1b[32m%s\x1b[0m',
-                'Done! ᕙ(⇀‸↼‶)ᕗ\nScript will now exit and close db connection, have fun with your DATA'
-              );
-              order.closeConnection();
-            }
-          });
+    UserModel.update({ _id: user._id }, { $push: { orders: o } }).then(
+      async () => {
+        for (let [i, pig] of piggies.entries()) {
+          await WaypointModel.update(
+            { _id: wps[i]._id },
+            { $push: { orders: o }, $set: { piggy: piggies[i] } }
+          );
+          await PiggyModel.update(
+            { number: pig.number },
+            { $push: { orders: o } }
+          );
         }
-      });
-    });
+        console.info(
+          '\x1b[32m%s\x1b[0m 👌',
+          'Done! ᕙ(⇀‸↼‶)ᕗ\nScript will now exit and close db connection, have fun with your DATA'
+        );
+        setTimeout(() => {
+          order.closeConnection();
+        }, 2500);
+      }
+    );
   });
 }

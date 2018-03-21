@@ -34,6 +34,8 @@ let order = new Order(app);
 
 const Piggy = require('./backend/piggy.class');
 let piggy = new Piggy(app);
+const BestPiggy = require('./backend/best-piggy-route');
+app.use(BestPiggy);
 
 // let session = new Session(app);
 
@@ -41,11 +43,12 @@ const Extra = require('./backend/extra.class');
 let extra = new Extra(app);
 
 const Waypoint = require('./backend/waypoint.class');
-let waypoint = Waypoint.create(app, {
-  from: 'Sallerupsvägen 26B',
-  to: 'Björkholmsgatan 2',
-  startTime: new Date('2018-03-02 13:00:00')
-});
+// let waypoint = Waypoint.create(app, {
+//   from: 'Sallerupsvägen 26B',
+//   to: 'Björkholmsgatan 2',
+//   startTime: new Date('2018-03-02 13:00:00')
+// });
+
 
 
 app.get('/user', (req, res) => {
@@ -155,3 +158,33 @@ app.all('/sign-out', async (req, res) => {
 app.listen(3000, () => {
   console.log('Listening on port 3000!');
 });
+
+/*
+  Start a REPL if server was started with --inspect or --debug.
+  Note that await in the REPL is only available in Node v10.0+.
+*/
+const nodeArgs = process.execArgv.join();
+if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
+  // Start read-eval-print loop
+  const nodeRepl = require('repl');
+  setTimeout(async () => {
+    console.info('Starting REPL 🐍');
+    const repl = nodeRepl.start({
+      useColors: true,
+      prompt: 'PiggyRide > ',
+      input: process.stdin,
+      output: process.stdout,
+      useGlobal: true
+    });
+    let context = repl.context;
+    Object.assign(context, {
+      app: app,
+      Waypoint: Waypoint,
+      moment: require('moment')
+    });
+    // console.log(global === repl.context);
+    repl.on('exit', function () {
+      console.info('REPL closed');
+    });
+  }, 2500);
+}
