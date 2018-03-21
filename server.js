@@ -79,27 +79,26 @@ if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
   }, 2500);
 }
 
+function sendMail (toEmail) {
+  const nodemailer = require('nodemailer');
 
-const nodemailer = require('nodemailer');
-
-const transporter = nodemailer.createTransport({
- service: 'gmail',
- auth: {
-        user: 'malmopiggyride@gmail.com',
-        pass: 'piggyride1'
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'malmopiggyride@gmail.com',
+      pass: 'piggyride1'
     }
-});
+  });
 
-const mailOptions = {
-  from: 'malmopiggyride@gmail.com', // sender address
-  to: 'dacrol@live.com', // list of receivers
-  subject: 'Din bokningsbekräftelse', // Subject line
-  html: '<p>Din piggy är bokad!</p>'// plain text body
-};
+  const mailOptions = {
+    from: 'malmopiggyride@gmail.com', // sender address
+    to: toEmail, // list of receivers
+    subject: 'Din bokningsbekräftelse', // Subject line
+    html: '<p>Din piggy är bokad!</p>' // plain text body
+  };
 
-transporter.sendMail(mailOptions, function (err, info) {
-   if(err)
-     console.log(err)
-   else
-     console.log(info);
-});
+  transporter.sendMail(mailOptions, function (err, info) {
+    if (err) console.log(err);
+    else console.log(info);
+  });
+}
