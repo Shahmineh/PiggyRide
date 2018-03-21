@@ -90,26 +90,6 @@
     <button type="submit" class="btn btn-primary mt-3">Fortsätt</button>
   </div>
 </div>
-<!-- <div id="package" class="container">
-  <div class="row">
-    <div class="col-12 mt-5 text-center mb-4">
-      <h2>Paket</h2>
-    </div>
-  </div> -->
-  <!-- <div class="row">
-    <div class="col-md-4 col-sm-6 portfolio-item">
-      <div class="d-inline-flex">
-        {{for packs}}
-        <div class="p-2 mr-5">
-          <h5>{{:name}}</h5>
-          {{props contents}}
-          <div>{{:prop}}</div>
-          {{/props}}
-        </div>
-        {{/for}}
-      </div>
-    </div>
-  </div> -->
   <section class="bg-light" id="portfolio">
       <div class="container">
         <div class="row">
@@ -120,8 +100,8 @@
         </div>
         <div class="row">
             {{for packs}}
-          <div class="col-md-3 col-sm-6 portfolio-item">
-            <a class="portfolio-link" data-toggle="modal" href="#portfolioModal3">
+          <div class="col-md-3 col-sm-6 portfolio-item" data-piggypack="{{:name}}">
+            <a class="portfolio-link">
               <div class="portfolio-hover">
                 <div class="portfolio-hover-content">
                   <span class="text-content">
@@ -148,7 +128,7 @@
     <button type="button" class="btn btn-primary">Slutför</button>
   </div>
 </div>
-<div class="container">
+<div class="container pb-5">
   <div class="row justify-content-center mt-5">
     <div class="col-4">
       <div class="text-center">
