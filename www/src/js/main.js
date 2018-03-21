@@ -32,4 +32,5 @@ const user = new User();
 
 checkLogin()
 
+window.checkLogin = checkLogin;
 window.User = User;
