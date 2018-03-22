@@ -6,6 +6,19 @@
   margin-top: 150px;
 }
 
+@media (min-width: 768px) {
+  #about {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 575px) {
+  #about,
+  #service {
+    margin-top: -150px;
+  }
+}
+
 html,
 body,
 main,
@@ -150,7 +163,7 @@ main,
 }
 
 .thumbnail-photo {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .thumbnail-photo:hover {
