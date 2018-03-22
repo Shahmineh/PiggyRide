@@ -152,15 +152,15 @@ export default function viewsSetup (app) {
           }
           return acc;
         }, [])
-        .map(piggyType => {
+        .map((piggyType) => {
           return {
             type: piggyType,
             id: piggyType.replace(' ', '').toLowerCase()
           };
         });
       let result = {
-        snacks: extras.filter(item => item.types.length > 0),
-        packs: extras.filter(item => item.types.length === 0),
+        snacks: extras.filter((item) => item.types.length > 0),
+        packs: extras.filter((item) => item.types.length === 0),
         piggies: piggyTypes
       };
       // result.packs[0].description = 'camping.jpg';
@@ -176,11 +176,18 @@ export default function viewsSetup (app) {
     () => {
       require('./ui/find-piggy');
       geoEvent();
+      let today = new Date();
+      today = new Date(today.setMinutes(today.getMinutes() - 1));
       $('#departure-time').datetimepicker({
-        locale: 'sv'
+        locale: 'sv',
+        icons: {
+          time: 'far fa-clock'
+        },
+        minDate: today,
+        defaultDate: new Date()
       });
       $('#departure-time').on('hide.datetimepicker', function () {
-        $.scrollTo('#extras', 1500, 'easeInOutCubic');
+        // $.scrollTo('#extras', 1500, 'easeInOutCubic');
       });
       $('#finish').click(async function () {
         let user = await User.findOne();

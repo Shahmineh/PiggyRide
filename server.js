@@ -47,11 +47,19 @@ const Waypoint = require('./backend/waypoint.class');
 // });
 
 const previewOrder = require('./backend/previeworder');
-app.get('/previeworder', previewOrder(app, Waypoint, extra.model, piggy.model, order.model, UserModel));
+app.get(
+  '/previeworder',
+  previewOrder(app, Waypoint, extra.model, piggy.model, order.model, UserModel)
+);
 app.post('/confirmorder', async (req, res) => {
-  let order = req.body;
-  let user = await UserModel.findOne({sessionID: req.session.id})
-  sendMail(user.email, order)
+  let incomingOrder = req.body;
+  let user = await UserModel.findOne({ sessionID: req.session.id });
+  sendMail(user.email, incomingOrder);
+  Object.assign(incomingOrder, { user: user, orderTime: new Date() });
+  order.model.create(incomingOrder).catch(async () => {
+    await order.model.remove({ _id: incomingOrder._id });
+    await order.model.create(incomingOrder);
+  });
 });
 app.get('/user', (req, res) => {
   // check if there is a logged-in user and return that user
@@ -71,7 +79,7 @@ app.get(/^[^.]*$/, (req, res, next) => {
   let reqPath = req.path.split('/').slice(1);
   if (
     reqPath[0] &&
-    !validRoutes.some(route => {
+    !validRoutes.some((route) => {
       return reqPath[0] === route || reqPath[0].startsWith(route + '/'); // route.slice(0, -1) to match singulars
     })
   ) {
@@ -130,7 +138,7 @@ app.post('/register', async (req, res) => {
     if (!currentUser) {
       if (parsedData.email && parsedData.passwordHash) {
         UserModel.create(parsedData)
-          .then(result => {
+          .then((result) => {
             result.sessionID = req.cookies.session;
             req.session.data.userId = result._id;
             req.user = result;
@@ -140,7 +148,7 @@ app.post('/register', async (req, res) => {
             res.json(parsedData);
             // console.log(req.session);
           })
-          .catch(error => {
+          .catch((error) => {
             if (error.errmsg.includes('duplicate')) {
               res.json('Needs to be a unique email!');
             } else {
@@ -168,7 +176,12 @@ const nodeArgs = process.execArgv.join();
 if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
   /* Show unhandled promise rejections */
   process.on('unhandledRejection', (error, p) => {
-    console.log('Unhandled rejection at: Promise: ', p, '\nReason: ', error.stack);
+    console.log(
+      'Unhandled rejection at: Promise: ',
+      p,
+      '\nReason: ',
+      error.stack
+    );
   });
 
   // Start read-eval-print loop
@@ -211,7 +224,9 @@ function sendMail (toEmail, order) {
     from: 'malmopiggyride@gmail.com', // sender address
     to: toEmail, // list of receivers
     subject: 'Din bokningsbekräftelse', // Subject line
-    html: `<p>Din piggy är bokad!</p> <p>Ditt bokningsnummer är ${order._id}</p>` // plain text body
+    html: `<p>Din piggy är bokad!</p> <p>Ditt bokningsnummer är ${
+      order._id
+    }</p>` // plain text body
   };
 
   transporter.sendMail(mailOptions, function (err, info) {
