@@ -38,7 +38,14 @@ function assignScrollTo ($) {
       easing = defaultEffect,
       callbackFn = undefined
     ) {
-      document.addEventListener('wheel', abortScroll);
+      let triggered = 0;
+      document.addEventListener('wheel', function () {
+        abortScroll();
+        if (typeof callbackFn === 'function' && triggered === 0) {
+          callbackFn();
+          triggered++;
+        }
+      });
       if (typeof time === 'function') {
         callbackFn = time;
         time = 1500;

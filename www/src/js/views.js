@@ -5,6 +5,8 @@ import getOrders from './ui/admin-orders';
 import geoEvent from './classes/geo-locate.js';
 import Extra from './classes/extra.class';
 import Piggy from './classes/piggy.class';
+import previewOrder from './ui/previeworder';
+import User from './classes/user.class';
 
 /**
  * Setup for SPA views
@@ -143,36 +145,52 @@ export default function viewsSetup (app) {
     '/',
     async () => {
       let extras = await Extra.find('');
-      let piggyTypes = (await Piggy.find('')).reduce((acc, piggy) => {
-        if (!(acc.includes(piggy.type))) {
-          acc.push(piggy.type);
-        }
-        return acc;
-      }, []).map((piggyType) => {
-        return {type: piggyType}
-      });
+      let piggyTypes = (await Piggy.find(''))
+        .reduce((acc, piggy) => {
+          if (!acc.includes(piggy.type)) {
+            acc.push(piggy.type);
+          }
+          return acc;
+        }, [])
+        .map(piggyType => {
+          return {
+            type: piggyType,
+            id: piggyType.replace(' ', '').toLowerCase()
+          };
+        });
       let result = {
-        snacks: extras.filter((item) => item.types.length > 0),
-        packs: extras.filter((item) => item.types.length === 0),
+        snacks: extras.filter(item => item.types.length > 0),
+        packs: extras.filter(item => item.types.length === 0),
         piggies: piggyTypes
-      }
+      };
       // result.packs[0].description = 'camping.jpg';
-      result.packs[0].image = 'hifi.jpg';
+      result.packs[0].image = result.packs[0].name.toLowerCase() + '.jpg';
       // result.packs[1].description = 'camping.jpg';
-      result.packs[1].image = 'camping.jpg';
+      result.packs[1].image = result.packs[1].name.toLowerCase() + '.jpg';
       // result.packs[2].description = 'camping.jpg';
-      result.packs[2].image = 'picknick.jpg';
+      result.packs[2].image = result.packs[2].name.toLowerCase() + '.jpg';
       // result.packs[3].description = 'camping.jpg';
-      result.packs[3].image = 'romans.jpg';
+      result.packs[3].image = result.packs[3].name.toLowerCase() + '.jpg';
       return result;
     },
     () => {
+      require('./ui/find-piggy');
       geoEvent();
       $('#departure-time').datetimepicker({
         locale: 'sv'
       });
       $('#departure-time').on('hide.datetimepicker', function () {
         $.scrollTo('#extras', 1500, 'easeInOutCubic');
+      });
+      $('#finish').click(async function () {
+        let user = await User.findOne();
+        if (user) {
+          $('#payment').show();
+          $.scrollTo('#payment');
+          previewOrder();
+        } else {
+          $('#login').trigger('click');
+        }
       });
     }
   );

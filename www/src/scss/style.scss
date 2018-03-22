@@ -39,7 +39,8 @@ main,
   margin-top: -150px;
 }
 
-#login {
+#login,
+#logout {
   cursor: pointer;
 }
 
@@ -75,12 +76,18 @@ main,
   vertical-align: middle;
 }
 
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
 #portfolio
 .portfolio-item
 .portfolio-link
 .portfolio-hover
 .portfolio-hover-content {
   top: 5%;
+  // line-height: 1em;
   height: auto;
   margin-top: 0;
 }
@@ -121,4 +128,8 @@ main,
 
 .loggo-a {
   display: contents !important;
+}
+
+#payment {
+  margin-bottom: 110px;
 }

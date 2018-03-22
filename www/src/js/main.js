@@ -5,6 +5,12 @@ import moment from 'moment';
 import 'moment/locale/sv';
 import User from './classes/user.class.js';
 import REST from './classes/REST.class.js';
+import checkLogin from './ui/check-login';
+import Order from './classes/order.class';
+import Waypoint from './classes/waypoint.class';
+import Piggy from './classes/piggy.class';
+import Extra from './classes/extra.class';
+import previewOrder from './ui/previeworder';
 
 // @ts-ignore
 window.$ = window.jQuery = jQuery; // Sets $ to global
@@ -52,3 +58,13 @@ $(document).on('click', '.portfolio-hover', function () {
       .attr('id', 'selected-pack');
   }
 });
+
+checkLogin();
+
+window.checkLogin = checkLogin;
+window.User = User;
+window.Order = Order;
+window.Extra = Extra;
+window.Waypoint = Waypoint;
+window.Piggy = Piggy;
+window.previewOrder = previewOrder;
