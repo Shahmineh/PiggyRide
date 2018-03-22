@@ -10,7 +10,7 @@ import Order from './classes/order.class';
 import Waypoint from './classes/waypoint.class';
 import Piggy from './classes/piggy.class';
 import Extra from './classes/extra.class';
-import previewOrder from './ui/previeworder'
+import previewOrder from './ui/previeworder';
 
 // @ts-ignore
 window.$ = window.jQuery = jQuery; // Sets $ to global
@@ -67,3 +67,4 @@ window.Order = Order;
 window.Extra = Extra;
 window.Waypoint = Waypoint;
 window.Piggy = Piggy;
+window.previewOrder = previewOrder;

@@ -34,9 +34,6 @@ let piggy = new Piggy(app);
 const BestPiggy = require('./backend/best-piggy-route');
 app.get('/bestpiggy', BestPiggy);
 
-const previewOrder = require('./backend/previeworder');
-app.get('/previeworder', previewOrder);
-
 // let session = new Session(app);
 
 const Extra = require('./backend/extra.class');
@@ -49,6 +46,8 @@ const Waypoint = require('./backend/waypoint.class');
 //   startTime: new Date('2018-03-02 13:00:00')
 // });
 
+const previewOrder = require('./backend/previeworder');
+app.get('/previeworder', previewOrder(app, Waypoint, extra.model, piggy.model, order.model, UserModel));
 
 app.get('/user', (req, res) => {
   // check if there is a logged-in user and return that user
@@ -183,7 +182,8 @@ if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
     Object.assign(context, {
       app: app,
       Waypoint: Waypoint,
-      moment: require('moment')
+      moment: require('moment'),
+      order: order.model
     });
     // console.log(global === repl.context);
     repl.on('exit', function () {
