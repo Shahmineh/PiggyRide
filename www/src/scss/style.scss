@@ -6,6 +6,19 @@
   margin-top: 150px;
 }
 
+@media (min-width: 768px) {
+  #about {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 575px) {
+  #about,
+  #service {
+    margin-top: -150px;
+  }
+}
+
 html,
 body,
 main,
@@ -113,13 +126,23 @@ main,
   float: right;
 }
 
-.piggies {
-  width: 180px;
-}
-
 .human-piggy {
   width: 30%;
   float: left;
+}
+
+@media (max-width: 575px) {
+  .ride {
+    float: inherit;
+  }
+
+  .human-piggy {
+    float: right;
+  }
+}
+
+.piggies {
+  width: 180px;
 }
 
 .loggo {
@@ -132,6 +155,19 @@ main,
 
 #payment {
   margin-bottom: 110px;
+}
+
+.piggy-robot {
+  width: 50%;
+  height: 50%;
+}
+
+.thumbnail-photo {
+  transition: all 0.2s ease-in-out;
+}
+
+.thumbnail-photo:hover {
+  transform: scale(3, 3);
 }
 
 @media (min-width: 768px) {
