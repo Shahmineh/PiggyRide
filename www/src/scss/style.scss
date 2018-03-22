@@ -6,6 +6,19 @@
   margin-top: 150px;
 }
 
+@media (min-width: 768px) {
+  #about {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 575px) {
+  #about,
+  #service {
+    margin-top: -150px;
+  }
+}
+
 html,
 body,
 main,
@@ -76,13 +89,18 @@ main,
   vertical-align: middle;
 }
 
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
 #portfolio
 .portfolio-item
 .portfolio-link
 .portfolio-hover
 .portfolio-hover-content {
   top: 5%;
-  line-height: 1em;
+  // line-height: 1em;
   height: auto;
   margin-top: 0;
 }
@@ -108,19 +126,53 @@ main,
   float: right;
 }
 
-.piggies {
-  width: 180px;
-}
-
 .human-piggy {
   width: 30%;
   float: left;
 }
 
+@media (max-width: 575px) {
+  .ride {
+    float: inherit;
+  }
+
+  .human-piggy {
+    float: right;
+  }
+}
+
+.piggies {
+  width: 180px;
+}
+
 .loggo {
-  width: 7%;
+  width: 100px;
+}
+
+.loggo-a {
+  display: contents !important;
 }
 
 #payment {
   margin-bottom: 110px;
+}
+
+.piggy-robot {
+  width: 50%;
+  height: 50%;
+}
+
+.thumbnail-photo {
+  transition: all 0.2s ease-in-out;
+  transition-delay: 100ms;
+}
+
+.thumbnail-photo-hover {
+  transform: scale(3, 3);
+}
+
+@media (min-width: 768px) {
+  #portfolio {
+    padding: 50px 0;
+  }
 }

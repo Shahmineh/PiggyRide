@@ -15,7 +15,63 @@ import User from './classes/user.class';
  * @param {App} app
  */
 export default function viewsSetup (app) {
-  app.bindView('our-products.html', '/info', null, async () => {});
+  app.bindView('our-products.html', '/info', null, async () => {
+    $('#express')
+      .parent()
+      .first()
+      .hover(
+        function () {
+          $(this)
+            .children()
+            .first()
+            .prop('src', '/images/express-piggy-zoom.jpg');
+          $(this).addClass('thumbnail-photo-hover');
+        },
+        function () {
+          setTimeout(() => {
+            $(this)
+              .children()
+              .first()
+              .prop('src', '/images/express-piggy.jpg');
+          }, 200);
+          $(this).removeClass('thumbnail-photo-hover');
+        }
+      );
+
+    $('#turbo')
+      .parent()
+      .first()
+      .hover(
+        function () {
+          $(this)
+            .children()
+            .first()
+            .prop('src', '/images/turbo-piggy-zoom.jpg');
+          $(this).addClass('thumbnail-photo-hover');
+        },
+        function () {
+          setTimeout(() => {
+            $(this)
+              .children()
+              .first()
+              .prop('src', '/images/turbo-piggy.jpg');
+          }, 200);
+          $(this).removeClass('thumbnail-photo-hover');
+        }
+      );
+
+    $('#spider')
+      .parent()
+      .first()
+      .hover(
+        function () {
+          $(this).addClass('thumbnail-photo-hover');
+        },
+        function () {
+          $(this).removeClass('thumbnail-photo-hover');
+        }
+      );
+  });
 
   app.bindView('kundservice.html', '/kundservice', null, async () => {});
 
@@ -152,35 +208,42 @@ export default function viewsSetup (app) {
           }
           return acc;
         }, [])
-        .map(piggyType => {
+        .map((piggyType) => {
           return {
             type: piggyType,
             id: piggyType.replace(' ', '').toLowerCase()
           };
         });
       let result = {
-        snacks: extras.filter(item => item.types.length > 0),
-        packs: extras.filter(item => item.types.length === 0),
+        snacks: extras.filter((item) => item.types.length > 0),
+        packs: extras.filter((item) => item.types.length === 0),
         piggies: piggyTypes
       };
       // result.packs[0].description = 'camping.jpg';
-      result.packs[0].image = 'hifi.jpg';
+      result.packs[0].image = result.packs[0].name.toLowerCase() + '.jpg';
       // result.packs[1].description = 'camping.jpg';
-      result.packs[1].image = 'camping.jpg';
+      result.packs[1].image = result.packs[1].name.toLowerCase() + '.jpg';
       // result.packs[2].description = 'camping.jpg';
-      result.packs[2].image = 'picknick.jpg';
+      result.packs[2].image = result.packs[2].name.toLowerCase() + '.jpg';
       // result.packs[3].description = 'camping.jpg';
-      result.packs[3].image = 'romans.jpg';
+      result.packs[3].image = result.packs[3].name.toLowerCase() + '.jpg';
       return result;
     },
     () => {
       require('./ui/find-piggy');
       geoEvent();
+      let today = new Date();
+      today = new Date(today.setMinutes(today.getMinutes() - 1));
       $('#departure-time').datetimepicker({
-        locale: 'sv'
+        locale: 'sv',
+        icons: {
+          time: 'far fa-clock'
+        },
+        minDate: today,
+        defaultDate: new Date()
       });
       $('#departure-time').on('hide.datetimepicker', function () {
-        $.scrollTo('#extras', 1500, 'easeInOutCubic');
+        // $.scrollTo('#extras', 1500, 'easeInOutCubic');
       });
       $('#finish').click(async function () {
         let user = await User.findOne();

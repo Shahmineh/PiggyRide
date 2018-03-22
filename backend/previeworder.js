@@ -20,7 +20,7 @@ module.exports = function (app, Waypoint, Extra, Piggy, Order, User) {
     let newOrder = await Order.create({
       totalPrice: result,
       user: req.session._id ? await User.findOne({session: req.session._id}) : 0,
-      extras: await Promise.all(extras.map(extra => Extra.findOne({name: extra}))),
+      extras: await Promise.all(extras.map(extra => Extra.findOne({name: extra}))).catch(),
       piggies: await Piggy.find({_id: query.wps.piggy._id})
     })
     newOrder.wps = wp;
