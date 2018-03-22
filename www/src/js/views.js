@@ -164,13 +164,13 @@ export default function viewsSetup (app) {
         piggies: piggyTypes
       };
       // result.packs[0].description = 'camping.jpg';
-      result.packs[0].image = 'hifi.jpg';
+      result.packs[0].image = result.packs[0].name.toLowerCase() + '.jpg';
       // result.packs[1].description = 'camping.jpg';
-      result.packs[1].image = 'camping.jpg';
+      result.packs[1].image = result.packs[1].name.toLowerCase() + '.jpg';
       // result.packs[2].description = 'camping.jpg';
-      result.packs[2].image = 'picknick.jpg';
+      result.packs[2].image = result.packs[2].name.toLowerCase() + '.jpg';
       // result.packs[3].description = 'camping.jpg';
-      result.packs[3].image = 'romans.jpg';
+      result.packs[3].image = result.packs[3].name.toLowerCase() + '.jpg';
       return result;
     },
     () => {
