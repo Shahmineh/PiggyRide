@@ -63,7 +63,7 @@
 <div class="container">
   <div class="row mt-5 text-center">
     <div class="col-12" style="display: none;">
-      <h5 class="mt-4">Tidigast lediga:</h5><span id="next-time"></span>
+      <h5 class="mt-4">Tidigaste piggy:</h5><span id="next-time"></span>
     </div>
   </div>
 </div>
@@ -86,9 +86,9 @@
     </div>
     {{/for}}
   </div>
-  <div class="row mt-3 justify-content-center">
+<!--   <div class="row mt-3 justify-content-center">
     <button type="submit" class="btn btn-primary my-4">Fortsätt</button>
-  </div>
+  </div> -->
 </div>
 <section class="bg-light" id="portfolio">
   <div class="container">
@@ -123,11 +123,11 @@
     </div>
   </div>
   <div class="row justify-content-center mt-3">
-    <button type="button" class="btn btn-primary">Slutför</button>
+    <button id="finish" type="button" class="btn btn-primary">Slutför</button>
   </div>
+<!-- </div> -->
 </section>
-</div>
-<div class="container pb-5">
+<div class="container pb-5" id="payment" style="display: none;">
   <div class="row justify-content-center mt-5">
     <div class="col-4">
       <div class="text-center">
@@ -152,10 +152,12 @@
           <input class="form-control" placeholder="xxx">
         </div>
         <img class="cvv mb-3" src="/images/cvv.jpg" alt="Kortkontrollnummer">
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary" id="pay">Betala</button>
-        </div>
       </form>
+      <div class="text-center">
+          <div id="price" class="mb-3"></div>
+          <button type="submit" class="btn btn-primary" id="pay">Betala</button>
+          <div id="confirmation" class="mt-3"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -209,6 +211,7 @@
     });
 
     function viewMap() {
+      // console.log('!')
       if (fromLocation && toLocation) {
         $.scrollTo('#map-target', 1100, function () {
           // $('#map-home').css({'padding-top': '0%'})
@@ -225,6 +228,7 @@
   }
 
   function initMapSmall() {
+    // console.log('!')
     var directionsDisplay = new google.maps.DirectionsRenderer();
     var directionsService = new google.maps.DirectionsService();
     var map = new google.maps.Map(document.getElementById('map-home'), {
