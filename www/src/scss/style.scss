@@ -129,3 +129,9 @@ main,
 #payment {
   margin-bottom: 110px;
 }
+
+@media (min-width: 768px) {
+  #portfolio {
+    padding: 50px 0;
+  }
+}

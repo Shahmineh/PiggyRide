@@ -1,7 +1,15 @@
 let piggyType;
 
 module.exports = (() => {
-  $('#expresspiggy, #turbopiggy, #spiderpiggy').click(function () {
+  $('#expresspiggy, #turbopiggy, #spiderpiggy').click(function (event) {
+    // console.log($(this));
+    if ($(this).prop('id') === 'spiderpiggy') {
+      $('.piggy-packs').show();
+    } else {
+      $('.piggy-packs').hide();
+    }
+    $.scrollTo('#piggy-picker');
+    $('.continue-btn').show();
     piggyType = $(this).text();
     findPiggy();
   });
@@ -22,8 +30,8 @@ async function findPiggy (type = piggyType) {
     let response = await $.ajax({ url: '/bestpiggy', type: 'GET', data: req });
     console.log(response);
     let bestPiggy = response
-      .filter(wps => wps.piggy.type === type)
-      .map(wps =>
+      .filter((wps) => wps.piggy.type === type)
+      .map((wps) =>
         Object.assign(wps, {
           startTime: new Date(wps.startTime),
           endTime: new Date(wps.endTime)

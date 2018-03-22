@@ -48,7 +48,7 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container" id="piggy-picker">
   <div class="row mt-5 text-center">
     <div class="col-12 col-md-3">
       <h5 class="mt-4">Välj Piggy</h5>
@@ -60,7 +60,7 @@
     {{/for}}
   </div>
 </div>
-<div class="container">
+<div class="container" id="next-time-container">
   <div class="row mt-5 text-center">
     <div class="col-12" style="display: none;">
       <h5 class="mt-4">Tidigaste piggy:</h5><span id="next-time"></span>
@@ -91,7 +91,7 @@
   </div> -->
 </div>
 <section class="bg-light" id="portfolio">
-  <div class="container">
+  <div class="container piggy-packs" style="display: none;">
     <div class="row">
       <div class="col-lg-12 text-center">
         <h2 class="section-heading text-uppercase">Paket</h2>
@@ -122,8 +122,8 @@
       {{/for}}
     </div>
   </div>
-  <div class="row justify-content-center mt-3">
-    <button id="finish" type="button" class="btn btn-primary">Slutför köp</button>
+  <div class="row justify-content-center mt-3 continue-btn" style="display: none;">
+    <button id="finish" type="button" class="btn btn-primary">Till betalning</button>
   </div>
 <!-- </div> -->
 </section>
