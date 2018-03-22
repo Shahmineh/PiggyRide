@@ -113,13 +113,23 @@ main,
   float: right;
 }
 
-.piggies {
-  width: 180px;
-}
-
 .human-piggy {
   width: 30%;
   float: left;
+}
+
+@media (max-width: 575px) {
+  .ride {
+    float: inherit;
+  }
+
+  .human-piggy {
+    float: right;
+  }
+}
+
+.piggies {
+  width: 180px;
 }
 
 .loggo {
@@ -132,4 +142,17 @@ main,
 
 #payment {
   margin-bottom: 110px;
+}
+
+.piggy-robot {
+  width: 50%;
+  height: 50%;
+}
+
+.thumbnail-photo {
+  transition: all .2s ease-in-out;
+}
+
+.thumbnail-photo:hover {
+  transform: scale(3, 3);
 }
