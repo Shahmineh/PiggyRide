@@ -46,6 +46,7 @@ async function findPiggy (type = piggyType) {
       .text(bestTime.toLocaleDateString('sv-SE', dateOptions))
       .parent()
       .show();
+    window.wps = bestPiggy;
     return bestPiggy.startTime;
   }
 }

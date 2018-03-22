@@ -46,6 +46,13 @@ const Waypoint = require('./backend/waypoint.class');
 //   startTime: new Date('2018-03-02 13:00:00')
 // });
 
+const previewOrder = require('./backend/previeworder');
+app.get('/previeworder', previewOrder(app, Waypoint, extra.model, piggy.model, order.model, UserModel));
+app.post('/confirmorder', async (req, res) => {
+  let order = req.body;
+  let user = await UserModel.findOne({sessionID: req.session.id})
+  sendMail(user.email, order)
+});
 app.get('/user', (req, res) => {
   // check if there is a logged-in user and return that user
   let response;
@@ -179,7 +186,8 @@ if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
     Object.assign(context, {
       app: app,
       Waypoint: Waypoint,
-      moment: require('moment')
+      moment: require('moment'),
+      order: order.model
     });
     // console.log(global === repl.context);
     repl.on('exit', function () {
@@ -188,7 +196,7 @@ if (nodeArgs.includes('--inspect') || nodeArgs.includes('--debug')) {
   }, 2500);
 }
 
-function sendMail (toEmail) {
+function sendMail (toEmail, order) {
   const nodemailer = require('nodemailer');
 
   const transporter = nodemailer.createTransport({
@@ -203,7 +211,7 @@ function sendMail (toEmail) {
     from: 'malmopiggyride@gmail.com', // sender address
     to: toEmail, // list of receivers
     subject: 'Din bokningsbekräftelse', // Subject line
-    html: '<p>Din piggy är bokad!</p>' // plain text body
+    html: `<p>Din piggy är bokad!</p> <p>Ditt bokningsnummer är ${order._id}</p>` // plain text body
   };
 
   transporter.sendMail(mailOptions, function (err, info) {
