@@ -177,7 +177,10 @@ export default function viewsSetup (app) {
       require('./ui/find-piggy');
       geoEvent();
       $('#departure-time').datetimepicker({
-        locale: 'sv'
+        locale: 'sv',
+        icons: {
+          time: 'far fa-clock'
+        }
       });
       $('#departure-time').on('hide.datetimepicker', function () {
         $.scrollTo('#extras', 1500, 'easeInOutCubic');
