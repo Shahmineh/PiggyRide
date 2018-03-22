@@ -8,6 +8,7 @@ module.exports = (() => {
   $('#departure-time').on('change.datetimepicker', function () {
     findPiggy();
   });
+  window.findPiggy = findPiggy;
 })();
 
 async function findPiggy (type = piggyType) {
