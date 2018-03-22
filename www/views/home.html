@@ -3,7 +3,7 @@
     <h3 class="pt-2 text-center">Boka din piggy här och nu:</h3>
     <div class="container mt-5">
       <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
           <div class="input-group input-group-lg">
             <input id="autocompleteFrom" placeholder="Från" class="form-control" type="text">
             <div class="input-group-prepend">
@@ -13,7 +13,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 mt-1 mt-lg-0">
           <div class="input-group input-group-lg">
             <input id="autocompleteTo" placeholder="Till" class="form-control" type="text">
           </div>
@@ -33,7 +33,7 @@
 </div>
 <div id="departure-time-container" class="container">
   <div class="row mt-4">
-    <div class="col-6 mx-auto">
+    <div class="col-md-6 mx-auto">
       <div class="form-group">
         <h5 class="text-center mb-2">Avgång</h5>
         <div class="input-group date" id="departure-time" data-target-input="nearest">
@@ -54,8 +54,8 @@
       <h5 class="mt-4">Välj Piggy</h5>
     </div>
     {{for piggies}}
-    <div class="col-12 col-md-3">
-      <button type="button" class="btn btn-primary btn-lg mt-2">{{:type}}</button>
+    <div class="col-md-12 col-lg-3">
+      <button type="button" class="piggies btn btn-primary btn-lg mt-2">{{:type}}</button>
     </div>
     {{/for}}
   </div>
@@ -129,7 +129,7 @@
 </div>
 <div class="container pb-5">
   <div class="row justify-content-center mt-5">
-    <div class="col-4">
+    <div class="col-md-4">
       <div class="text-center">
         <h4>Kortbetalning</h4>
         <img src="/images/payment.png" class="visa" alt="Visa and mastercard">
