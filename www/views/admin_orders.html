@@ -1,10 +1,26 @@
-<div id="table" class="table-responsive">
-
+<ul class="nav nav-tabs nav-fill" id="admin-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="orders-tab" data-toggle="tab" href="#orders-tab-content">Ordrar</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="map-tab" data-toggle="tab" href="#map-tab-content" onclick="initMap()">Karta</a>
+  </li>
+</ul>
+<div class="tab-content" id="admin-tabs-content">
+  <div class="tab-pane fade show active" id="orders-tab-content" role="tabpanel" aria-labelledby="orders-tab">
+    <div id="table" class="table-responsive"></div>
+  </div>
+  <div class="tab-pane" id="map-tab-content" role="tabpanel" aria-labelledby="map-tab">
+      <div class="container-fluid" style="height: 100%; position: absolute;">
+          <div id="map">t</div>
+        </div>
+  </div>
 </div>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrE71qz1iEQgNnM3fbzIXB5pmRoB9rWiQ&callback=initMap"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.css">
 <!-- Latest compiled and minified JavaScript -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/bootstrap-table.min.js"></script>
 <!-- Latest compiled and minified Locales -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-sv-SE.min.js"></script>
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.12.1/locale/bootstrap-table-sv-SE.min.js"></script> -->

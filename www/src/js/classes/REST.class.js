@@ -6,13 +6,19 @@ export default class REST extends Base {
     Object.assign(this, obj);
   }
 
-  async save () {
+  async save (obj = null) {
     let entity = (this.constructor.name.endsWith('y')
       ? this.constructor.name.slice(0, -1) + 'ies'
       : this.constructor.name + 's'
     ).toLowerCase(); // + 's').toLowerCase();
-    let query = '_id=' + this._id;
-    return await REST.request(entity, 'PUT', query, this);
+    if (this._id) {
+      let query = '_id=' + this._id;
+      return REST.request(entity, 'PUT', query, obj || this);
+    } else {
+      let result = await this.constructor.create(obj || this);
+      this._id = result._id;
+      return result;
+    }
   }
 
   async delete () {
@@ -30,6 +36,7 @@ export default class REST extends Base {
   }
 
   static async find (query) {
+    // console.log('QUERY', query);
     if (typeof query === 'object') {
       query = JSON.stringify(query, (key, val) => {
         if (val && val.constructor === RegExp) {
@@ -40,7 +47,9 @@ export default class REST extends Base {
           val = val.substr(1, val.length - 1);
 
           val = { $regex: val, $options: op };
+
         }
+        //console.log('VAL', val);
         return val;
       });
     }
@@ -50,12 +59,18 @@ export default class REST extends Base {
       : this.name + 's'
     ).toLowerCase(); // + 's').toLowerCase();
 
+
     let results = await REST.request(entity, 'GET', query, '');
     results = results.result || [results];
+    //console.log('RESULTS', results);
+
     let enriched = [];
     for (let result of results) {
       enriched.push(new this(result));
+      //console.log('RESULT', result);
     }
+
+    // console.log('ENRICHED', enriched[0]);
     return enriched;
   }
 

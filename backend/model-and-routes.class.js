@@ -17,6 +17,10 @@ module.exports = class ModelAndRoutes {
     return {};
   }
 
+  get model () {
+    return this.myModel;
+  }
+
   constructor (expressApp, routes = ['post', 'get', 'put', 'delete']) {
     if (!expressApp) {
       routes = [];
@@ -33,7 +37,11 @@ module.exports = class ModelAndRoutes {
       expressApp.validRoutes = [];
     }
     expressApp.validRoutes.push(this.routeName);
-    this.myModel = mongoose.model(this.modelName, schema);
+    try {
+      this.myModel = mongoose.model(this.modelName, schema);
+    } catch (error) {
+      this.myModel = mongoose.model(this.modelName);
+    }
     routes.includes('post') && this.setupPostRoute();
     routes.includes('get') && this.setupGetRoute();
     routes.includes('put') && this.setupPutRoute();
@@ -87,22 +95,24 @@ module.exports = class ModelAndRoutes {
 
       // get params
       params = params || qs.parse(req._params ? req._params[0] : req.params[0]);
-
+//console.log('PARAMS', params);
       // Get populate instructions
       // and then delete them from the Mongo query params
       let populate = params.populate || '';
+//console.log('POPULATE', populate);
       delete params.populate;
 
       this.myModel
         .find(params)
         .populate(populate)
         .exec((err, data) => {
-          // console.log('____________', data, params);
+          //console.log('____________', data, params);
           res.json({
             query: params,
             resultLength: data ? data.length : 0,
             result: data || []
           });
+          //console.log('DATA', data);
         });
     });
   }

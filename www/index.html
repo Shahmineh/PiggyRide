@@ -15,7 +15,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    <a class="navbar-brand pop" href="/">Piggy</a>
+    <a class="navbar-brand pop loggo-a" href="/"><img src="/images/piggy-back-loggo-white.png" class="loggo mr-4" alt="Loggo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
       aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -33,11 +33,11 @@
         <li class="nav-item">
           <a class="nav-link pop" id="kundservice" href="/kundservice">Kundservice</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link disabled pop" id="om-oss" href="/om-oss">Om oss</a>
-        </li>
+        </li> -->
         <!-- login form -->
-        <li class="nav-item">
+        <li class="nav-item" id="login-form">
           <div class="dropdown">
             <a class="nav-link" id="login" data-toggle="dropdown" aria-expanded="false">Logga in</a>
 
@@ -53,18 +53,25 @@
                 </div>
                 <a class="btn btn-success text-dark col-12" id="loginbtn">Logga in</a>
                 <div class="dropdown-divider"></div>
+                <div class="errormsg"></div>
                 <a class="btn btn-warning text-dark col-12" id="signupbtn">Skapa konto</a>
+                <!-- <a class="btn btn-warning text-dark col-12" id="test">test</a> -->
               </div>
             </form>
           </div>
         </li> <!-- end login form -->
+        <li class="nav-item" id="logout-form" style="display: none;"> <!-- logout button -->
+            <a class="nav-link" id="logout">Logga ut</a>
+        </li>
       </ul>
     </div>
   </nav>
   <main id="root">
   </main>
+  <div class="pb-5"></div>
+  <footer>
 
-  <footer></footer>
+  </footer>
 
   <!-- Scripts -->
   <script src="/dist/js/main.min.js"></script>

@@ -12,11 +12,14 @@
       "program": "${workspaceFolder}/server.js",
       "restart": true,
       "console": "integratedTerminal",
-      "internalConsoleOptions": "openOnFirstSessionStart",
+      "internalConsoleOptions": "openOnSessionStart",
       "args": [
         "config",
         "nodemon.js"
-      ]
+      ],
+      "smartStep": true,
+      "showAsyncStacks": true,
+      "timeout": 360000
     },
     {
       "type": "node",
@@ -32,8 +35,14 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "Launch Node",
       "program": "${workspaceFolder}/server.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Node (current file)",
+      "program": "${file}"
     },
     {
       "type": "node",
@@ -65,7 +74,7 @@
       "request": "attach",
       "name": "Attach nodemon",
       "restart": true,
-      "internalConsoleOptions": "openOnFirstSessionStart",
+      "internalConsoleOptions": "openOnSessionStart",
       "protocol": "inspector",
       "port": 9229,
       "showAsyncStacks": true,

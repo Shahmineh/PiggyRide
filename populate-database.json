@@ -3,44 +3,69 @@
     {
       "name": "HiFi",
       "stock": 10,
-      "description": "Boombox\nTV\nDigital TV\nNetflix",
-      "price": 200
+      "description": "Lyssna på Sticky Dirt eller kolla på din favoritserie.",
+      "price": 200,
+      "contents": ["Boombox","TV (med HDMI)", "Satellit-TV", "Netflix", "Sticky Dirt"]
     },
     {
       "name": "Romans",
       "stock": 12,
-      "description": "Champange\nRosor\nChokolad\nBoombox\nOstbricka",
-      "price": 300
+      "description": "Välj romanspaketet för en härlig romantisk upplevelse.",
+      "price": 300,
+      "contents": ["Champagne", "Rosor", "Choklad", "Ostbricka", "Careless Whisper"]
     },
     {
       "name": "Camping",
-      "stock": 17,
-      "description": "Tält\nSovsäckar\nVed och tändstickor\nYxa\nMat\nKikare",
-      "price": 700
+      "stock": 4,
+      "description": "Camping camping camping",
+      "price": 700,
+      "contents": ["Tält", "Sovsäck", "Tändstickor", "Nödransoner", "Verktyg"]
     },
     {
-      "name": "Familje",
-      "stock": 4,
-      "description": "Extra säte\nBarnstol\nPicknickkorg\nFika",
-      "price": 500
+      "name": "Familj",
+      "stock": 13,
+      "description": "Ta med familjen på en rolig upplevelse där picknickkorg bland annat ingår.",
+      "price": 500,
+      "contents": ["Extra säte", "Barnstol", "Picknickkorg", "Fralla", "Saft"]
+    },
+    {
+      "name": "Dricka",
+      "stock": 120,
+      "description": "",
+      "price": 15,
+      "types": ["Coca Cola","Cola Zero","Fanta","Sprite","Kolsyrat vatten"]
+    },
+    {
+      "name": "Snacks",
+      "stock": 200,
+      "description": "",
+      "price": 10,
+      "types": ["Snickers","Bounty","Dagens frukt","Nötter", "Doritos"]
+    },
+    {
+      "name": "Frukostpaket",
+      "stock": 50,
+      "description": "Välj dricka och fralla",
+      "price": 30,
+      "types": ["Ostmacka","Ost- och skinkmacka", "Kaffe", "Te", "Apelsinjuice"]
     }
   ],
   "order": [{}],
   "piggy": [
     {
-      "type": "ExpressPiggy",
+      "type": "Express Piggy",
       "number": 1,
       "description": "This one is ordinary.",
       "price": 200
     },
     {
-      "type": "TurboPiggy",
+      "type": "Turbo Piggy",
       "number": 2,
       "description": "This one is fast.",
       "price": 300
     },
     {
-      "type": "SpiderPiggy",
+      "type": "Spider Piggy",
       "number": 3,
       "description": "This one has many legs.",
       "price": 400
@@ -80,10 +105,10 @@
       "to": "Björkholmsgatan 4",
       "startTime": "2018-03-02T12:00:00.000Z",
       "startAddress": "Sallerupsvägen 26B, 212 18 Malmö, Sverige",
-      "endAdress": "Björkholmsgatan 4, 213 74 Malmö, Sverige",
+      "endAddress": "Björkholmsgatan 4, 213 74 Malmö, Sverige",
       "duration": 3206,
       "durationMinutes": 53,
-      "endTime": "2018-03-02T12:53:26.000Z",
+      "endTime": "2018-03-22T12:53:26.000Z",
       "distance": 4201,
       "speed": 5,
       "positions": [
@@ -163,7 +188,7 @@
       "to": "Linnégatan 1",
       "startTime": "2018-03-02T12:00:00.000Z",
       "startAddress": "Nordenskiöldsgatan 13, 211 19 Malmö, Sverige",
-      "endAdress": "Linnégatan 1, 216 12 Limhamn, Sverige",
+      "endAddress": "Linnégatan 1, 216 12 Limhamn, Sverige",
       "duration": 4386,
       "durationMinutes": 73,
       "endTime": "2018-03-02T13:13:06.000Z",

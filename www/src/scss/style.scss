@@ -1,18 +1,31 @@
-@import "./external/bootstrap";
-@import "./external/agency";
-@import "./external/tempusdominus-bootstrap-4-alpha17";
+@import './external/bootstrap';
+@import './external/agency';
+@import './external/tempusdominus-bootstrap-4-alpha17';
 
 #root {
   margin-top: 150px;
+}
+
+@media (min-width: 768px) {
+  #about {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 575px) {
+  #about,
+  #service {
+    margin-top: -150px;
+  }
 }
 
 html,
 body,
 main,
 #map {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #map-home {
@@ -23,11 +36,9 @@ main,
 }
 
 .fixed-top {
-  @media (max-width: 992px)
-  {
+  @media (max-width: 992px) {
     position: initial;
   }
-
 }
 
 #background {
@@ -39,9 +50,129 @@ main,
   width: 100%;
   height: 100%;
   margin-top: -150px;
-
 }
 
-.dropdown{
-	width: 350px;
+#login,
+#logout {
+  cursor: pointer;
+}
+
+.nav-item .dropdown {
+  width: 350px;
+}
+
+.visa {
+  width: 25%;
+}
+
+.cvv {
+  width: 15%;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-top: 15px;
+  background-color: #212529;
+  height: 30px;
+}
+
+.paket {
+  width: 100px;
+  height: 100px;
+}
+
+.text-content span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#portfolio
+.portfolio-item
+.portfolio-link
+.portfolio-hover
+.portfolio-hover-content {
+  top: 5%;
+  // line-height: 1em;
+  height: auto;
+  margin-top: 0;
+}
+
+#portfolio * {
+  z-index: 0;
+}
+
+.portfolio-caption {
+  min-height: 160px;
+}
+
+#selected-pack {
+  box-shadow: 0px 0px 33px 3px rgba(254, 209, 54, 0.7);
+}
+
+#portfolio .portfolio-item .portfolio-link .portfolio-hover {
+  background: rgba(254, 209, 54, 0.7);
+}
+
+.ride {
+  width: 30%;
+  float: right;
+}
+
+.human-piggy {
+  width: 30%;
+  float: left;
+}
+
+@media (max-width: 575px) {
+  .ride {
+    float: inherit;
+  }
+
+  .human-piggy {
+    float: right;
+  }
+}
+
+.piggies {
+  width: 180px;
+}
+
+.loggo {
+  width: 100px;
+}
+
+.loggo-a {
+  display: contents !important;
+}
+
+#payment {
+  margin-bottom: 110px;
+}
+
+.piggy-robot {
+  width: 50%;
+  height: 50%;
+}
+
+.thumbnail-photo {
+  transition: all 0.2s ease-in-out;
+  transition-delay: 100ms;
+}
+
+.thumbnail-photo-hover {
+  transform: scale(3, 3);
+}
+
+@media (min-width: 768px) {
+  #portfolio {
+    padding: 50px 0;
+  }
 }
