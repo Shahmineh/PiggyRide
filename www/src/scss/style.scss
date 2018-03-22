@@ -164,9 +164,10 @@ main,
 
 .thumbnail-photo {
   transition: all 0.2s ease-in-out;
+  transition-delay: 100ms;
 }
 
-.thumbnail-photo:hover {
+.thumbnail-photo-hover {
   transform: scale(3, 3);
 }
 

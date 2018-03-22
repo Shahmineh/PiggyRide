@@ -15,7 +15,63 @@ import User from './classes/user.class';
  * @param {App} app
  */
 export default function viewsSetup (app) {
-  app.bindView('our-products.html', '/info', null, async () => {});
+  app.bindView('our-products.html', '/info', null, async () => {
+    $('#express')
+      .parent()
+      .first()
+      .hover(
+        function () {
+          $(this)
+            .children()
+            .first()
+            .prop('src', '/images/express-piggy-zoom.jpg');
+          $(this).addClass('thumbnail-photo-hover');
+        },
+        function () {
+          setTimeout(() => {
+            $(this)
+              .children()
+              .first()
+              .prop('src', '/images/express-piggy.jpg');
+          }, 200);
+          $(this).removeClass('thumbnail-photo-hover');
+        }
+      );
+
+    $('#turbo')
+      .parent()
+      .first()
+      .hover(
+        function () {
+          $(this)
+            .children()
+            .first()
+            .prop('src', '/images/turbo-piggy-zoom.jpg');
+          $(this).addClass('thumbnail-photo-hover');
+        },
+        function () {
+          setTimeout(() => {
+            $(this)
+              .children()
+              .first()
+              .prop('src', '/images/turbo-piggy.jpg');
+          }, 200);
+          $(this).removeClass('thumbnail-photo-hover');
+        }
+      );
+
+    $('#spider')
+      .parent()
+      .first()
+      .hover(
+        function () {
+          $(this).addClass('thumbnail-photo-hover');
+        },
+        function () {
+          $(this).removeClass('thumbnail-photo-hover');
+        }
+      );
+  });
 
   app.bindView('kundservice.html', '/kundservice', null, async () => {});
 
