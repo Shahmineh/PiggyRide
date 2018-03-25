@@ -49,7 +49,7 @@ export default class User extends REST {
         data: newData
       })
         .then(res => {
-          console.log(res);
+          // console.log(res);
         })
         .catch(err => {
           // console.log('fewfewfw', err);
@@ -106,7 +106,7 @@ export default class User extends REST {
         data: newData
       })
         .then(async res => {
-          console.log(res);
+          // console.log(res);
           if (!(res instanceof Object)) {
             $('.errormsg').html(
               "<p class='success'> Inkorrekta inloggningsuppgifter. </p>"
@@ -149,7 +149,7 @@ export default class User extends REST {
         data: newData
       })
         .then(res => {
-          console.log(res);
+          // console.log(res);
         })
         .catch(err => {
           // console.log('fewfewfw', err);

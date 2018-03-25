@@ -28,7 +28,7 @@ async function findPiggy (type = piggyType) {
   if (type && time && from) {
     let req = { from: from, time: time };
     let response = await $.ajax({ url: '/bestpiggy', type: 'GET', data: req });
-    console.log(response);
+    // console.log(response);
     let bestPiggy = response
       .filter((wps) => wps.piggy.type === type)
       .map((wps) =>
@@ -56,6 +56,7 @@ async function findPiggy (type = piggyType) {
       .parent()
       .show();
     window.wps = bestPiggy;
+    window.bestTime = bestPiggy.startTime;
     return bestPiggy.startTime;
   }
 }
