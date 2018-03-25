@@ -52,7 +52,7 @@ app.get(
   previewOrder(app, Waypoint, extra.model, piggy.model, order.model, UserModel)
 );
 const confirmOrder = require('./backend/confirmorder')
-app.post('/confirmorder', confirmOrder);
+app.post('/confirmorder', confirmOrder(app, Waypoint, extra.model, piggy.model, order.model, UserModel));
 app.get('/user', (req, res) => {
   // check if there is a logged-in user and return that user
   let response;
