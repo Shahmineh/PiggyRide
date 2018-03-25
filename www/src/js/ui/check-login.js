@@ -2,7 +2,7 @@ import User from '../classes/user.class';
 
 export default async function checkLogin (res, ajaxReq) {
   let user = await User.findOne('');
-  console.log(user);
+  // console.log(user);
   if (user) {
     $('#login-form').hide();
     $('#logout-form').show();
