@@ -22,7 +22,7 @@ export default async function previewOrder () {
     type: 'GET',
     data: query
   });
-  $('#price').text('Totalpris: ' + order.totalPrice + ' kr (varav moms ' + order.totalPrice * 0.06 + ' kr)');
+  $('#price').text('Totalpris: ' + order.totalPrice + ' kr (varav moms ' + (order.totalPrice * 0.06).toFixed(2) + ' kr)');
   let confirmed = false;
   $('#pay').click(async function (e) {
     // e.preventDefault()
