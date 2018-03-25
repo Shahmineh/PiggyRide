@@ -103,7 +103,12 @@ app.post('/login', async (req, res) => {
     if (currentUser) {
       currentUser.sessionID = req.cookies.session;
       req.user = currentUser;
-      req.session.data = { userId: currentUser._id };
+      try {
+        req.session.data = { userId: currentUser._id };
+      } catch (error) {
+        res.clearCookie('session');
+        res.json('You need to create an account');
+      }
       req.session.loggedIn = true;
       currentUser.save();
       req.session.save();
