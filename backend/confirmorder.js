@@ -21,7 +21,8 @@ module.exports = function (app, Waypoint, Extra, Piggy, Order, User) {
       endTime: waypoint.endTime,
       distance: waypoint.distance,
       speed: waypoint.speed,
-      positions: waypoint.positions
+      positions: waypoint.positions,
+      piggy: await Piggy.findOne({_id: incomingOrder['piggies[0][_id]']})
     });
     w.save();
     Order.create(incomingOrder).catch(async () => {
