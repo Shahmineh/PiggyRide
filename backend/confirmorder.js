@@ -1,9 +1,29 @@
 module.exports = function (app, Waypoint, Extra, Piggy, Order, User) {
   return async (req, res) => {
     let incomingOrder = req.body;
+    // console.log(req.body);
     let user = await User.findOne({ sessionID: req.session.id });
     sendMail(user.email, incomingOrder);
     Object.assign(incomingOrder, { user: user, orderTime: new Date() });
+    let waypoint = await Waypoint.create(app, {
+      from: incomingOrder['waypoints[0][from]'],
+      to: incomingOrder['waypoints[0][to]'],
+      startTime: new Date(incomingOrder['waypoints[0][endTime]'])
+    });
+    let w = new waypoint.myModel({
+      from: waypoint.from,
+      to: waypoint.to,
+      startTime: waypoint.startTime,
+      startAddress: waypoint.startAddress,
+      endAddress: waypoint.endAddress,
+      duration: waypoint.duration,
+      durationMinutes: waypoint.durationMinutes,
+      endTime: waypoint.endTime,
+      distance: waypoint.distance,
+      speed: waypoint.speed,
+      positions: waypoint.positions
+    });
+    w.save();
     Order.create(incomingOrder).catch(async () => {
       await Order.remove({ _id: incomingOrder._id });
       await Order.create(incomingOrder);
