@@ -20,7 +20,7 @@ export default async function checkLogin (res, ajaxReq) {
         checkLogin();
       })
       .catch(err => {
-        console.log('err', err);
+        console.log('Error: ', err);
       });
   });
   if (res && res.loggedIn && !user) {

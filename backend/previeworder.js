@@ -22,11 +22,11 @@ module.exports = function (app, Waypoint, Extra, Piggy, Order, User) {
       user: req.session._id ? await User.findOne({session: req.session._id}) : 0,
       extras: await Promise.all(extras.map(extra => Extra.findOne({name: extra}))).catch(),
       piggies: await Piggy.find({_id: query.wps.piggy._id})
-    })
+    });
     newOrder.wps = wp;
-    console.log(query);
-    console.log(result);
-    console.log(newOrder);
+    // console.log(query);
+    // console.log(result);
+    // console.log(newOrder);
 
     res.json(newOrder);
   };

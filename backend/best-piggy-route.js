@@ -30,7 +30,7 @@ module.exports = async function (req, res, next) {
     startTime: new Date()
   });
   // console.log(hqWaypoint);
-  let time = req.query.time ? new Date(req.query.time) : new Date('March 22, 2018 12:24:00');
+  let time = req.query.time ? new Date(req.query.time) : new Date();
   let futureTimes = wpsByPiggy
     .map((wps) => {
       return wps.filter((wp) => {
