@@ -56,6 +56,7 @@ async function findPiggy (type = piggyType) {
       .parent()
       .show();
     window.wps = bestPiggy;
+    window.bestTime = bestPiggy.startTime;
     return bestPiggy.startTime;
   }
 }

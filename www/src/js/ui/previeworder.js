@@ -2,7 +2,7 @@ export default async function previewOrder () {
   let query = {
     to: $('#autocompleteTo').val(),
     from: $('#autocompleteFrom').val(),
-    time: $('#departure-time')
+    time: window.bestTime || $('#departure-time')
       .children()
       .first()
       .val()
