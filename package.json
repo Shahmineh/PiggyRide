@@ -1,6 +1,6 @@
 {
   "name": "PiggyRide",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Piggies for everyone",
   "main": "server.js",
   "repository": "git@github.com:Shahmineh/PiggyRide.git",

@@ -42,7 +42,6 @@ $(document).on('click', '.portfolio-hover', function () {
       .parent()
       .attr('id') === 'selected-pack'
   ) {
-    console.log('!');
     $(this)
       .parent()
       .parent()

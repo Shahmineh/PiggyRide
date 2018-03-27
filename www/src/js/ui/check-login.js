@@ -2,7 +2,7 @@ import User from '../classes/user.class';
 
 export default async function checkLogin (res, ajaxReq) {
   let user = await User.findOne('');
-  console.log(user);
+  // console.log(user);
   if (user) {
     $('#login-form').hide();
     $('#logout-form').show();
@@ -20,7 +20,7 @@ export default async function checkLogin (res, ajaxReq) {
         checkLogin();
       })
       .catch(err => {
-        console.log('err', err);
+        console.log('Error: ', err);
       });
   });
   if (res && res.loggedIn && !user) {

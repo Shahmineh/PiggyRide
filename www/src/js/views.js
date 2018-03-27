@@ -92,8 +92,8 @@ export default function viewsSetup (app) {
       return currPos;
     };
 
-    window.initMap = async (theTime = '2018-03-02 10:05:44.000Z') => {
-      console.log('Bom right man');
+    window.initMap = async (theTime = new Date()) => {
+      // console.log('Bom right man');
       let hq = {
         lat: 55.6108096,
         lng: 12.9946562
@@ -152,8 +152,8 @@ export default function viewsSetup (app) {
       return currPos;
     };
 
-    window.initMap = async (theTime = '2018-03-02 10:05:44.000Z') => {
-      console.log('Bom right man');
+    window.initMap = async (theTime = new Date()) => {
+      // console.log('Bom right man');
       let hq = {
         lat: 55.6108096,
         lng: 12.9946562
